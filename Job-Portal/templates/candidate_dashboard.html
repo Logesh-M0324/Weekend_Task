@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+
+{% block title %}
+Candidate Dashboard
+{% endblock %}
+
+{% block content %}
+
+{% set completion = 0 %}
+
+{% if user["name"] %}
+    {% set completion = completion + 25 %}
+{% endif %}
+
+{% if user["skills"] %}
+    {% set completion = completion + 25 %}
+{% endif %}
+
+{% if user["experience"] %}
+    {% set completion = completion + 25 %}
+{% endif %}
+
+{% if user["resume"] %}
+    {% set completion = completion + 25 %}
+{% endif %}
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+
+        <h3>
+
+            Welcome,
+            {{ session["name"] }}
+
+        </h3>
+
+        <p>
+
+            Manage your applications and saved jobs here.
+
+        </p>
+
+    </div>
+
+</div>
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+
+        <h5>
+
+            Profile Completion
+
+        </h5>
+
+        <div class="progress mb-2">
+
+            <div
+                class="progress-bar bg-success"
+                role="progressbar"
+                style="width: {{ completion }}%;">
+
+                {{ completion }}%
+
+            </div>
+
+        </div>
+
+        {% if completion == 100 %}
+
+            <span class="badge bg-success">
+
+                Profile Complete
+
+            </span>
+
+        {% else %}
+
+            <span class="badge bg-warning text-dark">
+
+                Complete your profile to improve your chances.
+
+            </span>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-6">
+
+        <div class="card shadow border-primary">
+
+            <div class="card-body text-center">
+
+                <h5>
+
+                    Applied Jobs
+
+                </h5>
+
+                <h1 class="text-primary">
+
+                    {{ applied_count }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card shadow border-success">
+
+            <div class="card-body text-center">
+
+                <h5>
+
+                    Saved Jobs
+
+                </h5>
+
+                <h1 class="text-success">
+
+                    {{ saved_count }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow mb-4">
+
+    <div class="card-header">
+
+        Applied Jobs
+
+    </div>
+
+    <div class="card-body">
+
+        {% if applied_jobs %}
+
+        <table class="table table-bordered table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>Job</th>
+                    <th>Company</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for job in applied_jobs %}
+
+                <tr>
+
+                    <td>{{ job["job_title"] }}</td>
+                    <td>{{ job["company_name"] }}</td>
+                    <td>{{ job["applied_date"] }}</td>
+
+                    <td>
+
+                        {% if job["status"] == "Applied" %}
+
+                        <span class="badge bg-warning text-dark">
+
+                            Pending
+
+                        </span>
+
+                        {% elif job["status"] == "Accepted" %}
+
+                        <span class="badge bg-success">
+
+                            Accepted
+
+                        </span>
+
+                        {% elif job["status"] == "Rejected" %}
+
+                        <span class="badge bg-danger">
+
+                            Rejected
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-secondary">
+
+                            {{ job["status"] }}
+
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+                    <td>
+
+                        <a
+                            href="{{ url_for('job_details', job_id=job['id']) }}"
+                            class="btn btn-sm btn-outline-primary">
+
+                            <i class="bi bi-eye"></i>
+
+                            View
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="alert alert-info">
+
+            No applications yet.
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        Saved Jobs
+
+    </div>
+
+    <div class="card-body">
+
+        {% if saved_jobs %}
+
+        <table class="table table-bordered table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>Job</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for job in saved_jobs %}
+
+                <tr>
+
+                    <td>{{ job["job_title"] }}</td>
+                    <td>{{ job["company_name"] }}</td>
+                    <td>{{ job["location"] }}</td>
+                    <td>
+
+                        <a
+                            href="{{ url_for('job_details', job_id=job['id']) }}"
+                            class="btn btn-sm btn-outline-primary">
+
+                            <i class="bi bi-eye"></i>
+
+                            View
+
+                        </a>
+
+                        <a
+                            href="{{ url_for('remove_saved_job', job_id=job['id']) }}"
+                            class="btn btn-sm btn-outline-danger"
+                            onclick="return confirm('Remove this job from your saved jobs?');">
+
+                            <i class="bi bi-trash"></i>
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="alert alert-info">
+
+            No saved jobs.
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
