@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Courses
+{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    My Courses
+</h1>
+
+{% if courses %}
+
+<div class="row">
+
+    {% for course in courses %}
+
+    <div class="col-md-6 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h4 class="card-title">
+                    {{ course["course_name"] }}
+                </h4>
+
+                <p class="mb-1">
+                    <strong>Category:</strong>
+                    {{ course["category"] }}
+                </p>
+
+                <p class="mb-3">
+                    <strong>Duration:</strong>
+                    {{ course["duration"] }}
+                </p>
+
+                <p>
+                    <strong>Progress:</strong>
+                    {{ course["progress"] }}%
+                </p>
+
+                <div class="progress mb-3">
+
+                    <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: {{ course['progress'] }}%;"
+                        aria-valuenow="{{ course['progress'] }}"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >
+
+                        {{ course["progress"] }}%
+
+                    </div>
+
+                </div>
+
+                {% if course["progress"] == 100 %}
+
+                    <span class="badge bg-success mb-3">
+                        Completed
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-warning text-dark mb-3">
+                        In Progress
+                    </span>
+
+                {% endif %}
+
+                <form
+                    action="/update-progress/{{ course['id'] }}"
+                    method="POST"
+                >
+
+                    {% if course["progress"] < 100 %}
+
+                        <select
+                            name="progress"
+                            class="form-select mb-3"
+                        >
+
+                            <option value="0" {% if course["progress"] == 0 %}selected{% endif %}>0%</option>
+                            <option value="10" {% if course["progress"] == 10 %}selected{% endif %}>10%</option>
+                            <option value="20" {% if course["progress"] == 20 %}selected{% endif %}>20%</option>
+                            <option value="30" {% if course["progress"] == 30 %}selected{% endif %}>30%</option>
+                            <option value="40" {% if course["progress"] == 40 %}selected{% endif %}>40%</option>
+                            <option value="50" {% if course["progress"] == 50 %}selected{% endif %}>50%</option>
+                            <option value="60" {% if course["progress"] == 60 %}selected{% endif %}>60%</option>
+                            <option value="70" {% if course["progress"] == 70 %}selected{% endif %}>70%</option>
+                            <option value="80" {% if course["progress"] == 80 %}selected{% endif %}>80%</option>
+                            <option value="90" {% if course["progress"] == 90 %}selected{% endif %}>90%</option>
+                            <option value="100" {% if course["progress"] == 100 %}selected{% endif %}>100%</option>
+
+                        </select>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Update Progress
+                        </button>
+
+                    {% else %}
+
+                        <button
+                            class="btn btn-success"
+                            disabled
+                        >
+                            <i class="bi bi-check-circle-fill"></i>
+                            Course Completed
+                        </button>
+
+                    {% endif %}
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+
+    <h5>No Enrollments Yet</h5>
+
+    <p class="mb-0">
+        Browse available courses and start learning today.
+    </p>
+
+</div>
+
+<a
+    href="/courses"
+    class="btn btn-primary"
+>
+    Browse Courses
+</a>
+
+{% endif %}
+
+{% endblock %}

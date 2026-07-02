@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+Course Details
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h2 class="card-title mb-3">
+                    {{ course["course_name"] }}
+                </h2>
+
+                <div class="mb-3">
+
+                    <span class="badge bg-primary">
+                        {{ course["category"] }}
+                    </span>
+
+                    <span class="badge bg-secondary">
+                        {{ course["duration"] }}
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <h5>
+                    Course Description
+                </h5>
+
+                <p class="card-text">
+                    {{ course["description"] }}
+                </p>
+
+                <div class="mt-4">
+
+                    <a
+                        href="/enroll/{{ course['id'] }}"
+                        class="btn btn-success"
+                    >
+                        Enroll Now
+                    </a>
+
+                    <a
+                        href="/courses"
+                        class="btn btn-outline-secondary"
+                    >
+                        Back to Courses
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

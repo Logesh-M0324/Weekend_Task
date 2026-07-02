@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center py-5">
+
+    <h1 class="display-4 fw-bold mb-3">
+        Online Course Management System
+    </h1>
+
+    {% if session.get("user_id") %}
+
+        <div class="alert alert-success">
+            Welcome, <strong>{{ session["user_name"] }}</strong>
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-secondary">
+            Welcome, <strong>Guest</strong>
+        </div>
+
+    {% endif %}
+
+    <p class="lead">
+        Learn new skills, enroll in courses, and track your progress.
+    </p>
+
+    <div class="mt-4">
+
+        <a href="/courses" class="btn btn-primary btn-lg">
+            Browse Courses
+        </a>
+
+        {% if not session.get("user_id") %}
+
+            <a href="/register" class="btn btn-success btn-lg ms-2">
+                Get Started
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="row mt-5">
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card h-100 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    📚 Courses
+                </h4>
+
+                <p>
+                    Explore a variety of learning opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card h-100 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    🎯 Progress Tracking
+                </h4>
+
+                <p>
+                    Monitor your learning journey with ease.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card h-100 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h4>
+                    🏆 Achievements
+                </h4>
+
+                <p>
+                    Complete courses and improve your skills.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
