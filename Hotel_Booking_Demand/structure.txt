@@ -1,0 +1,136 @@
+Hotel-Booking-Analytics-Platform/
+│
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── Project_Roadmap.md
+│
+├── data/
+│   │
+│   ├── raw/
+│   │     └── hotel_bookings.csv
+│   │
+│   ├── processed/
+│   │     ├── cleaned_hotel_bookings.csv
+│   │     ├── transformed_dataset.csv
+│   │     └── feature_engineered_dataset.csv
+│   │
+│   └── external/
+│
+│
+├── notebooks/
+│   │
+│   ├── 01_Data_Understanding.ipynb
+│   ├── 02_Data_Preprocessing.ipynb
+│   ├── 03_Probability_Statistics.ipynb
+│   ├── 04_Assumption_Testing.ipynb
+│   ├── 05_Hypothesis_Testing.ipynb
+│   ├── 06_EDA.ipynb
+│   ├── 07_Business_Report.ipynb
+│   └── Scratch.ipynb
+│
+│
+├── src/
+│   │
+│   ├── __init__.py
+│   │
+│   ├── config.py
+│   │
+│   ├── data_loader.py
+│   │
+│   ├── preprocessing.py
+│   │
+│   ├── feature_engineering.py
+│   │
+│   ├── visualization.py
+│   │
+│   ├── statistics.py
+│   │
+│   ├── hypothesis_testing.py
+│   │
+│   ├── probability.py
+│   │
+│   ├── eda.py
+│   │
+│   ├── report_generator.py
+│   │
+│   └── utils.py
+│
+│
+├── reports/
+│   │
+│   ├── preprocessing_report.pdf
+│   ├── statistical_analysis_report.pdf
+│   ├── hypothesis_testing_report.pdf
+│   ├── eda_report.pdf
+│   ├── business_insights.pdf
+│   └── final_project_report.pdf
+│
+│
+├── figures/
+│   │
+│   ├── preprocessing/
+│   ├── statistics/
+│   ├── eda/
+│   ├── dashboard/
+│   └── reports/
+│
+│
+├── flask_app/
+│   │
+│   ├── app.py
+│   │
+│   ├── config.py
+│   │
+│   ├── routes/
+│   │     ├── home.py
+│   │     ├── analytics.py
+│   │     ├── statistics.py
+│   │     ├── explorer.py
+│   │     └── reports.py
+│   │
+│   ├── templates/
+│   │     │
+│   │     ├── base.html
+│   │     ├── index.html
+│   │     ├── analytics.html
+│   │     ├── statistics.html
+│   │     ├── explorer.html
+│   │     ├── reports.html
+│   │     └── error.html
+│   │
+│   ├── static/
+│   │     │
+│   │     ├── css/
+│   │     ├── js/
+│   │     ├── images/
+│   │     └── charts/
+│   │
+│   └── services/
+│         ├── dashboard.py
+│         ├── data_service.py
+│         └── report_service.py
+│
+│
+├── exports/
+│   │
+│   ├── cleaned_dataset.csv
+│   ├── statistics_summary.xlsx
+│   ├── hypothesis_results.csv
+│   └── eda_summary.pdf
+│
+│
+├── docs/
+│   │
+│   ├── project_architecture.md
+│   ├── dataset_description.md
+│   ├── statistical_methods.md
+│   ├── dashboard_design.md
+│   └── git_workflow.md
+│
+│
+└── .github/
+    │
+    ├── ISSUE_TEMPLATE/
+    └── workflows/

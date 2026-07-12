@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Applicants
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                Applicants
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                {{ job["job_title"] }} - {{ job["company_name"] }}
+
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('employer_dashboard') }}"
+            class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    {% if applicants %}
+
+        <div class="row">
+
+            {% for applicant in applicants %}
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <!-- Applicant Details -->
+
+                        <h4 class="fw-bold mb-1">
+
+                            {{ applicant["name"] }}
+
+                        </h4>
+
+                        <p class="text-muted mb-3">
+
+                            {{ applicant["email"] }}
+
+                        </p>
+
+                        <hr>
+
+                        <div class="mb-3">
+
+                            <strong>Skills</strong>
+
+                            <p class="mb-0">
+
+                                {{ applicant["skills"] or "Not Updated" }}
+
+                            </p>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <strong>Experience</strong>
+
+                            <p class="mb-0">
+
+                                {{ applicant["experience"] or "Not Updated" }}
+
+                            </p>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <strong>Applied On</strong>
+
+                            <p class="mb-0">
+
+                                {{ applicant["applied_date"] }}
+
+                            </p>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <strong>Status</strong>
+
+                            <br>
+
+                            {% if applicant["status"] == "Applied" %}
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Pending
+
+                                </span>
+
+                            {% elif applicant["status"] == "Accepted" %}
+
+                                <span class="badge bg-success">
+
+                                    Accepted
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">
+
+                                    Rejected
+
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Push footer to bottom -->
+
+                        <div class="mt-auto">
+
+                            <hr>
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                {% if applicant["resume"] %}
+
+                                    <a
+                                        href="{{ url_for(
+                                            'view_resume',
+                                            filename=applicant['resume']
+                                        ) }}"
+                                        class="btn btn-outline-primary">
+
+                                        <i class="bi bi-file-earmark-pdf"></i>
+
+                                        Resume
+
+                                    </a>
+
+                                {% else %}
+
+                                    <span class="text-danger">
+
+                                        Resume Not Uploaded
+
+                                    </span>
+
+                                {% endif %}
+
+                                <div class="btn-group">
+
+                                    <a
+                                        href="{{ url_for(
+                                            'update_application',
+                                            application_id=applicant['id'],
+                                            status='Accepted'
+                                        ) }}"
+                                        class="btn btn-success">
+
+                                        <i class="bi bi-check-circle"></i>
+
+                                        Accept
+
+                                    </a>
+
+                                    <a
+                                        href="{{ url_for(
+                                            'update_application',
+                                            application_id=applicant['id'],
+                                            status='Rejected'
+                                        ) }}"
+                                        class="btn btn-danger">
+
+                                        <i class="bi bi-x-circle"></i>
+
+                                        Reject
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-info text-center">
+
+            <h5>
+
+                No Applicants Yet
+
+            </h5>
+
+            <p>
+
+                No candidates have applied for this job.
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

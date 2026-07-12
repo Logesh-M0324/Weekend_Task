@@ -1,0 +1,28 @@
+JobPortal/
+│
+├── app.py
+├── database.py
+├── Pipfile
+├── uploads/
+│   ├── resumes/
+│   └── profile_pics/
+│
+├── static/
+│   ├── css/
+│   └── images/
+│
+├── templates/
+│   ├── index.html
+│   ├── register.html
+│   ├── login.html
+│   ├── jobs.html
+│   ├── job_details.html
+│   ├── employer_dashboard.html
+│   ├── candidate_dashboard.html
+│   ├── profile.html
+│   ├── post_job.html
+│   ├── edit_job.html
+│   ├── navbar.html
+│   └── footer.html
+│
+└── database.db
