@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow border-0">
+
+            <div class="card-header bg-primary text-white py-3">
+
+                <h3 class="mb-0">
+
+                    <i class="bi bi-person-circle"></i>
+
+                    My Profile
+
+                </h3>
+
+            </div>
+
+            <div class="card-body p-4">
+
+                <form
+                    method="POST"
+                    enctype="multipart/form-data">
+
+                    <!-- Profile Picture -->
+
+                    <div class="text-center mb-4">
+
+                        {% if user["profile_picture"] %}
+
+                            <img
+                                src="{{ url_for('static', filename='uploads/profile_pics/' + user['profile_picture']) }}"
+                                class="rounded-circle border shadow"
+                                width="150"
+                                height="150"
+                                style="object-fit: cover;">
+
+                        {% else %}
+
+                            <div class="mb-2">
+
+                                <i
+                                    class="bi bi-person-circle text-secondary"
+                                    style="font-size: 120px;">
+
+                                </i>
+
+                            </div>
+
+                            <p class="text-muted">
+
+                                No profile picture uploaded
+
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Personal Information -->
+
+                    <h5 class="mb-3">
+
+                        <i class="bi bi-person-fill"></i>
+
+                        Personal Information
+
+                    </h5>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            value="{{ user['name'] }}"
+                            required>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Email Address
+
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            value="{{ user['email'] }}"
+                            readonly>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Professional Information -->
+
+                    <h5 class="mb-3">
+
+                        <i class="bi bi-briefcase-fill"></i>
+
+                        Professional Information
+
+                    </h5>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Skills
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="skills"
+                            class="form-control"
+                            placeholder="Python, Flask, SQL..."
+                            value="{{ user['skills'] or '' }}">
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Experience
+
+                        </label>
+
+                        <textarea
+                            name="experience"
+                            class="form-control"
+                            rows="5"
+                            placeholder="Describe your professional experience...">{{ user["experience"] or "" }}</textarea>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Resume -->
+
+                    <h5 class="mb-3">
+
+                        <i class="bi bi-file-earmark-text-fill"></i>
+
+                        Resume
+
+                    </h5>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Upload Resume
+
+                        </label>
+
+                        <input
+                            type="file"
+                            name="resume"
+                            class="form-control">
+
+                    </div>
+
+                    {% if user["resume"] %}
+
+                        <div class="alert alert-success">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Current Resume:
+
+                            <strong>
+
+                                {{ user["resume"] }}
+
+                            </strong>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="alert alert-warning">
+
+                            Resume not uploaded.
+
+                        </div>
+
+                    {% endif %}
+
+                    <hr>
+
+                    <!-- Profile Picture Upload -->
+
+                    <h5 class="mb-3">
+
+                        <i class="bi bi-image-fill"></i>
+
+                        Profile Picture
+
+                    </h5>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Upload Profile Picture
+
+                        </label>
+
+                        <input
+                            type="file"
+                            name="profile_picture"
+                            class="form-control">
+
+                    </div>
+
+                    <!-- Buttons -->
+
+                    <div class="d-flex gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Update Profile
+
+                        </button>
+
+                        <a
+                            href="{{ url_for('candidate_dashboard') }}"
+                            class="btn btn-secondary">
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            Back
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
