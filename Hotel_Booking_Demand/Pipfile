@@ -15,6 +15,7 @@ jupyter = "*"
 notebook = "*"
 missingno = "*"
 openpyxl = "*"
+scikit-posthocs = "*"
 
 [dev-packages]
 
