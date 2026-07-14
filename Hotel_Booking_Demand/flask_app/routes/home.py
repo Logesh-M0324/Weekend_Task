@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from utils.analytics import get_dashboard_kpis
+from utils.analytics.dashboard import get_dashboard_kpis
 
 home_bp = Blueprint(
 

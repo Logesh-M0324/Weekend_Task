@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from utils.analytics import (
+from utils.analytics.booking import (
 
     get_monthly_bookings,
 
