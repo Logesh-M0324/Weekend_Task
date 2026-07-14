@@ -1,49 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        <title>Hotel Booking Analytics</title>
 
-    <title>Hotel Booking Demand Analytics</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-    rel="stylesheet">
+        <link rel="stylesheet"
 
-    <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}">
+        href="{{ url_for('static', filename='css/style.css') }}">
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-primary">
 
-    <div class="container">
+        <div class="container-fluid">
 
-        <span class="navbar-brand">
+            <a class="navbar-brand">
 
-            Hotel Booking Demand Analytics Platform
+            Hotel Booking Analytics Dashboard
 
-        </span>
+            </a>
 
-    </div>
+        </div>
 
-</nav>
+        </nav>
 
-<div class="container mt-4">
+        <div class="container-fluid">
 
-    {% block content %}
+            <div class="row">
 
-    {% endblock %}
+                 <div class="col-md-2 sidebar">
 
-</div>
+                    <ul class="nav flex-column mt-4">
 
-</body>
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                                href="/">🏠 Dashboard</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                                href="#">📅 Booking Analytics</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                            href="#">👥 Customer Analytics</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                            href="#">❌ Cancellation</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                            href="#">💰 Revenue</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                            href="#">📊 Statistics</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+
+                            href="#">📄 Reports</a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-10 mt-4">
+
+                    {% block content %}
+
+                    {% endblock %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
 
 </html>

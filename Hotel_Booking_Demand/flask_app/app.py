@@ -1,16 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask
+
+from routes.home import home_bp
 
 app = Flask(__name__)
 
 app.config.from_pyfile("config.py")
 
-
-@app.route("/")
-def home():
-    return render_template("home.html")
-
+app.register_blueprint(home_bp)
 
 if __name__ == "__main__":
-    app.run(
-        debug=True
-    )
+
+    app.run(debug=True)

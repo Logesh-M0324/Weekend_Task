@@ -4,16 +4,94 @@
 
 <h2>
 
-    Welcome to the Hotel Booking Demand Analytics Platform
+Dashboard Overview
 
 </h2>
 
 <hr>
 
-<p>
+<div class="row">
 
-    Flask application setup completed successfully.
+<div class="col-md-3">
 
-</p>
+<div class="card text-bg-primary">
+
+<div class="card-body">
+
+<h5>Total Bookings</h5>
+
+<h2>
+
+{{ kpis.total_bookings }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-danger">
+
+<div class="card-body">
+
+<h5>Cancellation Rate</h5>
+
+<h2>
+
+{{ kpis.cancellation_rate }}%
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-success">
+
+<div class="card-body">
+
+<h5>Average ADR</h5>
+
+<h2>
+
+{{ kpis.average_adr }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-warning">
+
+<div class="card-body">
+
+<h5>Average Stay</h5>
+
+<h2>
+
+{{ kpis.average_stay }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 {% endblock %}
