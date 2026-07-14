@@ -1,0 +1,5 @@
+Check,Result
+Duplicate Records,1256
+Unique Index,True
+Booking ID Available,False
+Repeated Guest Column,Available

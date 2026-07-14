@@ -5,6 +5,7 @@ from routes.booking import booking_bp
 from routes.customer import customer_bp
 from routes.cancellation import cancellation_bp
 from routes.revenue import revenue_bp
+from routes.statistics import statistics_bp
 
 app = Flask(__name__)
 
@@ -19,6 +20,8 @@ app.register_blueprint(customer_bp)
 app.register_blueprint(cancellation_bp)
 
 app.register_blueprint(revenue_bp)
+
+app.register_blueprint(statistics_bp)
 
 if __name__ == "__main__":
 

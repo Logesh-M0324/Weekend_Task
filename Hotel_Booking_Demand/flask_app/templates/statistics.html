@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">Statistical Analysis Dashboard</h2>
+
+    <!-- KPI Cards -->
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-primary text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>Normality Tests</h6>
+
+                    <h2>{{ kpis.normality_tests }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-success text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>VIF Variables</h6>
+
+                    <h2>{{ kpis.vif_variables }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-warning text-dark shadow">
+
+                <div class="card-body">
+
+                    <h6>Strong Correlations</h6>
+
+                    <h2>{{ kpis.correlations }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-danger text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>Hypothesis Tests</h6>
+
+                    <h2>{{ kpis.hypothesis_tests }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Normality Test Summary</strong>
+
+                </div>
+
+                <div class="card-body" style="height:400px;">
+
+                    <canvas id="normalityChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Variance Inflation Factor (VIF)</strong>
+
+                </div>
+
+                <div class="card-body" style="height:400px;">
+
+                    <canvas id="vifChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Strong Correlations</strong>
+
+                </div>
+
+                <div class="card-body" style="height:400px;">
+
+                    <canvas id="correlationChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Independent t-Test Results</strong>
+
+                </div>
+
+                <div class="card-body" style="height:400px;">
+
+                    <canvas id="ttestChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <table class="table table-striped">
+
+            <thead>
+
+            <tr>
+
+            <th>Statistic</th>
+
+            <th>Value</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in ttest.to_dict(orient="records") %}
+
+            <tr>
+
+            <td>{{ row["Statistic"] }}</td>
+
+            <td>{{ row["Value"] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+const statisticsData = {
+
+    normality: {{ normality.to_dict(orient="records") | tojson }},
+
+    vif: {{ vif.to_dict(orient="records") | tojson }},
+
+    correlation: {{ correlation.to_dict(orient="records") | tojson }},
+
+    ttest: {{ ttest.to_dict(orient="records") | tojson }}
+
+};
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/statistics.js') }}"></script>
+
+{% endblock %}
