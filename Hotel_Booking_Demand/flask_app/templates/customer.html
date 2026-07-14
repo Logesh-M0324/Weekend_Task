@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Customer Analytics</h2>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card text-bg-primary">
+
+<div class="card-body">
+
+<h5>Total Customers</h5>
+
+<h2>{{ kpis.total_customers }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-success">
+
+<div class="card-body">
+
+<h5>Repeat Guests</h5>
+
+<h2>{{ kpis.repeat_guests }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-warning">
+
+<div class="card-body">
+
+<h5>New Guests</h5>
+
+<h2>{{ kpis.new_guests }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-bg-info">
+
+<div class="card-body">
+
+<h5>Countries</h5>
+
+<h2>{{ kpis.countries }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Customer Type</h5>
+
+<canvas id="customerTypeChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Market Segment</h5>
+
+<canvas id="marketChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Top 10 Countries</h5>
+
+<canvas id="countryChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Repeat Guests</h5>
+
+<canvas id="repeatChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const customerData = {
+
+    customerTypes: {{ customer_types.to_dict(orient="records")|tojson }},
+
+    marketSegments: {{ market_segments.to_dict(orient="records")|tojson }},
+
+    countries: {{ countries.to_dict(orient="records")|tojson }},
+
+    repeatGuests: {{ repeat_guests.to_dict(orient="records")|tojson }}
+
+    };
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/customer.js') }}"></script>
+
+{% endblock %}

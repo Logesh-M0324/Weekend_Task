@@ -2,6 +2,7 @@ from flask import Flask
 
 from routes.home import home_bp
 from routes.booking import booking_bp
+from routes.customer import customer_bp
 
 app = Flask(__name__)
 
@@ -10,6 +11,8 @@ app.config.from_pyfile("config.py")
 app.register_blueprint(home_bp)
 
 app.register_blueprint(booking_bp)
+
+app.register_blueprint(customer_bp)
 
 if __name__ == "__main__":
 
