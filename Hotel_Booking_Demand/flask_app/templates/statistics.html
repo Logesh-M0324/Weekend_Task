@@ -4,21 +4,32 @@
 
 <div class="container-fluid">
 
-    <h2 class="mb-4">Statistical Analysis Dashboard</h2>
+    <h2 class="mb-4">
+        <i class="fas fa-chart-line"></i>
+        Statistical Analysis Dashboard
+    </h2>
 
-    <!-- KPI Cards -->
+    <!-- ============================= -->
+    <!-- KPI CARDS -->
+    <!-- ============================= -->
 
     <div class="row">
 
         <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card bg-primary text-white shadow">
+            <div class="card border-left-primary shadow h-100">
 
                 <div class="card-body">
 
-                    <h6>Normality Tests</h6>
+                    <div class="text-xs text-primary text-uppercase mb-2">
+                        Normality
+                    </div>
 
-                    <h2>{{ kpis.normality_tests }}</h2>
+                    <h4 class="fw-bold">
+
+                        {{ normality.iloc[0]["Decision"] }}
+
+                    </h4>
 
                 </div>
 
@@ -26,15 +37,24 @@
 
         </div>
 
+
         <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card bg-success text-white shadow">
+            <div class="card border-left-success shadow h-100">
 
                 <div class="card-body">
 
-                    <h6>VIF Variables</h6>
+                    <div class="text-xs text-success text-uppercase mb-2">
 
-                    <h2>{{ kpis.vif_variables }}</h2>
+                        VIF Variables
+
+                    </div>
+
+                    <h3>
+
+                        {{ vif|length }}
+
+                    </h3>
 
                 </div>
 
@@ -42,15 +62,24 @@
 
         </div>
 
+
         <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card bg-warning text-dark shadow">
+            <div class="card border-left-warning shadow h-100">
 
                 <div class="card-body">
 
-                    <h6>Strong Correlations</h6>
+                    <div class="text-xs text-warning text-uppercase mb-2">
 
-                    <h2>{{ kpis.correlations }}</h2>
+                        Strong Correlations
+
+                    </div>
+
+                    <h3>
+
+                        {{ correlation|length }}
+
+                    </h3>
 
                 </div>
 
@@ -58,15 +87,24 @@
 
         </div>
 
+
         <div class="col-lg-3 col-md-6 mb-4">
 
-            <div class="card bg-danger text-white shadow">
+            <div class="card border-left-danger shadow h-100">
 
                 <div class="card-body">
 
-                    <h6>Hypothesis Tests</h6>
+                    <div class="text-xs text-danger text-uppercase mb-2">
 
-                    <h2>{{ kpis.hypothesis_tests }}</h2>
+                        Hypothesis Tests
+
+                    </div>
+
+                    <h4>
+
+                        Completed
+
+                    </h4>
 
                 </div>
 
@@ -76,23 +114,76 @@
 
     </div>
 
-    <!-- Charts -->
+
+    <!-- ================================= -->
+
+    <!-- ASSUMPTION TESTING -->
+
+    <!-- ================================= -->
 
     <div class="row">
 
-        <div class="col-lg-6 mb-4">
+        <!-- Normality Card -->
 
-            <div class="card shadow">
+        <div class="col-lg-4 mb-4">
+
+            <div class="card shadow h-100">
 
                 <div class="card-header">
 
-                    <strong>Normality Test Summary</strong>
+                    <strong>
+
+                        Normality Test
+
+                    </strong>
 
                 </div>
 
-                <div class="card-body" style="height:400px;">
+                <div class="card-body">
 
-                    <canvas id="normalityChart"></canvas>
+                    <table class="table table-bordered">
+
+                        <tr>
+
+                            <th>Statistic</th>
+
+                            <td>
+
+                                {{ "%.4f"|format(normality.iloc[0]["Statistic"]) }}
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>P-value</th>
+
+                            <td>
+
+                                {{ normality.iloc[0]["P-Value"] }}
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Decision</th>
+
+                            <td>
+
+                                <span class="badge bg-danger">
+
+                                    {{ normality.iloc[0]["Decision"] }}
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
 
                 </div>
 
@@ -100,17 +191,106 @@
 
         </div>
 
-        <div class="col-lg-6 mb-4">
+
+
+        <!-- VIF Summary -->
+
+        <div class="col-lg-8 mb-4">
 
             <div class="card shadow">
 
                 <div class="card-header">
 
-                    <strong>Variance Inflation Factor (VIF)</strong>
+                    <strong>
+
+                        Variance Inflation Factor (VIF)
+
+                    </strong>
 
                 </div>
 
-                <div class="card-body" style="height:400px;">
+                <div class="card-body">
+
+                    <table class="table table-striped table-hover">
+
+                        <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Feature</th>
+
+                            <th>VIF</th>
+
+                            <th>Interpretation</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        {% for row in vif.to_dict(orient="records") %}
+
+                        <tr>
+
+                            <td>
+
+                                {{ row["Feature"] }}
+
+                            </td>
+
+                            <td>
+
+                                {{ row["VIF"] }}
+
+                            </td>
+
+                            <td>
+
+                                {{ row["Interpretation"] }}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================= -->
+
+    <!-- VIF CHART -->
+
+    <!-- ================================= -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>
+
+                        VIF Visualization
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body" style="height:500px;">
 
                     <canvas id="vifChart"></canvas>
 
@@ -122,57 +302,576 @@
 
     </div>
 
-    <div class="row">
+    <br>
 
-        <div class="col-lg-6 mb-4">
+<!-- ================================= -->
 
-            <div class="card shadow">
+<!-- CORRELATION ANALYSIS -->
 
-                <div class="card-header">
+<!-- ================================= -->
 
-                    <strong>Strong Correlations</strong>
+<div class="row mt-4">
 
-                </div>
+    <div class="col-lg-12">
 
-                <div class="card-body" style="height:400px;">
+        <div class="card shadow">
 
-                    <canvas id="correlationChart"></canvas>
+            <div class="card-header">
 
-                </div>
+                <strong>
+
+                    Strong Correlations
+
+                </strong>
+
+            </div>
+
+            <div class="card-body" style="height:450px;">
+
+                <canvas id="correlationChart"></canvas>
 
             </div>
 
         </div>
 
-        <div class="col-lg-6 mb-4">
+    </div>
 
-            <div class="card shadow">
+</div>
 
-                <div class="card-header">
 
-                    <strong>Independent t-Test Results</strong>
+<div class="row mt-4">
 
-                </div>
+    <div class="col-lg-12">
 
-                <div class="card-body" style="height:400px;">
+        <div class="card shadow">
 
-                    <canvas id="ttestChart"></canvas>
+            <div class="card-header">
 
-                </div>
+                <strong>
+
+                    Strong Correlation Summary
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Variable 1</th>
+
+                        <th>Variable 2</th>
+
+                        <th>Correlation</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for row in correlation.to_dict(orient="records") %}
+
+                    <tr>
+
+                        <td>{{ row["Variable 1"] }}</td>
+
+                        <td>{{ row["Variable 2"] }}</td>
+
+                        <td>{{ row["Correlation"] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
 
             </div>
 
         </div>
 
-        <table class="table table-striped">
+    </div>
 
-            <thead>
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                <strong>
+
+                    Pearson Correlation
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-striped">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Statistic</th>
+
+                        <th>Value</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for row in pearson.to_dict(orient="records") %}
+
+                    <tr>
+
+                        <td>{{ row["Statistic"] }}</td>
+
+                        <td>{{ row["Value"] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="col-lg-6">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                <strong>
+
+                    Spearman Correlation
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-striped">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Statistic</th>
+
+                        <th>Value</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for row in spearman.to_dict(orient="records") %}
+
+                    <tr>
+
+                        <td>{{ row["Statistic"] }}</td>
+
+                        <td>{{ row["Value"] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ====================================== -->
+<!-- Hypothesis Testing -->
+<!-- ====================================== -->
+
+<h3 class="mt-5 mb-4">
+
+    <i class="fas fa-vial"></i>
+
+    Hypothesis Testing
+
+</h3>
+
+<div class="row">
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+Independent t-Test
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in ttest.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-success text-white">
+
+Paired t-Test
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in paired_ttest.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-warning">
+
+One-Way ANOVA
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in anova.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-danger text-white">
+
+Chi-Square Test
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in chi_square.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-info text-white">
+
+Mann-Whitney U Test
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in mann_whitney.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-secondary text-white">
+
+Kruskal-Wallis Test
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Statistic</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in kruskal.to_dict(orient="records") %}
+
+<tr>
+
+<td>{{ row["Statistic"] }}</td>
+
+<td>{{ row["Value"] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ========================================== -->
+<!-- Executive Statistical Decision Report -->
+<!-- ========================================== -->
+
+<h3 class="mt-5 mb-4">
+
+    <i class="fas fa-clipboard-check"></i>
+
+    Executive Statistical Decision Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-body">
+
+        <table class="table table-bordered align-middle">
+
+            <thead class="table-dark">
 
             <tr>
 
-            <th>Statistic</th>
+                <th width="40%">Analysis</th>
 
-            <th>Value</th>
+                <th width="20%">Status</th>
+
+                <th>Interpretation</th>
 
             </tr>
 
@@ -180,17 +879,125 @@
 
             <tbody>
 
-            {% for row in ttest.to_dict(orient="records") %}
-
             <tr>
 
-            <td>{{ row["Statistic"] }}</td>
+                <td>Normality Assumption</td>
 
-            <td>{{ row["Value"] }}</td>
+                <td>
+
+                    {% if decision.normality == "Normal" %}
+
+                    <span class="badge bg-success">Passed</span>
+
+                    {% else %}
+
+                    <span class="badge bg-danger">Failed</span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {{ decision.normality }}
+
+                </td>
 
             </tr>
 
-            {% endfor %}
+            <tr>
+
+                <td>Maximum VIF</td>
+
+                <td>
+
+                    {% if decision.max_vif < 5 %}
+
+                    <span class="badge bg-success">
+
+                        Acceptable
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-warning text-dark">
+
+                        High
+
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    Highest VIF = {{ decision.max_vif }}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Strong Correlations</td>
+
+                <td>
+
+                    <span class="badge bg-info">
+
+                        {{ decision.strong_correlations }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    Highly correlated variable pairs detected.
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Independent t-Test</td>
+
+                <td>
+
+                    {% if decision.p_value < 0.05 %}
+
+                    <span class="badge bg-success">
+
+                        Significant
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-secondary">
+
+                        Not Significant
+
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    T = {{ decision.t_statistic }}
+
+                    <br>
+
+                    P = {{ decision.p_value }}
+
+                </td>
+
+            </tr>
 
             </tbody>
 
@@ -200,22 +1007,33 @@
 
 </div>
 
+<div class="mb-3 text-end">
+
+    <button
+
+        class="btn btn-primary"
+
+        onclick="window.print()">
+
+        <i class="fas fa-print"></i>
+
+        Print Report
+
+    </button>
+
+</div>
+
 <script>
 
 const statisticsData = {
 
-    normality: {{ normality.to_dict(orient="records") | tojson }},
+    vif: {{ vif.to_dict(orient="records")|tojson }},
 
-    vif: {{ vif.to_dict(orient="records") | tojson }},
-
-    correlation: {{ correlation.to_dict(orient="records") | tojson }},
-
-    ttest: {{ ttest.to_dict(orient="records") | tojson }}
+    correlation: {{ correlation.to_dict(orient="records")|tojson }}
 
 };
 
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/statistics.js') }}"></script>
 

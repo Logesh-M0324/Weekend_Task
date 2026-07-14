@@ -17,6 +17,7 @@ missingno = "*"
 openpyxl = "*"
 scikit-posthocs = "*"
 flask = "*"
+colorama = "*"
 
 [dev-packages]
 

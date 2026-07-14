@@ -41,3 +41,28 @@ box-shadow:0 2px 8px rgba(0,0,0,.1);
 border:none;
 
 }
+
+@media print {
+
+    .sidebar,
+    .navbar,
+    footer,
+    .btn {
+
+        display: none !important;
+
+    }
+
+    .container-fluid {
+
+        width: 100%;
+
+    }
+
+    .card {
+
+        page-break-inside: avoid;
+
+    }
+
+}
