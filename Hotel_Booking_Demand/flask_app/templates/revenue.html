@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">Revenue Analytics Dashboard</h2>
+
+    <!-- KPI Cards -->
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-primary text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>Average ADR</h6>
+
+                    <h2>{{ kpis.average_adr }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-success text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>Maximum ADR</h6>
+
+                    <h2>{{ kpis.maximum_adr }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-warning text-dark shadow">
+
+                <div class="card-body">
+
+                    <h6>Minimum ADR</h6>
+
+                    <h2>{{ kpis.minimum_adr }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="card bg-danger text-white shadow">
+
+                <div class="card-body">
+
+                    <h6>Total Revenue</h6>
+
+                    <h2>{{ kpis.total_revenue }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Row 1 -->
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Monthly ADR Trend</strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="monthlyAdrChart" height="350"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Revenue by Hotel Type</strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="hotelRevenueChart" height="350"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Row 2 -->
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>ADR by Market Segment</strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="marketSegmentChart" height="350"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>Weekend vs Weekday Revenue</strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="stayChart" height="350"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Row 3 -->
+
+    <div class="row">
+
+        <div class="col-lg-12 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+
+                    <strong>ADR by Customer Type</strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="customerAdrChart" height="350"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const revenueData = {
+
+    monthly: {{ monthly.to_dict(orient="records") | tojson }},
+
+    hotels: {{ hotels.to_dict(orient="records") | tojson }},
+
+    segments: {{ segments.to_dict(orient="records") | tojson }},
+
+    stay: {{ stay | tojson }},
+
+    customers: {{ customers.to_dict(orient="records") | tojson }}
+
+};
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/revenue.js') }}"></script>
+
+{% endblock %}
