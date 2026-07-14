@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+
+Booking Analytics
+
+</h2>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Monthly Booking Trend
+
+</h5>
+
+<canvas id="monthlyChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Hotel Type Comparison
+
+</h5>
+
+<canvas id="hotelChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Seasonal Booking Trend
+
+</h5>
+
+<canvas id="seasonChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>
+
+Lead Time Distribution
+
+</h5>
+
+<canvas id="leadChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
