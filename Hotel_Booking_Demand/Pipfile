@@ -16,6 +16,7 @@ notebook = "*"
 missingno = "*"
 openpyxl = "*"
 scikit-posthocs = "*"
+flask = "*"
 
 [dev-packages]
 
