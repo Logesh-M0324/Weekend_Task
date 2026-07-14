@@ -2,55 +2,43 @@
 
 {% block content %}
 
-<h2>
-
-Booking Analytics
-
-</h2>
+<h2>Booking Analytics</h2>
 
 <hr>
 
 <div class="row">
 
-<div class="col-md-6">
+    <div class="col-md-6">
 
-<div class="card">
+        <div class="card">
 
-<div class="card-body">
+            <div class="card-body">
 
-<h5>
+                <h5>Monthly Booking Trend</h5>
 
-Monthly Booking Trend
+                <canvas id="monthlyChart"></canvas>
 
-</h5>
+            </div>
 
-<canvas id="monthlyChart"></canvas>
+        </div>
 
-</div>
+    </div>
 
-</div>
+    <div class="col-md-6">
 
-</div>
+        <div class="card">
 
-<div class="col-md-6">
+            <div class="card-body">
 
-<div class="card">
+                <h5>Hotel Type Comparison</h5>
 
-<div class="card-body">
+                <canvas id="hotelChart"></canvas>
 
-<h5>
+            </div>
 
-Hotel Type Comparison
+        </div>
 
-</h5>
-
-<canvas id="hotelChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
@@ -58,46 +46,50 @@ Hotel Type Comparison
 
 <div class="row">
 
-<div class="col-md-6">
+    <div class="col-md-6">
 
-<div class="card">
+        <div class="card">
 
-<div class="card-body">
+            <div class="card-body">
 
-<h5>
+                <h5>Seasonal Booking Trend</h5>
 
-Seasonal Booking Trend
+                <canvas id="seasonChart"></canvas>
 
-</h5>
+            </div>
 
-<canvas id="seasonChart"></canvas>
+        </div>
 
-</div>
+    </div>
 
-</div>
+    <div class="col-md-6">
 
-</div>
+        <div class="card">
 
-<div class="col-md-6">
+            <div class="card-body">
 
-<div class="card">
+                <h5>Lead Time Distribution</h5>
 
-<div class="card-body">
+                <canvas id="leadChart"></canvas>
 
-<h5>
+            </div>
 
-Lead Time Distribution
+        </div>
 
-</h5>
-
-<canvas id="leadChart"></canvas>
+    </div>
 
 </div>
 
-</div>
+<script>
 
-</div>
+    const monthly = {{ monthly.to_dict(orient="records") | tojson }};
 
-</div>
+    const hotels = {{ hotels.to_dict(orient="records") | tojson }};
+
+    const seasons = {{ seasons.to_dict(orient="records") | tojson }};
+
+    const leadTime = {{ lead_time | tojson }};
+
+</script>
 
 {% endblock %}
