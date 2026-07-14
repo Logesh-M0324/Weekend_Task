@@ -1,24 +1,50 @@
+// ================================
 // Monthly Booking Trend
+// ================================
 
-const monthlyChart = document.getElementById("monthlyChart");
+const monthlyCanvas = document.getElementById("monthlyTrendChart");
 
-if (monthlyChart) {
+if (monthlyCanvas) {
 
-    new Chart(monthlyChart, {
+    new Chart(monthlyCanvas, {
 
         type: "line",
 
         data: {
 
-            labels: monthly.map(x => x.arrival_date_month),
+            labels: dashboardData.monthly.map(
+
+                item => item.Month
+
+            ),
 
             datasets: [{
 
                 label: "Bookings",
 
-                data: monthly.map(x => x.bookings)
+                data: dashboardData.monthly.map(
+
+                    item => item.Bookings
+
+                ),
+
+                borderColor: "#0d6efd",
+
+                backgroundColor: "rgba(13,110,253,0.15)",
+
+                fill: true,
+
+                tension: 0.4
 
             }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
 
         }
 
@@ -26,87 +52,43 @@ if (monthlyChart) {
 
 }
 
+// ================================
+// Booking Status
+// ================================
 
+const bookingCanvas = document.getElementById("bookingStatusChart");
 
-// Hotel Type
+if (bookingCanvas) {
 
-const hotelChart = document.getElementById("hotelChart");
+    new Chart(bookingCanvas, {
 
-if (hotelChart) {
-
-    new Chart(hotelChart, {
-
-        type: "bar",
-
-        data: {
-
-            labels: hotels.map(x => x.hotel),
-
-            datasets: [{
-
-                label: "Bookings",
-
-                data: hotels.map(x => x.bookings)
-
-            }]
-
-        }
-
-    });
-
-}
-
-
-
-// Seasonal Bookings
-
-const seasonChart = document.getElementById("seasonChart");
-
-if (seasonChart) {
-
-    new Chart(seasonChart, {
-
-        type: "pie",
+        type: "doughnut",
 
         data: {
 
-            labels: seasons.map(x => x.season),
+            labels: dashboardData.bookingStatus.map(
+
+                item => item.Status
+
+            ),
 
             datasets: [{
 
-                data: seasons.map(x => x.bookings)
+                data: dashboardData.bookingStatus.map(
+
+                    item => item.Count
+
+                )
 
             }]
 
-        }
+        },
 
-    });
+        options: {
 
-}
+            responsive: true,
 
-
-
-// Lead Time
-
-const leadChart = document.getElementById("leadChart");
-
-if (leadChart) {
-
-    new Chart(leadChart, {
-
-        type: "bar",
-
-        data: {
-
-            labels: leadTime.slice(0,50),
-
-            datasets: [{
-
-                label: "Lead Time",
-
-                data: leadTime.slice(0,50)
-
-            }]
+            maintainAspectRatio: false
 
         }
 

@@ -8,7 +8,9 @@ from utils.analytics.booking import (
 
     get_season_bookings,
 
-    get_lead_time_distribution
+    get_lead_time_distribution,
+
+    get_booking_kpis
 
 )
 
@@ -31,6 +33,8 @@ def booking():
         monthly=get_monthly_bookings(),
 
         hotels=get_hotel_type_bookings(),
+
+        booking_kpis=get_booking_kpis(),
 
         seasons=get_season_bookings(),
 

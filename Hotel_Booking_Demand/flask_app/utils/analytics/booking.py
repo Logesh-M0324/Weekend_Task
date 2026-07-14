@@ -74,3 +74,54 @@ def get_season_bookings():
 def get_lead_time_distribution():
 
     return df["lead_time"].tolist()
+
+
+def get_booking_kpis():
+
+    peak_month = (
+
+        df["arrival_date_month"]
+
+        .value_counts()
+
+        .idxmax()
+
+    )
+
+    preferred_hotel = (
+
+        df["hotel"]
+
+        .value_counts()
+
+        .idxmax()
+
+    )
+
+    average_lead_time = round(
+
+        df["lead_time"].mean(),
+
+        1
+
+    )
+
+    average_stay = round(
+
+        df["total_stay_duration"].mean(),
+
+        1
+
+    )
+
+    return {
+
+        "peak_month": peak_month,
+
+        "preferred_hotel": preferred_hotel,
+
+        "average_lead_time": average_lead_time,
+
+        "average_stay": average_stay
+
+    }

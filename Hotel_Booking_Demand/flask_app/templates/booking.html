@@ -8,6 +8,47 @@
 
 <div class="row">
 
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h6>Peak Booking Month</h6>
+                    <h2>{{ booking_kpis.peak_month }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-danger shadow">
+                <div class="card-body">
+                    <h6>Preferred Hotel</h6>
+                    <h2>{{ booking_kpis.preferred_hotel }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h6>Avg Lead Time</h6>
+                    <h2>{{ booking_kpis.average_lead_time }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-warning shadow">
+                <div class="card-body">
+                    <h6>Avg Stay Duration</h6>
+                    <h2>{{ booking_kpis.average_stay }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<div class="row">
+
     <div class="col-md-6">
 
         <div class="card">
@@ -77,6 +118,30 @@
         </div>
 
     </div>
+
+</div>
+
+<hr>
+
+<div class="text-center text-muted mb-4">
+
+    <h6>
+
+        Hotel Booking Demand Analytics Platform
+
+    </h6>
+
+    <p>
+
+        Developed using Flask, Pandas, NumPy, SciPy, Statsmodels, Bootstrap, Chart.js, and SQLite.
+
+    </p>
+
+    <p>
+
+        Generated from processed analytical data and statistical reports.
+
+    </p>
 
 </div>
 

@@ -94,4 +94,233 @@ Dashboard Overview
 
 </div>
 
+<div class="row mt-3">
+
+    <div class="col-lg-3">
+
+        <div class="card shadow border-start border-primary border-4">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+
+                    🌍 Countries
+
+                </h6>
+
+                <h2>
+
+                    {{ executive.total_countries }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card shadow border-start border-success border-4">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+
+                    🏨 Hotel Types
+
+                </h6>
+
+                <h2>
+
+                    {{ executive.hotel_types }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card shadow border-start border-warning border-4">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+
+                    📅 Avg Lead Time
+
+                </h6>
+
+                <h2>
+
+                    {{ executive.average_lead_time }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card shadow border-start border-danger border-4">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+
+                    🔄 Repeat Guests
+
+                </h6>
+
+                <h2>
+
+                    {{ executive.repeat_guest_rate }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                Monthly Booking Trend
+
+            </div>
+
+            <div class="card-body" style="height:450px;">
+
+                <canvas id="monthlyTrendChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="col-lg-4">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                Booking Status
+
+            </div>
+
+            <div class="card-body" style="height:450px;">
+
+                <canvas id="bookingStatusChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        Executive Highlights
+
+    </div>
+
+    <div class="card-body">
+
+        <ul class="mb-0">
+
+            <li>
+                The platform analyzes hotel booking records from
+                <strong>{{ executive.total_countries }}</strong>
+                countries.
+            </li>
+
+            <li>
+                Average booking lead time is
+                <strong>{{ executive.average_lead_time }}</strong>
+                days.
+            </li>
+
+            <li>
+                Repeat guests account for
+                <strong>{{ executive.repeat_guest_rate }}%</strong>
+                of all bookings.
+            </li>
+
+            <li>
+                The dataset includes
+                <strong>{{ executive.hotel_types }}</strong>
+                hotel categories.
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<hr />
+<div class="text-center text-muted mb-4">
+
+    <h6>
+
+        Hotel Booking Demand Analytics Platform
+
+    </h6>
+
+    <p>
+
+        Developed using Flask, Pandas, NumPy, SciPy, Statsmodels, Bootstrap, Chart.js, and SQLite.
+
+    </p>
+
+    <p>
+
+        Generated from processed analytical data and statistical reports.
+
+    </p>
+
+</div>
+
+<script>
+
+const dashboardData = {
+
+    monthly: {{ monthly.to_dict(orient="records")|tojson }},
+
+    bookingStatus: {{ booking_status.to_dict(orient="records")|tojson }}
+
+};
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
 {% endblock %}

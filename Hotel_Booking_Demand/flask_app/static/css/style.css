@@ -66,3 +66,40 @@ border:none;
     }
 
 }
+
+@media print {
+
+    .sidebar,
+    .navbar,
+    footer,
+    .btn {
+
+        display: none !important;
+
+    }
+
+    body {
+
+        background: white;
+
+    }
+
+    .card {
+
+        border: 1px solid #ddd;
+
+        page-break-inside: avoid;
+
+        margin-bottom: 20px;
+
+    }
+
+    h2,
+    h3 {
+
+        page-break-after: avoid;
+
+    }
+
+}
+

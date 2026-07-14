@@ -12,108 +12,49 @@
     <!-- ============================= -->
     <!-- KPI CARDS -->
     <!-- ============================= -->
+    <hr />
 
     <div class="row">
 
         <div class="col-lg-3 col-md-6 mb-4">
-
-            <div class="card border-left-primary shadow h-100">
-
+            <div class="card text-white bg-primary shadow">
                 <div class="card-body">
-
-                    <div class="text-xs text-primary text-uppercase mb-2">
-                        Normality
-                    </div>
-
-                    <h4 class="fw-bold">
-
-                        {{ normality.iloc[0]["Decision"] }}
-
-                    </h4>
-
+                    <h6>Normality</h6>
+                    <h2>{{ normality.iloc[0]["Decision"] }}</h2>
                 </div>
-
             </div>
-
         </div>
 
-
         <div class="col-lg-3 col-md-6 mb-4">
-
-            <div class="card border-left-success shadow h-100">
-
+            <div class="card text-white bg-danger shadow">
                 <div class="card-body">
-
-                    <div class="text-xs text-success text-uppercase mb-2">
-
-                        VIF Variables
-
-                    </div>
-
-                    <h3>
-
-                        {{ vif|length }}
-
-                    </h3>
-
+                    <h6>VIF Variables</h6>
+                    <h2>{{ vif|length }}</h2>
                 </div>
-
             </div>
-
         </div>
 
-
         <div class="col-lg-3 col-md-6 mb-4">
-
-            <div class="card border-left-warning shadow h-100">
-
+            <div class="card text-white bg-success shadow">
                 <div class="card-body">
-
-                    <div class="text-xs text-warning text-uppercase mb-2">
-
-                        Strong Correlations
-
-                    </div>
-
-                    <h3>
-
-                        {{ correlation|length }}
-
-                    </h3>
-
+                    <h6> Strong Correlations</h6>
+                    <h2>{{ correlation|length }}</h2>
                 </div>
-
             </div>
-
         </div>
 
-
         <div class="col-lg-3 col-md-6 mb-4">
-
-            <div class="card border-left-danger shadow h-100">
-
+            <div class="card text-white bg-warning shadow">
                 <div class="card-body">
-
-                    <div class="text-xs text-danger text-uppercase mb-2">
-
-                        Hypothesis Tests
-
-                    </div>
-
-                    <h4>
-
-                        Completed
-
-                    </h4>
-
+                    <h6>Hypothesis Tests</h6>
+                    <h2>Completed</h2>
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
+    <hr />
 
     <!-- ================================= -->
 
@@ -267,7 +208,7 @@
 
     </div>
 
-
+<hr />
     <!-- ================================= -->
 
     <!-- VIF CHART -->
@@ -303,6 +244,7 @@
     </div>
 
     <br>
+<hr />
 
 <!-- ================================= -->
 
@@ -338,7 +280,7 @@
 
 </div>
 
-
+<hr />
 <div class="row mt-4">
 
     <div class="col-lg-12">
@@ -400,6 +342,8 @@
     </div>
 
 </div>
+
+<hr />
 
 <div class="row mt-4">
 
@@ -515,6 +459,7 @@
 
 </div>
 
+<hr />
 <!-- ====================================== -->
 <!-- Hypothesis Testing -->
 <!-- ====================================== -->
@@ -633,6 +578,8 @@ Paired t-Test
 
 </div>
 
+<hr />
+
 <div class="row">
 
 <div class="col-lg-6 mb-4">
@@ -739,6 +686,8 @@ Chi-Square Test
 
 </div>
 
+<hr />
+
 <div class="row">
 
 <div class="col-lg-6 mb-4">
@@ -844,6 +793,8 @@ Kruskal-Wallis Test
 </div>
 
 </div>
+
+<hr />
 
 <!-- ========================================== -->
 <!-- Executive Statistical Decision Report -->
@@ -1020,6 +971,30 @@ Kruskal-Wallis Test
         Print Report
 
     </button>
+
+</div>
+
+<hr>
+
+<div class="text-center text-muted mb-4">
+
+    <h6>
+
+        Hotel Booking Demand Analytics Platform
+
+    </h6>
+
+    <p>
+
+        Developed using Flask, Pandas, NumPy, SciPy, Statsmodels, Bootstrap, Chart.js, and SQLite.
+
+    </p>
+
+    <p>
+
+        Generated from processed analytical data and statistical reports.
+
+    </p>
 
 </div>
 

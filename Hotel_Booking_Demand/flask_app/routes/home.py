@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from utils.analytics.dashboard import get_dashboard_kpis
+from utils.analytics.dashboard import get_dashboard_kpis, get_monthly_booking_trend, get_booking_status, get_executive_cards 
 
 home_bp = Blueprint(
 
@@ -20,6 +20,12 @@ def home():
 
         "home.html",
 
-        kpis=kpis
+        kpis=get_dashboard_kpis(),
+
+        monthly=get_monthly_booking_trend(),
+
+        executive=get_executive_cards(),
+
+        booking_status=get_booking_status()
 
     )

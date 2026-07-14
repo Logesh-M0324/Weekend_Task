@@ -1,0 +1,624 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            <i class="fas fa-file-alt"></i>
+            Reports Dashboard
+        </h2>
+
+        <button
+            class="btn btn-primary"
+            onclick="window.print()">
+
+            <i class="fas fa-print"></i>
+
+            Print Report
+
+        </button>
+
+    </div>
+
+    <!-- ================================= -->
+
+<!-- Executive Summary -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Executive Summary
+
+</h3>
+
+<div class="row">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h6>Total Bookings</h6>
+                    <h2> {{ executive.total_bookings }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-danger shadow">
+                <div class="card-body">
+                    <h6>Total Cancellations</h6>
+                    <h2>{{ executive.total_cancellations }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h6>Cancellation Rate</h6>
+                    <h2>{{ executive.cancellation_rate }}%</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-white bg-warning shadow">
+                <div class="card-body">
+                    <h6>Average ADR</h6>
+                    <h2>{{ executive.average_adr }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow mb-5">
+
+            <div class="card-header">
+
+                Executive Insights
+
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                    <li>
+
+                        Total bookings analysed:
+
+                        <strong>
+
+                            {{ executive.total_bookings }}
+
+                        </strong>
+
+                    </li>
+
+                    <li>
+
+                        Cancellation rate:
+
+                        <strong>
+
+                            {{ executive.cancellation_rate }}%
+
+                        </strong>
+
+                    </li>
+
+                    <li>
+
+                        Average Daily Rate (ADR):
+
+                        <strong>
+
+                            {{ executive.average_adr }}
+
+                        </strong>
+
+                    </li>
+
+                    <li>
+
+                        Average stay duration:
+
+                        <strong>
+
+                            {{ executive.average_stay }}
+
+                        </strong>
+
+                        nights
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+
+<!-- Booking Report -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Booking Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-header">
+
+        Monthly Booking Summary
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Arrival Month</th>
+
+                    <th>Total Bookings</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in booking.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>
+
+                        {{ row["arrival_date_month"] }}
+
+                    </td>
+
+                    <td>
+
+                        {{ row["Bookings"] }}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+
+<!-- Revenue Report -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Revenue Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-header">
+
+        Average Daily Rate by Market Segment
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Market Segment</th>
+
+                    <th>Average ADR</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in revenue.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>
+
+                        {{ row["Market Segment"] }}
+
+                    </td>
+
+                    <td>
+
+                        {{ "%.2f"|format(row["Average ADR"]) }}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+
+<!-- Customer Report -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Customer Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-header">
+
+        Customer Type Distribution
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Customer Type</th>
+
+                    <th>Total Customers</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in customer.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>
+
+                        {{ row["customer_type"] }}
+
+                    </td>
+
+                    <td>
+
+                        {{ row["Customers"] }}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+
+<!-- Cancellation Report -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Cancellation Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-header">
+
+        Cancellation Rate by Deposit Type
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Deposit Type</th>
+
+                    <th>Cancellation Rate (%)</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in cancellation.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>
+
+                        {{ row["deposit_type"] }}
+
+                    </td>
+
+                    <td>
+
+                        {{ row["Cancellation Rate"] }}%
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================================= -->
+
+<!-- Statistical Report -->
+
+<!-- ================================= -->
+
+<h3 class="mb-3">
+
+    Statistical Report
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-header">
+
+        Statistical Analysis Summary
+
+    </div>
+
+    <div class="card-body">
+
+        <h5 class="mb-3">
+
+            Normality Test
+
+        </h5>
+
+        <table class="table table-bordered">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Statistic</th>
+
+                    <th>P-Value</th>
+
+                    <th>Decision</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in statistical.normality.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>{{ "%.4f"|format(row["Statistic"]) }}</td>
+
+                    <td>{{ row["P-Value"] }}</td>
+
+                    <td>
+
+                        <span class="badge bg-danger">
+
+                            {{ row["Decision"] }}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <hr>
+
+        <h5 class="mb-3">
+
+            Variance Inflation Factor (VIF)
+
+        </h5>
+
+        <table class="table table-striped">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Feature</th>
+
+                    <th>VIF</th>
+
+                    <th>Interpretation</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in statistical.vif.to_dict(orient="records") %}
+
+                <tr>
+
+                    <td>{{ row["Feature"] }}</td>
+
+                    <td>{{ row["VIF"] }}</td>
+
+                    <td>{{ row["Interpretation"] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<h3 class="mb-3">
+
+    Executive Conclusion
+
+</h3>
+
+<div class="card shadow mb-5">
+
+    <div class="card-body">
+
+        <ul>
+
+            <li>
+
+                The dataset contains comprehensive hotel booking information suitable for business analytics.
+
+            </li>
+
+            <li>
+
+                Booking demand shows clear seasonal patterns that can support capacity planning.
+
+            </li>
+
+            <li>
+
+                Customer segmentation highlights differences in booking behavior across customer types.
+
+            </li>
+
+            <li>
+
+                Cancellation patterns indicate that deposit type significantly influences cancellation rates.
+
+            </li>
+
+            <li>
+
+                Correlation analysis identified relationships among stay duration variables.
+
+            </li>
+
+            <li>
+
+                Multicollinearity assessment suggests monitoring variables with high VIF values during predictive modeling.
+
+            </li>
+
+            <li>
+
+                Statistical hypothesis testing provides evidence to support data-driven business decisions.
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="text-center text-muted mb-4">
+
+    <h6>
+
+        Hotel Booking Demand Analytics Platform
+
+    </h6>
+
+    <p>
+
+        Developed using Flask, Pandas, NumPy, SciPy, Statsmodels, Bootstrap, Chart.js, and SQLite.
+
+    </p>
+
+    <p>
+
+        Generated from processed analytical data and statistical reports.
+
+    </p>
+
+</div>
+
+{% endblock %}
