@@ -18,6 +18,8 @@ openpyxl = "*"
 scikit-posthocs = "*"
 flask = "*"
 colorama = "*"
+l = "*"
+weasyprint = "*"
 
 [dev-packages]
 

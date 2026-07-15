@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-statistics_path = Path("E:\Weekend_Task\Hotel_Booking_Demand\data\statistics")
+statistics_path = Path("/home/aximsoft/Downloads/Weekend_Task/Hotel_Booking_Demand/data/statistics")
 print(statistics_path)
 
 def load_csv(file_name):

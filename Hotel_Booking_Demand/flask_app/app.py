@@ -7,6 +7,9 @@ from routes.cancellation import cancellation_bp
 from routes.revenue import revenue_bp
 from routes.statistics import statistics_bp
 from routes.reports import reports_bp
+from routes.report_download import report_download
+from routes.explorer import explorer_bp
+from routes.downloads import downloads_bp
 
 app = Flask(__name__)
 
@@ -25,6 +28,12 @@ app.register_blueprint(revenue_bp)
 app.register_blueprint(statistics_bp)
 
 app.register_blueprint(reports_bp)
+
+app.register_blueprint(explorer_bp)
+
+app.register_blueprint(report_download)
+
+app.register_blueprint(downloads_bp)
 
 if __name__ == "__main__":
 

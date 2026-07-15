@@ -1,0 +1,4 @@
+Metric,Value
+Total Features,9.0
+Features with VIF ≥ 5,1.0
+Maximum VIF,7.53

@@ -1,0 +1,10 @@
+Feature,VIF,Interpretation
+lead_time,1.1546930247100267,Low
+adults,7.533985847290856,High
+children,,Very High
+babies,,Very High
+stays_in_weekend_nights,1.3267365307836114,Low
+stays_in_week_nights,1.4216470511346353,Low
+previous_cancellations,,Very High
+booking_changes,,Very High
+average_daily_rate,1.0063696002435982,Low

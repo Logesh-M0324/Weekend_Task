@@ -1,0 +1,4 @@
+Variable 1,Variable 2,Correlation
+stays_in_weekend_nights,total_stay_duration,0.766
+stays_in_week_nights,total_stay_duration,0.935
+agent,hotel_label,0.833

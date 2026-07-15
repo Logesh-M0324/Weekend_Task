@@ -345,6 +345,25 @@
 
 <hr />
 
+<div class="card shadow mb-4">
+
+    <div class="card-header">
+
+        Pearson Correlation Heatmap
+
+    </div>
+
+    <div class="card-body text-center">
+
+        <img
+            src="{{ url_for('static',
+            filename='images/correlation_heatmap.png') }}"
+            class="img-fluid">
+
+    </div>
+
+</div>
+
 <div class="row mt-4">
 
     <div class="col-lg-6">
@@ -960,20 +979,17 @@ Kruskal-Wallis Test
 
 <div class="mb-3 text-end">
 
-    <button
+    <a
+        href="{{ url_for('download_report.download_report') }}"
+        class="btn btn-danger">
 
-        class="btn btn-primary"
+        <i class="bi bi-file-earmark-pdf"></i>
 
-        onclick="window.print()">
+        Download PDF
 
-        <i class="fas fa-print"></i>
-
-        Print Report
-
-    </button>
+    </a>
 
 </div>
-
 <hr>
 
 <div class="text-center text-muted mb-4">

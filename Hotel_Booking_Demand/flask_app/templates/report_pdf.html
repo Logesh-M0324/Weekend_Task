@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<style>
+
+@page{
+    size:A4;
+    margin:25px;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    color:#333;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+h1{
+
+    text-align:center;
+
+    color:#0d6efd;
+
+    margin-bottom:5px;
+
+}
+
+h2{
+
+    color:#0d6efd;
+
+    border-bottom:2px solid #0d6efd;
+
+    padding-bottom:5px;
+
+    margin-top:30px;
+
+}
+
+h3{
+
+    color:#444;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+    margin-bottom:20px;
+
+}
+
+table th{
+
+    background:#0d6efd;
+
+    color:white;
+
+    padding:10px;
+
+    border:1px solid #999;
+
+}
+
+table td{
+
+    border:1px solid #999;
+
+    padding:8px;
+
+}
+
+.summary{
+
+    background:#f4f6f9;
+
+    border:1px solid #ddd;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    margin-bottom:25px;
+
+}
+
+.footer{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    text-align:center;
+
+    font-size:10px;
+
+    color:#666;
+
+}
+
+.page-break{
+
+    page-break-before:always;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================================================= -->
+
+<h1>
+
+Hotel Booking Demand Analytics Platform
+
+</h1>
+
+<h3 style="text-align:center;">
+
+Executive Business Report
+
+</h3>
+
+<p style="text-align:center;">
+
+Generated on :
+
+<strong>
+
+{{ generated_date }}
+
+</strong>
+
+</p>
+
+<hr>
+
+<div class="summary">
+
+This report summarizes the analytical findings obtained from the Hotel Booking
+Demand dataset. The analysis includes booking behaviour, customer insights,
+revenue performance, cancellation analysis and statistical validation.
+
+</div>
+
+<!-- ================================================= -->
+
+<h2>
+
+Executive Summary
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Total Bookings</td>
+
+<td>{{ kpis.total_bookings }}</td>
+
+</tr>
+
+<tr>
+
+<td>Cancellation Rate</td>
+
+<td>{{ kpis.cancellation_rate }}%</td>
+
+</tr>
+
+<tr>
+
+<td>Average ADR</td>
+
+<td>{{ kpis.average_adr }}</td>
+
+</tr>
+
+<tr>
+
+<td>Average Stay Duration</td>
+
+<td>{{ kpis.average_stay }}</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<h2>
+
+Booking Analytics
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Peak Booking Month</td>
+
+<td>{{ booking_kpis.peak_month }}</td>
+
+</tr>
+
+<tr>
+
+<td>Most Preferred Hotel</td>
+
+<td>{{ booking_kpis.preferred_hotel }}</td>
+
+</tr>
+
+<tr>
+
+<td>Average Lead Time</td>
+
+<td>{{ booking_kpis.average_lead_time }} Days</td>
+
+</tr>
+
+<tr>
+
+<td>Average Stay</td>
+
+<td>{{ booking_kpis.average_stay }} Nights</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<h2>
+
+Customer Analytics
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Total Countries</td>
+
+<td>{{ customer_kpis.countries }}</td>
+
+</tr>
+
+<tr>
+
+<td>Repeated Guest Rate</td>
+
+<td>{{ customer_kpis.repeat_guest }}%</td>
+
+</tr>
+
+<tr>
+
+<td>Most Common Customer Type</td>
+
+<td>{{ customer_kpis.customer_type }}</td>
+
+</tr>
+
+<tr>
+
+<td>Most Common Market Segment</td>
+
+<td>{{ customer_kpis.market_segment }}</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<div class="page-break"></div>
+
+<h2>
+
+Revenue Analytics
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Total Revenue</td>
+
+<td>{{ revenue_kpis.total_revenue }}</td>
+
+</tr>
+
+<tr>
+
+<td>Average Revenue</td>
+
+<td>{{ revenue_kpis.average_revenue }}</td>
+
+</tr>
+
+<tr>
+
+<td>Highest Revenue Month</td>
+
+<td>{{ revenue_kpis.best_month }}</td>
+
+</tr>
+
+<tr>
+
+<td>Highest ADR</td>
+
+<td>{{ revenue_kpis.highest_adr }}</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<h2>
+
+Cancellation Analytics
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Cancellation Rate</td>
+
+<td>{{ cancellation_kpis.cancellation_rate }}%</td>
+
+</tr>
+
+<tr>
+
+<td>Highest Cancellation Month</td>
+
+<td>{{ cancellation_kpis.highest_month }}</td>
+
+</tr>
+
+<tr>
+
+<td>Main Cancellation Segment</td>
+
+<td>{{ cancellation_kpis.market_segment }}</td>
+
+</tr>
+
+<tr>
+
+<td>Average Lead Time (Cancelled)</td>
+
+<td>{{ cancellation_kpis.average_lead_time }}</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<h2>
+
+Statistical Analysis
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>Test</th>
+
+<th>Result</th>
+
+</tr>
+
+<tr>
+
+<td>Normality Test</td>
+
+<td>{{ statistics_summary.normality }}</td>
+
+</tr>
+
+<tr>
+
+<td>Highest VIF</td>
+
+<td>{{ statistics_summary.max_vif }}</td>
+
+</tr>
+
+<tr>
+
+<td>Strong Correlations</td>
+
+<td>{{ statistics_summary.strong_correlations }}</td>
+
+</tr>
+
+<tr>
+
+<td>Independent t-Test</td>
+
+<td>{{ statistics_summary.t_statistic }}</td>
+
+</tr>
+
+<tr>
+
+<td>Chi-Square Test</td>
+
+<td>{{ statistics_summary.p_value }}</td>
+
+</tr>
+
+</table>
+
+<!-- ================================================= -->
+
+<h2>
+
+Business Insights
+
+</h2>
+
+<ul>
+
+{% for insight in business_insights %}
+
+<li>{{ insight }}</li>
+
+{% endfor %}
+
+</ul>
+
+<!-- ================================================= -->
+
+<h2>
+
+Final Conclusion
+
+</h2>
+
+<p>
+
+The Hotel Booking Demand Analytics Platform successfully analyzed booking
+patterns, customer behaviour, revenue performance, cancellation trends and
+statistical characteristics of the dataset. The project combines exploratory
+data analysis, statistical testing and interactive dashboards to support
+data-driven business decision making.
+
+</p>
+
+<hr>
+
+<div class="footer">
+
+Hotel Booking Demand Analytics Platform • Generated using Flask, Pandas,
+NumPy, SciPy, Statsmodels, Bootstrap and Chart.js
+
+</div>
+
+</body>
+
+</html>

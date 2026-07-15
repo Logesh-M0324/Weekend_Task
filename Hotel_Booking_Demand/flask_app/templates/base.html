@@ -1,120 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Hotel Booking Analytics</title>
+    <title>Hotel Booking Analytics Platform</title>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <link rel="stylesheet"
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-        href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <nav class="navbar navbar-dark bg-primary">
+<!-- ================= Navbar ================= -->
 
-        <div class="container-fluid">
+<nav class="navbar navbar-dark bg-primary shadow-sm fixed-top">
 
-            <a class="navbar-brand">
+    <div class="container-fluid">
 
-            Hotel Booking Analytics Dashboard
+        <span class="navbar-brand fw-bold">
+
+            <i class="bi bi-bar-chart-fill"></i>
+
+            Hotel Booking Demand Analytics Platform
+
+        </span>
+
+    </div>
+
+</nav>
+
+<!-- ================= Sidebar ================= -->
+
+<div class="sidebar">
+
+    <h5 class="text-center text-white mt-4 mb-4">
+
+        Navigation
+
+    </h5>
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+
+            <a class="nav-link" href="/">
+
+                <i class="bi bi-speedometer2"></i>
+
+                Dashboard
 
             </a>
 
-        </div>
+        </li>
 
-        </nav>
+        <li class="nav-item">
 
-        <div class="container-fluid">
+            <a class="nav-link" href="/booking">
 
-            <div class="row">
+                <i class="bi bi-calendar-check"></i>
 
-                 <div class="col-md-2 sidebar" >
+                Booking Analytics
 
-                    <ul class="nav flex-column mt-4">
+            </a>
 
-                        <li class="nav-item">
+        </li>
 
-                            <a class="nav-link"
+        <li class="nav-item">
 
-                                href="/">🏠 Dashboard</a>
+            <a class="nav-link" href="/customer">
 
-                        </li>
+                <i class="bi bi-people-fill"></i>
 
-                        <li class="nav-item">
+                Customer Analytics
 
-                            <a class="nav-link"
+            </a>
 
-                                href="/booking">📅 Booking Analytics</a>
+        </li>
 
-                        </li>
+        <li class="nav-item">
 
-                        <li class="nav-item">
+            <a class="nav-link" href="/cancellation">
 
-                            <a class="nav-link"
+                <i class="bi bi-x-circle"></i>
 
-                            href="/customer">👥 Customer Analytics</a>
+                Cancellation Analytics
 
-                        </li>
+            </a>
 
-                        <li class="nav-item">
+        </li>
 
-                            <a class="nav-link"
+        <li class="nav-item">
 
-                            href="/cancellation">❌ Cancellation</a>
+            <a class="nav-link" href="/revenue">
 
-                        </li>
+                <i class="bi bi-cash-stack"></i>
 
-                        <li class="nav-item">
+                Revenue Analytics
 
-                            <a class="nav-link"
+            </a>
 
-                            href="/revenue">💰 Revenue</a>
+        </li>
 
-                        </li>
+        <li class="nav-item">
 
-                        <li class="nav-item">
+            <a class="nav-link" href="/statistics">
 
-                            <a class="nav-link"
+                <i class="bi bi-graph-up-arrow"></i>
 
-                            href="/statistics">📊 Statistics</a>
+                Statistical Analysis
 
-                        </li>
+            </a>
 
-                        <li class="nav-item">
+        </li>
 
-                            <a class="nav-link"
+        <li class="nav-item">
 
-                            href="/reports">📄 Reports</a>
+            <a class="nav-link"
 
-                        </li>
+            href="/explorer">
 
-                    </ul>
+                <i class="bi bi-table"></i>
 
-                </div>
+                Data Explorer
 
-                <div class="col-md-10 mt-4">
+            </a>
 
-                    {% block content %}
+        </li>
 
-                    {% endblock %}
+        <li class="nav-item">
 
-                </div>
+            <a class="nav-link" href="/reports">
 
-            </div>
+                <i class="bi bi-file-earmark-text"></i>
 
-        </div>
+                Reports
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            </a>
 
-        
+        </li>
 
-    </body>
+    </ul>
 
-</html>
+</div>
+
+<!-- ================= Main Content ================= -->
+
+<div class="main-content">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const current = window.location.pathname;
+
+document.querySelectorAll(".sidebar .nav-link").forEach(link => {
+
+    if(link.getAttribute("href") === current){
+
+        link.classList.add("active");
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>     
