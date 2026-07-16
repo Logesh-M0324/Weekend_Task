@@ -14,6 +14,46 @@ from utils.analytics.customer import get_customer_kpis
 from utils.analytics.statistics import get_decision_report
 from datetime import datetime
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+booking_chart = "file://" + os.path.join(
+    BASE_DIR,
+    "static",
+    "reports",
+    "booking_chart.png"
+)
+
+customer_chart = "file://" + os.path.join(
+    BASE_DIR,
+    "static",
+    "reports",
+    "customer_chart.png"
+)
+
+revenue_chart = "file://" + os.path.join(
+    BASE_DIR,
+    "static",
+    "reports",
+    "revenue_chart.png"
+)
+
+cancellation_chart = "file://" + os.path.join(
+    BASE_DIR,
+    "static",
+    "reports",
+    "cancellation_chart.png"
+)
+
+statistics_chart = "file://" + os.path.join(
+    BASE_DIR,
+    "static",
+    "reports",
+    "statistical_chart.png"
+)
+
+
 report_download = Blueprint(
 
     "download_report",
@@ -49,7 +89,21 @@ def download_report():
 
         statistics_summary=get_decision_report(),
 
-        generated_date = datetime.now()
+        generated_date = datetime.now(),
+
+        business_insights = [
+            "Peak booking demand occurs during the summer season.",
+            "City Hotels contribute the largest share of bookings.",
+            "Long lead-time bookings have a higher cancellation probability.",
+            "Average Daily Rate increases significantly during peak months.",
+            "Most bookings originate from Online Travel Agencies."
+        ],
+
+        booking_chart=booking_chart,
+        customer_chart=customer_chart,
+        revenue_chart=revenue_chart,
+        cancellation_chart=cancellation_chart,
+        statistics_chart=statistics_chart
 
     )
 
@@ -64,3 +118,16 @@ def download_report():
     )
 
     return response
+
+print("=========================summary================================")
+print(get_executive_summary())
+print("=========================Booking================================")
+print(get_booking_kpis())
+print("=========================revenue================================")
+print(get_revenue_kpis())
+print("=========================customer================================")
+print(get_customer_kpis())
+print("=========================cancel================================")
+print(cancellation())
+print("=========================report================================")
+print(get_decision_report())
