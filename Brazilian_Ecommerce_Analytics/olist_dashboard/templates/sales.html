@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Sales Analytics
+</h2>
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+            <div class="row g-3">
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Start Date</label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="start_date"
+                        value="{{ request.args.get('start_date','') }}">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">End Date</label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="end_date"
+                        value="{{ request.args.get('end_date','') }}">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Customer State</label>
+
+                    <select
+                        class="form-select"
+                        name="customer_state">
+
+                        <option value="">All States</option>
+
+                        {% for state in filter_options.customer_states %}
+
+                        <option
+                            value="{{ state }}"
+                            {% if request.args.get("customer_state") == state %}selected{% endif %}>
+
+                            {{ state }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Seller State</label>
+
+                    <select
+                        class="form-select"
+                        name="seller_state">
+
+                        <option value="">All Sellers</option>
+
+                        {% for state in filter_options.seller_states %}
+
+                        <option
+                            value="{{ state }}"
+                            {% if request.args.get("seller_state") == state %}selected{% endif %}>
+
+                            {{ state }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Category</label>
+
+                    <select
+                        class="form-select"
+                        name="category">
+
+                        <option value="">All Categories</option>
+
+                        {% for category in filter_options.categories %}
+
+                        <option
+                            value="{{ category }}"
+                            {% if request.args.get("category") == category %}selected{% endif %}>
+
+                            {{ category }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Payment Type</label>
+
+                    <select
+                        class="form-select"
+                        name="payment_type">
+
+                        <option value="">All Payments</option>
+
+                        {% for payment in filter_options.payment_types %}
+
+                        <option
+                            value="{{ payment }}"
+                            {% if request.args.get("payment_type") == payment %}selected{% endif %}>
+
+                            {{ payment }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+
+                <div class="col-md-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100">
+
+                        Apply Filters
+
+                    </button>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('customers') }}"
+                        class="btn btn-outline-secondary w-100">
+
+                        Reset Filters
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                Monthly Revenue Trend
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="salesTrendChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                Revenue by Category
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="salesCategoryChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                Revenue by State
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="stateRevenueChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                Average Order Value
+            </div>
+
+            <div class="card-body">
+
+                <h2 id="averageOrderValue"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-header">
+
+        📈 Sales Business Insights
+
+    </div>
+
+    <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+
+            {% if sales_insights %}
+
+                {% for insight in sales_insights %}
+
+                    <div class="alert alert-info">
+                        <i class="bi {{ insight.icon }}"></i>
+                        <strong>{{ insight.title }}</strong><br>
+                        {{ insight.text }}
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+            <div class="alert alert-warning">
+
+                No data available for the selected filters.
+
+            </div>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const monthlySales = {{ monthly_sales | tojson }};
+
+const categorySales = {{ category_sales | tojson }};
+
+const stateSales = {{ state_sales | tojson }};
+
+const averageOrderValue = {{ average_order_value }};
+
+</script>
+
+<script src="{{ url_for('static', filename='js/sales.js') }}"></script>
+
+{% endblock %}

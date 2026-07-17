@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+
+{% block title %}
+Payment & Review Analytics
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Payment & Review Analytics
+</h2>
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+            <div class="row g-3">
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Start Date</label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="start_date"
+                        value="{{ request.args.get('start_date','') }}">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">End Date</label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="end_date"
+                        value="{{ request.args.get('end_date','') }}">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Customer State</label>
+
+                    <select
+                        class="form-select"
+                        name="customer_state">
+
+                        <option value="">All States</option>
+
+                        {% for state in filter_options.customer_states %}
+
+                        <option
+                            value="{{ state }}"
+                            {% if request.args.get("customer_state") == state %}selected{% endif %}>
+
+                            {{ state }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Seller State</label>
+
+                    <select
+                        class="form-select"
+                        name="seller_state">
+
+                        <option value="">All Sellers</option>
+
+                        {% for state in filter_options.seller_states %}
+
+                        <option
+                            value="{{ state }}"
+                            {% if request.args.get("seller_state") == state %}selected{% endif %}>
+
+                            {{ state }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Category</label>
+
+                    <select
+                        class="form-select"
+                        name="category">
+
+                        <option value="">All Categories</option>
+
+                        {% for category in filter_options.categories %}
+
+                        <option
+                            value="{{ category }}"
+                            {% if request.args.get("category") == category %}selected{% endif %}>
+
+                            {{ category }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="form-label">Payment Type</label>
+
+                    <select
+                        class="form-select"
+                        name="payment_type">
+
+                        <option value="">All Payments</option>
+
+                        {% for payment in filter_options.payment_types %}
+
+                        <option
+                            value="{{ payment }}"
+                            {% if request.args.get("payment_type") == payment %}selected{% endif %}>
+
+                            {{ payment }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+
+                <div class="col-md-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100">
+
+                        Apply Filters
+
+                    </button>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('customers') }}"
+                        class="btn btn-outline-secondary w-100">
+
+                        Reset Filters
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= Payment KPIs ================= -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Total Payment</h6>
+                <h3>₹ {{ "{:,.2f}".format(payment_kpis.total_payment) }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Average Payment</h6>
+                <h3>₹ {{ "{:,.2f}".format(payment_kpis.average_payment) }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Payment Methods</h6>
+                <h3>{{ payment_kpis.payment_methods }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Max Installments</h6>
+                <h3>{{ payment_kpis.max_installment }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= Payment Charts ================= -->
+
+<div class="row mb-4">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Payment Method Distribution
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="paymentMethodChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Installment Distribution
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="installmentChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr class="my-5">
+
+<h2 class="mb-4">
+    Customer Review Analytics
+</h2>
+
+<!-- ================= Review KPIs ================= -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Average Rating</h6>
+                <h3>{{ review_kpis.average_review }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Highest Rating</h6>
+                <h3>{{ review_kpis.highest_review }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Lowest Rating</h6>
+                <h3>{{ review_kpis.lowest_review }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Total Reviews</h6>
+                <h3>{{ review_kpis.total_reviews }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= Review Charts ================= -->
+
+<div class="row mb-4">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Review Score Distribution
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="reviewDistributionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Positive vs Negative Reviews
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="reviewSentimentChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Monthly Review Trend
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="reviewTrendChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Customer Satisfaction
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="satisfactionChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+
+                Average Review by Category
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="reviewCategoryChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow-sm mt-4">
+
+    <div class="card-header">
+
+        📈 Payments and Reviews Insights
+
+    </div>
+
+    <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+
+            {% if payment_insights %}
+
+                {% for insight in payment_insights %}
+
+                    <div class="alert alert-info">
+
+                        <i class="bi {{ insight.icon }}"></i>
+
+                        <strong>{{ insight.title }}</strong><br>
+
+                        {{ insight.text }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+            {% if review_insights %}
+
+                {% for insight in review_insights %}
+
+                    <div class="alert alert-info">
+
+                        <i class="bi {{ insight.icon }}"></i>
+
+                        <strong>{{ insight.title }}</strong><br>
+
+                        {{ insight.text }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+            {% if not payment_insights and not review_insights %}
+
+                <div class="alert alert-warning">
+
+                    No data available for the selected filters.
+
+                </div>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const paymentMethods = {{ payment_methods | tojson }};
+
+const Installments = {{ installments | tojson }};
+
+const reviewDistribution = {{ review_distribution | tojson }};
+
+const reviewSentiment = {{ review_sentiment | tojson }};
+
+const reviewTrend = {{ review_trend | tojson }};
+
+const Satisfaction = {{ satisfaction|tojson }};
+
+const reviewCategory = {{ review_category|tojson }};
+
+</script>
+
+<script src="{{ url_for('static', filename='js/payments.js') }}"></script>
+
+{% endblock %}
