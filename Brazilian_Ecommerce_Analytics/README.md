@@ -474,50 +474,50 @@ Add screenshots of:
 
 ##  Executive Dashboard
 
-! [Executive Dashboard] (screenshots/dashboard.png)
+![Executive Dashboard] (screenshots/dashboard.png)
 
 ------------------------
 
 ## Sales Analytics
 
-! [Sales Analytic] (screenshots/sales.png)
+![Sales Analytic] (screenshots/sales.png)
 
 ------------------------
 
 ## Customer Analytics
 
-! [Customer Analytics] (screenshots/customer.png)
+![Customer Analytics] (screenshots/customer.png)
 
 ------------------------
 
 ## Product Analytics
 
-! [Product Analytics] (screenshots/product.png)
+![Product Analytics] (screenshots/product.png)
 
 ------------------------
 
 ## Seller Analytics
 
-! [Seller Analytics] (screenshots/seller.png)
+![Seller Analytics] (screenshots/seller.png)
 
 -------------------------
 
 ## Delivery Analytics
 
-! [Delivery Analytics] (screenshots/delivery.png)
+![Delivery Analytics] (screenshots/delivery.png)
 
 -------------------------
 
 ## Payment Analytics
 
-! [Payment Analytics] (screenshots/review_and_payment.png)
+![Payment Analytics] (screenshots/review_and_payment.png)
 
 -------------------------
 
 
 ## Dataset Explorer
 
-! [Dataset Explorer] (screenshots/dataexplorer.png)
+![Dataset Explorer] (screenshots/dataexplorer.png)
 
 -------------------------
 
