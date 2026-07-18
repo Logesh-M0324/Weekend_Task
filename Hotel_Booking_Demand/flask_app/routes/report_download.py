@@ -1,5 +1,7 @@
 from flask import make_response, render_template, Blueprint
+
 from weasyprint import HTML
+
 from utils.analytics.reports import (get_executive_summary,)
 from utils.analytics.booking import get_booking_kpis
 from utils.analytics.revenue import get_revenue_kpis
