@@ -214,7 +214,42 @@ Executive Summary
 
 </tr>
 
+
 </table>
+
+<div class="summary">
+
+<h3>Executive Insights</h3>
+
+<ul>
+
+<li>
+The dataset contains <strong>{{ kpis.total_bookings }}</strong>
+hotel bookings collected from multiple countries and hotel types.
+</li>
+
+<li>
+The overall cancellation rate is
+<strong>{{ kpis.cancellation_rate }}%</strong>,
+indicating that nearly one out of every four bookings is cancelled.
+</li>
+
+<li>
+The average Average Daily Rate (ADR) is
+<strong>{{ kpis.average_adr }}</strong>,
+which reflects the average revenue generated per occupied room.
+</li>
+
+<li>
+Guests stay for an average of
+<strong>{{ kpis.average_stay }}</strong>
+nights per booking.
+
+</li>
+
+</ul>
+
+</div>
 
 <!-- ================================================= -->
 
@@ -268,6 +303,46 @@ Booking Analytics
 
 </table>
 
+<h3>Booking Insights</h3>
+
+<ul>
+
+<li>
+
+<strong>{{ booking_kpis.peak_month }}</strong>
+records the highest number of bookings.
+
+</li>
+
+<li>
+
+<strong>{{ booking_kpis.preferred_hotel }}</strong>
+is the most preferred hotel category.
+
+</li>
+
+<li>
+
+Customers book hotels approximately
+<strong>{{ booking_kpis.average_lead_time }}</strong>
+days before arrival.
+
+</li>
+
+<li>
+
+Average stay duration is
+<strong>{{ booking_kpis.average_stay }}</strong>
+nights.
+
+</li>
+
+</ul>
+
+<img
+src="{{ booking_chart }}"
+style="width:100%; margin-top:15px;">
+
 <!-- ================================================= -->
 
 <h2>
@@ -288,37 +363,75 @@ Customer Analytics
 
 <tr>
 
+<td>Total Customers</td>
+
+<td>{{ customer_kpis.total_customers }}</td>
+
+</tr>
+
+<tr>
+
+<td>Repeat Guests</td>
+
+<td>{{ customer_kpis.repeat_guests }}</td>
+
+</tr>
+
+<tr>
+
+<td>New Guests</td>
+
+<td>{{ customer_kpis.new_guests }}</td>
+
+</tr>
+
+<tr>
+
 <td>Total Countries</td>
 
 <td>{{ customer_kpis.countries }}</td>
 
 </tr>
 
-<tr>
-
-<td>Repeated Guest Rate</td>
-
-<td>{{ customer_kpis.repeat_guest }}%</td>
-
-</tr>
-
-<tr>
-
-<td>Most Common Customer Type</td>
-
-<td>{{ customer_kpis.customer_type }}</td>
-
-</tr>
-
-<tr>
-
-<td>Most Common Market Segment</td>
-
-<td>{{ customer_kpis.market_segment }}</td>
-
-</tr>
-
 </table>
+
+<h3>Customer Insights</h3>
+
+<ul>
+
+<li>
+
+Bookings were received from
+<strong>{{ customer_kpis.countries }}</strong>
+countries.
+
+</li>
+
+<li>
+
+The majority of guests are first-time visitors.
+
+</li>
+
+<li>
+
+Only a small percentage consists of repeat guests,
+indicating an opportunity to improve customer loyalty.
+
+</li>
+
+<li>
+
+Customer distribution varies across market segments,
+helping hotels understand demand sources.
+
+</li>
+
+</ul>
+
+<img
+src="{{ customer_chart }}"
+style="width:100%; margin-top:15px;">
 
 <!-- ================================================= -->
 
@@ -350,29 +463,64 @@ Revenue Analytics
 
 <tr>
 
-<td>Average Revenue</td>
+<td>Average ADR</td>
 
-<td>{{ revenue_kpis.average_revenue }}</td>
-
-</tr>
-
-<tr>
-
-<td>Highest Revenue Month</td>
-
-<td>{{ revenue_kpis.best_month }}</td>
+<td>{{ revenue_kpis.average_adr }}</td>
 
 </tr>
 
 <tr>
 
-<td>Highest ADR</td>
+<td>Maximum ADR</td>
 
-<td>{{ revenue_kpis.highest_adr }}</td>
+<td>{{ revenue_kpis.maximum_adr }}</td>
+
+</tr>
+
+<tr>
+
+<td>Minimum ADR</td>
+
+<td>{{ revenue_kpis.minimum_adr }}</td>
 
 </tr>
 
 </table>
+
+<h3>Revenue Insights</h3>
+
+<ul>
+
+<li>
+
+Total estimated revenue exceeds
+<strong>{{ revenue_kpis.total_revenue }}</strong>.
+
+</li>
+
+<li>
+
+Average Daily Rate remains one of the strongest indicators of hotel profitability.
+
+</li>
+
+<li>
+
+Higher ADR values indicate premium pricing during high-demand periods.
+
+</li>
+
+<li>
+
+Revenue optimization can be achieved using seasonal pricing strategies.
+
+</li>
+
+</ul>
+
+<img
+src="{{ revenue_chart }}"
+style="width:100%; margin-top:15px;">
 
 <!-- ================================================= -->
 
@@ -394,25 +542,25 @@ Cancellation Analytics
 
 <tr>
 
-<td>Cancellation Rate</td>
+<td>Cancelled Bookings</td>
 
-<td>{{ cancellation_kpis.cancellation_rate }}%</td>
-
-</tr>
-
-<tr>
-
-<td>Highest Cancellation Month</td>
-
-<td>{{ cancellation_kpis.highest_month }}</td>
+<td>{{ cancellation_kpis.cancellation_rate.iloc[1]["count"] }}</td>
 
 </tr>
 
 <tr>
 
-<td>Main Cancellation Segment</td>
+<td>Non-Cancelled Bookings</td>
 
-<td>{{ cancellation_kpis.market_segment }}</td>
+<td>{{ cancellation_kpis.cancellation_rate.iloc[0]["count"] }}</td>
+
+</tr>
+
+<tr>
+
+<td>Highest Cancellation Segment</td>
+
+<td>{{ cancellation_kpis.market_segment.iloc[-1]["market_segment"] }}</td>
 
 </tr>
 
@@ -420,11 +568,47 @@ Cancellation Analytics
 
 <td>Average Lead Time (Cancelled)</td>
 
-<td>{{ cancellation_kpis.average_lead_time }}</td>
+<td>{{ "%.2f"|format(cancellation_kpis.average_lead_time.iloc[1]["lead_time"]) }}</td>
 
 </tr>
 
 </table>
+<h3>Cancellation Insights</h3>
+
+<ul>
+
+<li>
+
+Approximately
+<strong>{{ cancellation_kpis.cancellation_rate }}%</strong>
+of bookings were cancelled.
+
+</li>
+
+<li>
+
+Guests with longer lead times tend to cancel more frequently.
+
+</li>
+
+<li>
+
+Certain market segments contribute more heavily to cancellations.
+
+</li>
+
+<li>
+
+Understanding cancellation behaviour helps reduce revenue loss.
+
+</li>
+
+</ul>
+
+<img
+src="{{ cancellation_chart }}"
+style="width:100%; margin-top:15px;">
+
 
 <!-- ================================================= -->
 
@@ -478,13 +662,65 @@ Statistical Analysis
 
 <tr>
 
-<td>Chi-Square Test</td>
+<td>Chi-Square Test (P-value)</td>
 
 <td>{{ statistics_summary.p_value }}</td>
 
 </tr>
 
 </table>
+
+<h3>Statistical Interpretation</h3>
+
+<ul>
+
+<li>
+
+The dataset is
+<strong>{{ statistics_summary.normality }}</strong>
+according to the normality test.
+
+</li>
+
+<li>
+
+Maximum VIF value is
+<strong>{{ statistics_summary.max_vif }}</strong>,
+indicating acceptable multicollinearity.
+
+</li>
+
+<li>
+
+A total of
+<strong>{{ statistics_summary.strong_correlations }}</strong>
+strong feature correlations were identified.
+
+</li>
+
+<li>
+
+The Independent t-test produced a statistic of
+<strong>{{ statistics_summary.t_statistic }}</strong>,
+confirming statistically significant differences.
+
+</li>
+
+<li>
+
+Chi-square test produced a p-value of
+
+<strong>{{ statistics_summary.p_value }}</strong>
+
+indicating significant association between categorical variables.
+
+</li>
+
+</ul>
+
+<img
+src="{{ statistics_chart }}"
+style="width:100%; margin-top:15px;">
 
 <!-- ================================================= -->
 
@@ -503,6 +739,45 @@ Business Insights
 {% endfor %}
 
 </ul>
+
+<br>
+
+<br>
+
+<div class="summary">
+
+<h3>Key Business Recommendations</h3>
+
+<ul>
+
+<li>
+Implement dynamic pricing during peak booking months.
+
+</li>
+
+<li>
+Focus marketing efforts on high-revenue customer segments.
+
+</li>
+
+<li>
+Introduce loyalty programs to increase repeat guest bookings.
+
+</li>
+
+<li>
+Reduce cancellations through flexible booking policies and reminder notifications.
+
+</li>
+
+<li>
+Use predictive analytics to forecast occupancy and optimize room pricing.
+
+</li>
+
+</ul>
+
+</div>
 
 <!-- ================================================= -->
 

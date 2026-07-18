@@ -272,8 +272,11 @@ http://127.0.0.1:5000
 
 **Logesh**
 
+<<<<<<< HEAD
 AI & Data Science Developer
 
+=======
+>>>>>>> f1480bbecb5f7f086e6cf32ddca18dd327e95e3b
 ---
 
 # 📃 License
