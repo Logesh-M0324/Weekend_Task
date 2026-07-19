@@ -1,0 +1,20 @@
+Dwelling - குடியிருப்பு
+
+zoning - மண்டலப் பிரிப்பு
+
+utilities - பொதுச் சேவைகள்
+
+Gravel (rock fragments and pebbles) - (crushed rock) சரளைக் கல்
+
+paved - கற்கள் பதிக்கப்பட்ட
+
+Alley - சந்து
+
+Lot Area - மொத்த பரப்பளவைக் குறிக்கும்
+
+Lot Frontage  - முன்பகுதி தெருவை (Street) அல்லது சாலையை நேரடியாக எதிர்கொள்ளும் நீளத்தைக் குறிக்கிறது.
+
+LandContour - நிலத்தின் வடிவம்/மேடு பள்ளம்
+
+utilities - பொதுச் சேவைகள்
+
