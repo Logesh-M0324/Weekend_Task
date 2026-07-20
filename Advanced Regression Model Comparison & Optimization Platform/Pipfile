@@ -11,6 +11,9 @@ seaborn = "*"
 scipy = "*"
 ipykernel = "*"
 scikit-learn = "*"
+xgboost = "*"
+lightgbm = "*"
+catboost = "*"
 
 [dev-packages]
 
