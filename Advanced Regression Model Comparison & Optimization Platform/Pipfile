@@ -15,6 +15,7 @@ xgboost = "*"
 lightgbm = "*"
 catboost = "*"
 statsmodels = "*"
+openai = "*"
 
 [dev-packages]
 
