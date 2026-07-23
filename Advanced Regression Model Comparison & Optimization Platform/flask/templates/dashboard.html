@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+            House Price Prediction
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/dashboard">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/predict">Prediction</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/comparison">Comparison</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/analytics">Analytics</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/reports">Reports</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+
+    <h1 class="text-center">
+
+        Project Dashboard
+
+    </h1>
+
+    <p class="text-center text-muted">
+
+        Overview of the House Price Prediction Project
+
+    </p>
+
+    <hr>
+
+    <!-- Summary Cards -->
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center h-100">
+
+                <div class="card-body">
+
+                    <h5>Dataset</h5>
+
+                    <hr>
+
+                    <h3>1460</h3>
+
+                    <p>Records</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center h-100">
+
+                <div class="card-body">
+
+                    <h5>Features</h5>
+
+                    <hr>
+
+                    <h3>81</h3>
+
+                    <p>Input Variables</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center h-100">
+
+                <div class="card-body">
+
+                    <h5>Target</h5>
+
+                    <hr>
+
+                    <h3>SalePrice</h3>
+
+                    <p>Regression Target</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center h-100">
+
+                <div class="card-body">
+
+                    <h5>Best Model</h5>
+
+                    <hr>
+
+                    <h3>CatBoost</h3>
+
+                    <p>R² = 0.93</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Selected Features -->
+
+    <div class="card shadow mt-5">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                Selected Features Used for Prediction
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <ul>
+
+                        <li>Overall Quality</li>
+
+                        <li>Garage Cars</li>
+
+                        <li>Garage Area</li>
+
+                        <li>Lot Area</li>
+
+                        <li>Masonry Veneer Area</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <ul>
+
+                        <li>Garage Built Year</li>
+
+                        <li>Fireplaces</li>
+
+                        <li>Total Rooms Above Ground</li>
+
+                        <li>Kitchen Quality</li>
+
+                        <li>Basement Quality</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Model Performance -->
+
+    <div class="card shadow mt-5">
+
+        <div class="card-header bg-success text-white">
+
+            <h4 class="mb-0">
+
+                Best Model Performance
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row text-center">
+
+                <div class="col-md-3">
+
+                    <h5>MAE</h5>
+
+                    <p>12765</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h5>RMSE</h5>
+
+                    <p>18151</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h5>R² Score</h5>
+
+                    <p>0.93</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h5>Algorithm</h5>
+
+                    <p>CatBoost</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+<br>
+
+<footer class="bg-primary text-white text-center p-3">
+
+    Advanced Regression Model Comparison & Optimization Platform
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

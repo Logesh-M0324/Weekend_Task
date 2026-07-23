@@ -16,6 +16,7 @@ lightgbm = "*"
 catboost = "*"
 statsmodels = "*"
 openai = "*"
+flask = "*"
 
 [dev-packages]
 

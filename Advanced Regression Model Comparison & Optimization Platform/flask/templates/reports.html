@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Reports</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+            House Price Prediction
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/predict">Prediction</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/comparison">Comparison</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/analytics">Analytics</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/reports">Reports</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container my-5">
+
+    <div class="text-center mb-5">
+
+        <h1>
+
+            Project Reports
+
+        </h1>
+
+        <p class="text-muted">
+
+            Download reports generated from the machine learning project.
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Prediction Report -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>
+
+                        Prediction Report
+
+                    </h3>
+
+                    <hr>
+
+                    <p>
+
+                        Download the latest house price prediction report.
+
+                    </p>
+
+                    <a
+                        href="/download_prediction_report"
+                        class="btn btn-primary">
+
+                        Download Report
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Model Evaluation -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>
+
+                        Model Evaluation
+
+                    </h3>
+
+                    <hr>
+
+                    <p>
+
+                        Download MAE, RMSE, R² Score and Cross Validation results.
+
+                    </p>
+
+                    <a
+                        href="/download_evaluation_report"
+                        class="btn btn-success">
+
+                        Download Report
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Comparison -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>
+
+                        Comparison Report
+
+                    </h3>
+
+                    <hr>
+
+                    <p>
+
+                        Download the comparison report of all regression models.
+
+                    </p>
+
+                    <a
+                        href="/download_comparison_report"
+                        class="btn btn-warning">
+
+                        Download Report
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="card shadow mt-5">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+
+                Report Summary
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Report</th>
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Prediction Report</td>
+
+                        <td>
+
+                            Contains the predicted house price based on the user inputs.
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Model Evaluation Report</td>
+
+                        <td>
+
+                            Includes MAE, RMSE, MSE, R² Score and Cross Validation results.
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Comparison Report</td>
+
+                        <td>
+
+                            Compares all trained regression models and identifies the best-performing model.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+<br>
+
+<footer class="bg-primary text-white text-center p-3">
+
+    Advanced Regression Model Comparison & Optimization Platform
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
