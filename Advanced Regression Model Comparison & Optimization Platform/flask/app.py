@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import pickle
 import pandas as pd
+from flask import send_file
 
 app = Flask(__name__)
 
@@ -100,17 +101,26 @@ def reports():
 
 @app.route("/download_prediction_report")
 def download_prediction_report():
-    return "Prediction Report will be available here."
+    return send_file(
+        "reports/Prediction_Report.docx",
+        as_attachment=True
+    )
 
 
 @app.route("/download_evaluation_report")
 def download_evaluation_report():
-    return "Model Evaluation Report will be available here."
+    return send_file(
+        "reports/Evaluation_Report.docx",
+        as_attachment=True
+    )
 
 
 @app.route("/download_comparison_report")
 def download_comparison_report():
-    return "Comparison Report will be available here."
+    return send_file(
+        "reports/Comparison_Report.docx",
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
