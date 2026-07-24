@@ -408,7 +408,3 @@ This project successfully developed an end-to-end machine learning solution for 
 **LOGESH M**
 
 ---
-
-# 📜 License
-
-This project is developed for educational and academic purposes.
