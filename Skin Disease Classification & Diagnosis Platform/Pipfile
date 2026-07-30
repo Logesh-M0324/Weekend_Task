@@ -14,6 +14,7 @@ scipy = "*"
 missingno = "*"
 opencv-python = "*"
 tensorflow = "*"
+flask = "*"
 
 [dev-packages]
 ipykernel = "*"

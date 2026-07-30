@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Dashboard
+</h2>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h5>Total Images</h5>
+
+                <h2>{{ total_images }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h5>Classes</h5>
+
+                <h2>{{ total_classes }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <h5>Best Model</h5>
+
+                <h4>{{ best_model }}</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="row mt-4">
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h5>Training</h5>
+
+                <h2>{{ train_count }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h5>Validation</h5>
+
+                <h2>{{ validation_count }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body text-center">
+
+                <h5>Testing</h5>
+
+                <h2>{{ test_count }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

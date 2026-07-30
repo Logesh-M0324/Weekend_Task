@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Model Comparison
+
+</h2>
+
+<table class="table table-striped table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Model</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1 Score</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <tr>
+
+            <td>Basic CNN</td>
+            <td>84.32%</td>
+            <td>83.51%</td>
+            <td>82.44%</td>
+            <td>82.90%</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Deep CNN</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+
+        <tr>
+
+            <td>MobileNetV2</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+
+        <tr>
+
+            <td>EfficientNetB0</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+
+        <tr>
+
+            <td>ResNet50</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+
+        <tr>
+
+            <td>DenseNet121</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Prediction Result</h2>
+
+<img
+    src="{{ url_for('static', filename=image_path) }}"
+    class="img-fluid rounded mb-4"
+    width="350">
+
+<div class="card mb-4">
+    <div class="card-body">
+
+        <h3>{{ predicted_class }}</h3>
+
+        <h5>
+            Confidence:
+            {{ "%.2f"|format(confidence) }}%
+        </h5>
+
+    </div>
+</div>
+
+<h3>Class Probabilities</h3>
+
+{% for item in probability_data %}
+
+<div class="mb-3">
+
+    <strong>{{ item.class_name }}</strong>
+
+    <span class="float-end">
+        {{ "%.2f"|format(item.probability) }}%
+    </span>
+
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: {{ item.probability }}%;">
+
+            {{ "%.1f"|format(item.probability) }}%
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h3>Explainable AI (Grad-CAM)</h3>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <h5>Original Image</h5>
+
+        <img
+            src="{{ url_for('static', filename=image_path) }}"
+            class="img-fluid rounded">
+
+    </div>
+
+    <div class="col-md-6">
+
+        <h5>Grad-CAM</h5>
+
+        <img
+            src="{{ url_for('static', filename=gradcam_path) }}"
+            class="img-fluid rounded">
+
+    </div>
+
+</div>
+
+{% endblock %}
