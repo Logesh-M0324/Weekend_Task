@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero-section text-center py-5">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <span class="badge bg-primary mb-3 fs-6">
+                AI Powered Diagnosis
+            </span>
+
+            <h1 class="display-4 fw-bold">
+                Skin Disease Classification &amp; Diagnosis Platform
+            </h1>
+
+            <p class="lead mt-4">
+                Upload a skin lesion image and let our Deep Learning
+                model classify the disease with confidence scores,
+                Grad-CAM visualization, and detailed analytics.
+            </p>
+
+            <div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
+                <a
+                    href="{{ url_for('upload') }}"
+                    class="btn btn-primary btn-lg">
+                    <i class="bi bi-cloud-upload"></i>
+                    Start Diagnosis
+                </a>
+
+                <a
+                    href="{{ url_for('analytics') }}"
+                    class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-bar-chart-line"></i>
+                    View Analytics
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<hr class="my-5">
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+    <div class="text-center mb-5">
+
+        <h2>Platform Features</h2>
+
+        <p class="text-muted">
+
+            End-to-End Deep Learning Skin Disease Diagnosis
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card feature-card h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-image feature-icon"></i>
+
+                    <h4 class="mt-3">
+
+                        Image Upload
+
+                    </h4>
+
+                    <p>
+
+                        Upload JPG, JPEG or PNG skin lesion images
+                        securely.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card feature-card h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-cpu feature-icon"></i>
+
+                    <h4 class="mt-3">
+
+                        Deep Learning
+
+                    </h4>
+
+                    <p>
+
+                        CNN and Transfer Learning models classify
+                        seven skin diseases.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card feature-card h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-fire feature-icon"></i>
+
+                    <h4 class="mt-3">
+
+                        Explainable AI
+
+                    </h4>
+
+                    <p>
+
+                        Grad-CAM highlights the regions responsible
+                        for the prediction.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card feature-card h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-graph-up-arrow feature-icon"></i>
+
+                    <h4 class="mt-3">
+
+                        Model Analytics
+
+                    </h4>
+
+                    <p>
+
+                        Compare multiple CNN architectures and
+                        evaluation metrics.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<hr class="my-5">
+
+
+<section>
+
+    <div class="text-center mb-5">
+
+        <h2>
+
+            How It Works
+
+        </h2>
+
+    </div>
+
+    <div class="row text-center">
+
+        <div class="col-md-3">
+
+            <div class="step-circle">
+
+                1
+
+            </div>
+
+            <h5 class="mt-3">
+
+                Upload
+
+            </h5>
+
+            <p>
+
+                Upload a skin lesion image.
+
+            </p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="step-circle">
+
+                2
+
+            </div>
+
+            <h5 class="mt-3">
+
+                Preprocess
+
+            </h5>
+
+            <p>
+
+                Image is resized and normalized.
+
+            </p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="step-circle">
+
+                3
+
+            </div>
+
+            <h5 class="mt-3">
+
+                Predict
+
+            </h5>
+
+            <p>
+
+                CNN predicts the disease class.
+
+            </p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="step-circle">
+
+                4
+
+            </div>
+
+            <h5 class="mt-3">
+
+                Explain
+
+            </h5>
+
+            <p>
+
+                Grad-CAM visualizes important regions.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<hr class="my-5">
+
+
+<section>
+
+    <div class="row ">
+
+        <div class="col-lg-6">
+
+            <h2>
+
+                Why Choose This Platform?
+
+            </h2>
+
+            <ul class="list-group list-group-flush mt-4">
+
+                <li class="list-group-item">
+
+                    ✅ Seven Skin Disease Classes
+
+                </li>
+
+                <li class="list-group-item">
+
+                    ✅ Deep Learning Based Classification
+
+                </li>
+
+                <li class="list-group-item">
+
+                    ✅ Explainable AI with Grad-CAM
+
+                </li>
+
+                <li class="list-group-item">
+
+                    ✅ Confidence Score & Probabilities
+
+                </li>
+
+                <li class="list-group-item">
+
+                    ✅ Model Performance Analytics
+
+                </li>
+ 
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

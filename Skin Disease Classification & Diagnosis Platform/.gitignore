@@ -1,0 +1,15 @@
+Dataset/
+
+notebook/Hyperparameter
+
+notebook/basic_cnn_history.pkl
+
+notebook/basic_cnn.pkl
+
+notebook/basic_cnn.keras
+
+notebook/history_deep_history.pkl
+
+Models/
+
+flask_app/models

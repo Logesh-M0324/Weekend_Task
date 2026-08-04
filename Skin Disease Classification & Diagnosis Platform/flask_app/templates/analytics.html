@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="dashboard-header mb-4">
+
+        <div>
+
+            <h2>
+
+                Model Analytics
+
+            </h2>
+
+            <p class="text-muted">
+
+                Deep Learning Performance Dashboard
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Metric Cards -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-3">
+
+            <div class="metric-card">
+
+                <small>
+
+                    Accuracy
+
+                </small>
+
+                <h2>
+
+                    {{ metrics.accuracy }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="metric-card">
+
+                <small>
+
+                    Precision
+
+                </small>
+
+                <h2>
+
+                    {{ metrics.precision }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="metric-card">
+
+                <small>
+
+                    Recall
+
+                </small>
+
+                <h2>
+
+                    {{ metrics.recall }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="metric-card">
+
+                <small>
+
+                    F1 Score
+
+                </small>
+
+                <h2>
+
+                    {{ metrics.f1 }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="row g-4 mt-4">
+
+            <div class="col-lg-6"> 
+
+                <div class="dashboard-card">
+
+                    <h4>
+
+                        Accuracy Comparison
+
+                    </h4>
+
+                    <img
+
+                        src="{{ url_for('static', filename='images/image_3.png') }}"
+
+                        class="img-fluid my-custom-image-size">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="dashboard-card">
+
+                    <h4>
+
+                        Confusion Matrix
+
+                    </h4>
+
+                    <img
+
+                        src="{{ url_for('static', filename='images/image.png') }}"
+
+                        class="img-fluid">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

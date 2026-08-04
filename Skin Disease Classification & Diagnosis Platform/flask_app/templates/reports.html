@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+
+    <div class="reports-header mb-5">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                Reports Center
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                Download AI diagnosis and model evaluation reports.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Diagnosis Report -->
+
+        <div class="col-lg-6">
+
+            <div class="report-card">
+
+                <div class="report-icon bg-primary">
+
+                    📋
+
+                </div>
+
+                <h3>
+
+                    Diagnosis Report
+
+                </h3>
+
+                <p>
+
+                    Download a PDF containing the uploaded image,
+                    predicted disease, confidence score,
+                    Grad-CAM visualization and medical recommendation.
+
+                </p>
+
+                <hr>
+
+                <ul class="list-unstyled">
+
+                    <li>✔ Patient Uploaded Image</li>
+
+                    <li>✔ Predicted Disease</li>
+
+                    <li>✔ Confidence Score</li>
+
+                    <li>✔ Class Probabilities</li>
+
+                    <li>✔ Grad-CAM Heatmap</li>
+
+                    <li>✔ Recommendation</li>
+
+                </ul>
+
+                {% if diagnosis_available %}
+
+                <a
+                    href="{{ url_for('reports') }}"
+                    class="btn btn-primary btn-lg w-100">
+
+                    Download Diagnosis Report
+
+                </a>
+
+                {% else %}
+
+                <button
+                    class="btn btn-secondary btn-lg w-100"
+                    disabled>
+
+                    Report Not Available
+
+                </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Model Comparison Report -->
+
+        <div class="col-lg-6">
+
+            <div class="report-card">
+
+                <div class="report-icon bg-success">
+
+                    📊
+
+                </div>
+
+                <h3>
+
+                    Model Comparison Report
+
+                </h3>
+
+                <p>
+
+                    Compare CNN and Transfer Learning models
+                    using evaluation metrics and performance charts.
+
+                </p>
+
+                <hr>
+
+                <ul class="list-unstyled">
+
+                    <li>✔ Accuracy</li>
+
+                    <li>✔ Precision</li>
+
+                    <li>✔ Recall</li>
+
+                    <li>✔ F1 Score</li>
+
+                    <li>✔ ROC-AUC</li>
+
+                    <li>✔ Confusion Matrix</li>
+
+                </ul>
+
+                {% if comparison_available %}
+
+                <a
+                    href="{{ url_for('reports') }}" 
+                    class="btn btn-success btn-lg w-100">
+
+                    Download Model Report
+
+                </a>
+
+                {% else %}
+
+                <button
+                    class="btn btn-secondary btn-lg w-100"
+                    disabled>
+
+                    Report Not Available
+
+                </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

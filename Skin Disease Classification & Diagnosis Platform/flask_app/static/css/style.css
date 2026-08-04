@@ -1,0 +1,645 @@
+body{
+
+    font-family: 'Poppins', sans-serif;
+
+    background:#f4f7fb;
+
+    color:#343a40;
+
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    background:#0d6efd;
+
+}
+
+.navbar-brand{
+
+    font-size:1.4rem;
+
+}
+
+.nav-link{
+
+    color:white !important;
+
+    margin-left:15px;
+
+    font-weight:500;
+
+}
+
+.nav-link:hover{
+
+    color:#ffe082 !important;
+
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary{
+
+    border-radius:50px;
+
+    padding:10px 25px;
+
+    font-weight:600;
+
+}
+
+/* ================= CARDS ================= */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    transition:.3s;
+
+}
+
+/* ================= IMAGES ================= */
+
+img{
+
+    border-radius:15px;
+
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    margin-top:80px;
+
+    background:#0d6efd;
+
+    color:white;
+
+    padding:30px;
+
+}
+
+.footer p{
+
+    margin-bottom:5px;
+
+}
+
+/* ================= PROGRESS BAR ================= */
+
+.progress{
+
+    height:24px;
+
+    border-radius:20px;
+
+}
+
+.progress-bar{
+
+    font-weight:600;
+
+}
+
+/* ================= PAGE TITLES ================= */
+
+h2{
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+}
+
+/* HERO */
+
+.hero-section{
+
+    padding:60px 0;
+
+}
+
+.hero-image{
+
+    max-width:90%;
+
+}
+
+/* FEATURE CARD */
+
+.feature-card{
+
+    transition:.3s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.feature-icon{
+
+    font-size:55px;
+
+    color:#0d6efd;
+
+}
+
+/* HOW IT WORKS */
+
+.step-circle{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+}
+
+/* ================= Upload ================= */
+
+.upload-icon{
+
+    font-size:70px;
+
+    color:#0d6efd;
+
+}
+
+.upload-box{
+
+    border:3px dashed #0d6efd;
+
+    border-radius:20px;
+
+    padding:50px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    background:#f8fbff;
+
+}
+
+.upload-box:hover{
+
+    background:#eef5ff;
+
+    transform:scale(1.01);
+
+}
+
+.upload-preview-icon{
+
+    font-size:60px;
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+/* Loading */
+
+.loading-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.8);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+/* ================= INFO BOX ================= */
+
+.info-box{
+
+    background:#f8f9fa;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+}
+
+.info-box h6{
+
+    color:#6c757d;
+
+}
+
+.info-box p{
+
+    font-weight:600;
+
+    margin:0;
+
+}
+
+.card-header{
+
+    font-weight:600;
+
+}
+
+.progress{
+
+    height:26px;
+
+}
+
+.progress-bar{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+body{
+
+    background:#f5f7fb;
+
+}
+
+/* Header */
+
+.dashboard-header{
+
+    background:white;
+
+    padding:25px 35px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+}
+
+/* Cards */
+
+.dashboard-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    height:100%;
+
+}
+
+/* Images */
+
+.dashboard-image{
+
+    width:100%;
+
+    height:420px;
+
+    object-fit:contain;
+
+    border-radius:15px;
+
+    background:#fafafa;
+
+}
+
+/* Metric Cards */
+
+.metric-card{
+
+    background:#f8f9fc;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    border:1px solid #ececec;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.metric-card small{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+.metric-card h5{
+
+    margin-top:10px;
+
+    font-weight:700;
+
+}
+
+/* Progress */
+
+.probability-progress{
+
+    height:18px;
+
+    border-radius:20px;
+
+}
+
+/* Button */
+
+.btn{
+
+    border-radius:12px;
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.dashboard-image{
+
+    height:320px;
+
+}
+
+}
+
+/* ================= Dashboard ================= */
+
+.dashboard-header{
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card{
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    height:100%;
+
+}
+
+.stat-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+}
+
+.dataset-card{
+
+    background:#f8f9fc;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:1px solid #ececec;
+
+    transition:.3s;
+
+}
+
+.dataset-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.action-card{
+
+    display:block;
+
+    text-decoration:none;
+
+    background:#0d6efd;
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.action-card:hover{
+
+    background:#0b5ed7;
+
+    color:white;
+
+    transform:translateY(-5px);
+
+}
+
+/* ================= REPORTS ================= */
+
+.reports-header{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.report-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    height:100%;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.report-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.report-icon{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:35px;
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.report-card ul{
+
+    margin-bottom:25px;
+
+}
+
+.report-card li{
+
+    padding:6px 0;
+
+    color:#555;
+
+}
+
+.my-custom-image-size {
+  width: 500px; /* Adjust the width as needed, maintaining aspect ratio */
+  /* OR */
+  height: 300px; /* Adjust the height as needed, maintaining aspect ratio */
+}
