@@ -1,0 +1,51 @@
+About this file
+
+Combined All Regions Load in Megawatts (MW):
+
+American Electric Power (AEP)
+
+1. estimated energy consumption in Megawatts (MW)
+
+Commonwealth Edison (ComEd)
+
+2. estimated energy consumption in Megawatts (MW)
+
+Dayton Power and Light Company
+
+3. estimated energy consumption in Megawatts (MW)
+
+Duke Energy Ohio/Kentucky (DEOK)
+
+4. estimated energy consumption in Megawatts (MW)
+
+Dominion Virginia Power (DOM)
+
+5. estimated energy consumption in Megawatts (MW)
+
+Duquesne Light Co. (DUQ)
+
+6. estimated energy consumption in Megawatts (MW)
+
+East Kentucky Power Cooperative (EKPC)
+
+7. estimated energy consumption in Megawatts (MW)
+
+FirstEnergy (FE)
+
+8. estimated energy consumption in Megawatts (MW)
+
+Northern Illinois Hub (NI)
+
+9. estimated energy consumption in Megawatts (MW)
+
+PJM East Region: 2001-2018 (PJME)
+
+10. estimated energy consumption in Megawatts (MW)
+
+PJM West Region: 2001-2018 (PJMW)
+
+11. estimated energy consumption in Megawatts (MW)
+
+PJM Load Combined: 1998-2001 (PJM_Load)
+
+12. estimated energy consumption in Megawatts (MW)
