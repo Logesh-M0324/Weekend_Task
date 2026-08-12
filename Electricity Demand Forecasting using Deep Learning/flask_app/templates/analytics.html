@@ -1,0 +1,636 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Analytics | Electricity Forecasting
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container-fluid px-4 py-4">
+
+
+    <!-- ============================= -->
+    <!-- PAGE HEADER -->
+    <!-- ============================= -->
+
+    <div class="d-flex
+                justify-content-between
+                align-items-center
+                mb-4">
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                <i class="bi bi-bar-chart-line"></i>
+
+                Forecast Analytics
+
+            </h1>
+
+            <p class="text-muted mb-0">
+
+                Analyze historical demand and
+                forecasting model performance.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- SUMMARY CARDS -->
+    <!-- ============================= -->
+
+    <div class="row g-4 mb-4">
+
+
+        <!-- Latest Demand -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                        <div>
+
+                            <p class="text-muted mb-1">
+
+                                Latest Demand
+
+                            </p>
+
+                            <h3 class="fw-bold">
+
+                                {% if historical_demand %}
+
+                                    {{ historical_demand[-1] }}
+                                    MW
+
+                                {% else %}
+
+                                    N/A
+
+                                {% endif %}
+
+                            </h3>
+
+                        </div>
+
+                        <div>
+
+                            <i class="bi bi-lightning-charge
+                                      fs-1 text-warning">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Maximum Demand -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                        <div>
+
+                            <p class="text-muted mb-1">
+
+                                Maximum Demand
+
+                            </p>
+
+                            <h3 class="fw-bold">
+
+                                {% if historical_demand %}
+
+                                    {{ historical_demand|max }}
+                                    MW
+
+                                {% else %}
+
+                                    N/A
+
+                                {% endif %}
+
+                            </h3>
+
+                        </div>
+
+                        <div>
+
+                            <i class="bi bi-arrow-up-circle
+                                      fs-1 text-danger">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Minimum Demand -->
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex
+                                justify-content-between">
+
+                        <div>
+
+                            <p class="text-muted mb-1">
+
+                                Minimum Demand
+
+                            </p>
+
+                            <h3 class="fw-bold">
+
+                                {% if historical_demand %}
+
+                                    {{ historical_demand|min }}
+                                    MW
+
+                                {% else %}
+
+                                    N/A
+
+                                {% endif %}
+
+                            </h3>
+
+                        </div>
+
+                        <div>
+
+                            <i class="bi bi-arrow-down-circle
+                                      fs-1 text-success">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- HISTORICAL DEMAND -->
+    <!-- ============================= -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-white">
+
+            <h5 class="mb-0 fw-bold">
+
+                <i class="bi bi-graph-up"></i>
+
+                Historical Electricity Demand
+
+            </h5>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <canvas
+                id="historicalChart"
+                height="100">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- MODEL COMPARISON -->
+    <!-- ============================= -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-white">
+
+            <h5 class="mb-0 fw-bold">
+
+                <i class="bi bi-bar-chart"></i>
+
+                Model Performance Comparison
+
+            </h5>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <canvas
+                id="modelChart"
+                height="100">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- FORECAST ERROR -->
+    <!-- ============================= -->
+
+    <div class="row mt-4">
+
+        <div class="col-12">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+                    <h5 class="mb-0">Forecast Error</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <div style="position: relative; width: 100%; height: 450px;">
+                        <canvas id="forecastErrorChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    
+    <!-- ============================= -->
+    <!-- ANALYTICS INFORMATION -->
+    <!-- ============================= -->
+
+    <div class="row g-4">
+
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+
+                        Peak Demand Analysis
+
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Analyze peak electricity demand
+                        periods and identify high-demand
+                        operating hours.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+
+                        Forecast Performance
+
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Compare forecasting models using
+                        MAE, RMSE, MAPE and R² metrics.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script>
+
+
+/* =====================================
+   HISTORICAL DEMAND CHART
+   ===================================== */
+
+const historicalDates =
+    {{ historical_dates | tojson }};
+
+
+const historicalDemand =
+    {{ historical_demand | tojson }};
+
+
+new Chart(
+
+    document.getElementById(
+        "historicalChart"
+    ),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels: historicalDates,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Actual Demand (MW)",
+
+                    data:
+                        historicalDemand,
+
+                    borderWidth: 2,
+
+                    pointRadius: 0,
+
+                    tension: 0.2
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            interaction: {
+
+                intersect: false,
+
+                mode: "index"
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+
+                        maxTicksLimit: 12
+
+                    }
+
+                },
+
+                y: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Demand (MW)"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================
+   MODEL COMPARISON
+   ===================================== */
+
+new Chart(
+
+    document.getElementById(
+        "modelChart"
+    ),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+
+                "RNN",
+
+                "LSTM",
+
+                "GRU",
+
+                "Bi-LSTM"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    label:
+                        "MAE (MW)",
+
+                    data: [
+
+                        1402.86,
+
+                        1411.55,
+
+                        1342.33,
+
+                        1403.37
+
+                    ],
+
+                    borderWidth: 1
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    title: {
+
+                        display: true,
+
+                        text: "MAE (MW)"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================
+   ERROR CHART
+   ===================================== */
+
+const forecastErrorCtx = document
+    .getElementById("forecastErrorChart")
+    .getContext("2d");
+
+new Chart(forecastErrorCtx, {
+
+    type: "line",
+
+    data: {
+        labels: {{ forecast_dates | tojson }},
+
+        datasets: [{
+            label: "Forecast Error (MW)",
+
+            data: {{ forecast_errors | tojson }},
+
+            borderWidth: 2,
+
+            pointRadius: 2,
+
+            tension: 0.3,
+
+            fill: false
+        }]
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+
+        scales: {
+
+            x: {
+                title: {
+                    display: true,
+                    text: "Date"
+                },
+
+                ticks: {
+                    maxTicksLimit: 15
+                }
+            },
+
+            y: {
+                title: {
+                    display: true,
+                    text: "Forecast Error (MW)"
+                }
+            }
+        }
+    }
+
+});
+</script>
+
+{% endblock %}

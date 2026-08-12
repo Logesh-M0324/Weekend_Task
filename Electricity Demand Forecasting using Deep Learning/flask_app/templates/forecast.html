@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block title %}
+Forecast - Electricity Demand Forecasting
+{% endblock %}
+
+
+{% block content %}
+
+<h2 class="mb-4">
+    Electricity Demand Forecast
+</h2>
+
+
+<!-- Forecast Selection -->
+
+<div class="card p-4 mb-4">
+
+    <h5 class="mb-3">
+
+        Generate Forecast
+
+    </h5>
+
+
+    <form
+        method="POST"
+        action="/forecast"
+    >
+
+        <div class="row align-items-end">
+
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Forecast Horizon
+
+                </label>
+
+
+                <select
+                    name="horizon"
+                    class="form-select"
+                    required
+                >
+
+                    <option
+                        value="24"
+                        {% if horizon == 24 %}
+                        selected
+                        {% endif %}
+                    >
+                        Next 24 Hours
+                    </option>
+
+
+                    <option
+                        value="48"
+                        {% if horizon == 48 %}
+                        selected
+                        {% endif %}
+                    >
+                        Next 48 Hours
+                    </option>
+
+
+                    <option
+                        value="72"
+                        {% if horizon == 72 %}
+                        selected
+                        {% endif %}
+                    >
+                        Next 72 Hours
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100"
+                >
+
+                    Generate Forecast
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </form>
+
+</div>
+
+
+{% if forecast %}
+
+<!-- Forecast Summary -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Forecast Horizon
+            </h6>
+
+            <div class="metric-value">
+                {{ horizon }} Hours
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Average Forecast
+            </h6>
+
+            <div class="metric-value">
+                {{ average_forecast }} MW
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Peak Forecast
+            </h6>
+
+            <div class="metric-value">
+                {{ peak_forecast }} MW
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Forecast Chart -->
+
+<div class="card p-4 mb-4">
+
+    <h5 class="mb-3">
+        Future Electricity Demand
+    </h5>
+
+    <div class="chart-container">
+
+        <canvas id="forecastChart"></canvas>
+
+    </div>
+
+</div>
+
+
+<!-- Forecast Table -->
+
+<div class="card p-4">
+
+    <h5 class="mb-3">
+        Forecast Values
+    </h5>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+                    <th>Time</th>
+                    <th>Forecast Demand (MW)</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for i in range(forecast|length) %}
+
+                <tr>
+
+                    <td>
+                        {{ forecast_dates[i] }}
+                    </td>
+
+                    <td>
+                        {{ forecast[i] }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% if forecast %}
+
+<script>
+
+const forecastDates =
+    {{ forecast_dates | tojson }};
+
+const forecastValues =
+    {{ forecast | tojson }};
+
+
+const ctx =
+    document
+        .getElementById("forecastChart")
+        .getContext("2d");
+
+
+new Chart(ctx, {
+
+    type: "line",
+
+    data: {
+
+        labels: forecastDates,
+
+        datasets: [
+
+            {
+                label: "Forecast Demand (MW)",
+
+                data: forecastValues,
+
+                borderWidth: 2,
+
+                tension: 0.2,
+
+                fill: false
+            }
+
+        ]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        scales: {
+
+            x: {
+
+                title: {
+
+                    display: true,
+
+                    text: "Time"
+
+                }
+
+            },
+
+            y: {
+
+                title: {
+
+                    display: true,
+
+                    text: "Demand (MW)"
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endif %}
+
+{% endblock %}
