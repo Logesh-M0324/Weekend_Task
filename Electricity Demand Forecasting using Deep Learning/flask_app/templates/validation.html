@@ -1,0 +1,617 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Validation | Electricity Forecasting
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container-fluid px-4 py-4">
+
+
+    <!-- ============================= -->
+    <!-- PAGE HEADER -->
+    <!-- ============================= -->
+
+    <div class="d-flex
+                justify-content-between
+                align-items-center
+                mb-4">
+
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                <i class="bi bi-check2-square"></i>
+
+                Model Validation
+
+            </h1>
+
+
+            <p class="text-muted mb-0">
+
+                Evaluate forecasting performance on
+                the most recent unseen demand period.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- VALIDATION SELECTION -->
+    <!-- ============================= -->
+
+    <div class="card shadow-sm mb-4">
+
+
+        <div class="card-header bg-white">
+
+            <h5 class="mb-0 fw-bold">
+
+                <i class="bi bi-calendar-range"></i>
+
+                Validation Period
+
+            </h5>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <form
+                method="POST"
+                class="row g-3 align-items-end"
+            >
+
+
+                <div class="col-md-4">
+
+
+                    <label
+                        class="form-label fw-semibold"
+                    >
+
+                        Select Validation Period
+
+                    </label>
+
+
+                    <select
+                        name="days"
+                        class="form-select"
+                    >
+
+
+                        <option
+                            value="30"
+                            {% if days == 30 %}
+                            selected
+                            {% endif %}
+                        >
+
+                            Last 30 Days
+
+                        </option>
+
+
+                        <option
+                            value="60"
+                            {% if days == 60 %}
+                            selected
+                            {% endif %}
+                        >
+
+                            Last 60 Days
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <div class="col-md-3">
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100"
+                    >
+
+                        <i class="bi bi-play-circle"></i>
+
+                        Run Validation
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    {% if mae is not none %}
+
+
+    <!-- ============================= -->
+    <!-- METRIC CARDS -->
+    <!-- ============================= -->
+
+    <div class="row g-4 mb-4">
+
+
+        <!-- MAE -->
+
+        <div class="col-md-4">
+
+
+            <div class="card shadow-sm h-100">
+
+
+                <div class="card-body">
+
+
+                    <p class="text-muted mb-1">
+
+                        Mean Absolute Error
+
+                    </p>
+
+
+                    <h2 class="fw-bold">
+
+                        {{ mae }}
+
+                        <small class="fs-6">
+
+                            MW
+
+                        </small>
+
+                    </h2>
+
+
+                    <i class="bi bi-bullseye
+                              fs-1 text-primary">
+                    </i>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RMSE -->
+
+        <div class="col-md-4">
+
+
+            <div class="card shadow-sm h-100">
+
+
+                <div class="card-body">
+
+
+                    <p class="text-muted mb-1">
+
+                        Root Mean Squared Error
+
+                    </p>
+
+
+                    <h2 class="fw-bold">
+
+                        {{ rmse }}
+
+                        <small class="fs-6">
+
+                            MW
+
+                        </small>
+
+                    </h2>
+
+
+                    <i class="bi bi-graph-up
+                              fs-1 text-warning">
+                    </i>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAPE -->
+
+        <div class="col-md-4">
+
+
+            <div class="card shadow-sm h-100">
+
+
+                <div class="card-body">
+
+
+                    <p class="text-muted mb-1">
+
+                        Mean Absolute Percentage Error
+
+                    </p>
+
+
+                    <h2 class="fw-bold">
+
+                        {{ mape }}%
+
+                    </h2>
+
+
+                    <i class="bi bi-percent
+                              fs-1 text-success">
+                    </i>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- ACTUAL VS PREDICTED -->
+    <!-- ============================= -->
+
+    <div class="card shadow-sm mb-4">
+
+
+        <div class="card-header bg-white">
+
+            <h5 class="mb-0 fw-bold">
+
+                <i class="bi bi-graph-up-arrow"></i>
+
+                Actual vs Predicted Demand
+
+            </h5>
+
+        </div>
+
+
+        <div class="card-body">
+
+
+            <div
+                style="
+                    position: relative;
+                    width: 100%;
+                    height: 500px;
+                "
+            >
+
+                <canvas
+                    id="validationChart"
+                ></canvas>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- VALIDATION INFORMATION -->
+    <!-- ============================= -->
+
+    <div class="row g-4">
+
+
+        <div class="col-md-6">
+
+
+            <div class="card shadow-sm h-100">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="fw-bold">
+
+                        <i class="bi bi-calendar-check"></i>
+
+                        Validation Period
+
+                    </h5>
+
+
+                    <p class="text-muted">
+
+                        The model was evaluated using
+                        the most recent
+
+                        <strong>
+                            {{ days }} days
+                        </strong>
+
+                        of electricity demand data.
+
+                    </p>
+
+
+                    <p class="text-muted mb-0">
+
+                        The validation data was kept
+                        chronologically ordered to
+                        prevent future information from
+                        entering the historical sequence.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-6">
+
+
+            <div class="card shadow-sm h-100">
+
+
+                <div class="card-body">
+
+
+                    <h5 class="fw-bold">
+
+                        <i class="bi bi-info-circle"></i>
+
+                        Performance Metrics
+
+                    </h5>
+
+
+                    <p class="text-muted mb-2">
+
+                        <strong>MAE</strong>
+
+                        measures the average absolute
+                        forecasting error.
+
+                    </p>
+
+
+                    <p class="text-muted mb-2">
+
+                        <strong>RMSE</strong>
+
+                        gives more weight to large
+                        forecasting errors.
+
+                    </p>
+
+
+                    <p class="text-muted mb-0">
+
+                        <strong>MAPE</strong>
+
+                        represents the forecasting error
+                        as a percentage.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+{% if mae is not none %}
+
+const validationDates =
+    {{ validation_dates | tojson }};
+
+
+const actualValues =
+    {{ actual_values | tojson }};
+
+
+const predictedValues =
+    {{ predicted_values | tojson }};
+
+
+const ctx =
+    document
+        .getElementById(
+            "validationChart"
+        )
+        .getContext("2d");
+
+
+new Chart(
+    ctx,
+    {
+
+        type: "line",
+
+        data: {
+
+            labels: validationDates,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Actual Demand",
+
+                    data:
+                        actualValues,
+
+                    borderWidth: 2,
+
+                    pointRadius: 0,
+
+                    tension: 0.2
+
+                },
+
+                {
+
+                    label:
+                        "Predicted Demand",
+
+                    data:
+                        predictedValues,
+
+                    borderWidth: 2,
+
+                    pointRadius: 0,
+
+                    tension: 0.2
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            interaction: {
+
+                mode: "index",
+
+                intersect: false
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    display: true
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Date and Time"
+
+                    },
+
+                    ticks: {
+
+                        maxTicksLimit: 15
+
+                    }
+
+                },
+
+
+                y: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Electricity Demand (MW)"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+);
+
+{% endif %}
+
+</script>
+
+
+{% endblock %}

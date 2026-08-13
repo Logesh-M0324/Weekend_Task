@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard - Electricity Forecasting
+{% endblock %}
+
+
+{% block content %}
+
+<h2 class="mb-4">
+    Electricity Demand Dashboard
+</h2>
+
+
+<!-- ========================= -->
+<!-- METRIC CARDS -->
+<!-- ========================= -->
+
+<div class="row g-4 mb-4">
+
+    <!-- Current Demand -->
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Current Demand
+            </h6>
+
+            <div class="metric-value">
+                {{ latest_demand }} MW
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Best Model -->
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Best Model
+            </h6>
+
+            <div class="metric-value">
+                {{ best_model }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Forecast Horizon -->
+    <div class="col-md-4">
+
+        <div class="card metric-card">
+
+            <h6 class="text-muted">
+                Forecast Horizon
+            </h6>
+
+            <div class="metric-value">
+                24 Hours
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- HISTORICAL CONSUMPTION -->
+<!-- ========================= -->
+
+<div class="card p-4 mb-4">
+
+    <h5 class="mb-3">
+        Historical Electricity Consumption
+    </h5>
+
+    <div class="chart-container">
+
+        <canvas id="historicalChart"></canvas>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- MODEL PERFORMANCE -->
+<!-- ========================= -->
+
+<div class="card p-4">
+
+    <h5 class="mb-3">
+        BaseLine Model Performance
+    </h5>
+
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+                    <th>Model</th>
+                    <th>MAE (MW)</th>
+                    <th>RMSE (MW)</th>
+                    <th>MAPE (%)</th>
+                    <th>R²</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for model in model_performance %}
+
+                <tr>
+
+                    <td>
+                        {{ model.Model }}
+                    </td>
+
+                    <td>
+                        {{ model.MAE }}
+                    </td>
+
+                    <td>
+                        {{ model.RMSE }}
+                    </td>
+
+                    <td>
+                        {{ model.MAPE }}
+                    </td>
+
+                    <td>
+                        {{ model.R2 }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    const dates = {{ dates | tojson }};
+    const demand = {{ demand | tojson }};
+
+
+    const ctx = document
+        .getElementById("historicalChart")
+        .getContext("2d");
+
+
+    new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels: dates,
+
+            datasets: [
+
+                {
+                    label: "Electricity Demand (MW)",
+
+                    data: demand,
+
+                    borderWidth: 2,
+
+                    tension: 0.2,
+
+                    fill: false
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                x: {
+                    title: {
+                        display: true,
+                        text: "Time"
+                    }
+                },
+
+                y: {
+                    title: {
+                        display: true,
+                        text: "Demand (MW)"
+                    }
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+
+{% endblock %}
