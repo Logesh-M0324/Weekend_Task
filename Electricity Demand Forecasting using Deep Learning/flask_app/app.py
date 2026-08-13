@@ -27,26 +27,19 @@ y_scaler = joblib.load(
 @app.route("/")
 def dashboard():
 
-    # Load dataset
     df = pd.read_csv("../Dataset/final_df.csv")
 
-    # Convert timestamp
     df["Datetime"] = pd.to_datetime(df["Datetime"])
 
-    # Sort chronologically
+
     df = df.sort_values("Datetime")
 
-
-    # Latest demand
     latest_demand = round(
         df["PJME_MW"].iloc[-1],
         2
     )
 
-
-    # Historical data for chart
     chart_df = df.tail(168)
-
 
     dates = chart_df["Datetime"].dt.strftime(
         "%Y-%m-%d %H:%M"
@@ -54,56 +47,54 @@ def dashboard():
 
     demand = chart_df["PJME_MW"].tolist()
 
-
-    # Model performance
     model_performance = [
 
         {
             "Model": "Naive",
-            "MAE": 5200.08,
-            "RMSE": 6559.95,
-            "MAPE": 17.25,
-            "R2": -0.031
+            "MAE": 1207.85,
+            "RMSE": 1808.40,
+            "MAPE": 3.859,
+            "R2": 0.916
         },
 
         {
             "Model": "Previous-Day",
-            "MAE": 2184.54,
-            "RMSE": 3025.08,
-            "MAPE": 6.80,
-            "R2": 0.781
+            "MAE": 2267.29,
+            "RMSE": 3120.64,
+            "MAPE": 7.123,
+            "R2": 0.749
         },
 
         {
             "Model": "RNN",
-            "MAE": 1582.63,
-            "RMSE": 2172.62,
-            "MAPE": 5.12,
-            "R2": 0.889
+            "MAE": 2505.47,
+            "RMSE": 3429.29,
+            "MAPE": 8.3724,
+            "R2": 0.7188
         },
 
         {
             "Model": "LSTM",
-            "MAE": 1576.63,
-            "RMSE": 2167.47,
-            "MAPE": 5.07,
-            "R2": 0.890
+            "MAE": 3084.03,
+            "RMSE": 4103.47,
+            "MAPE": 10.45,
+            "R2": 0.5973
         },
 
         {
             "Model": "GRU",
-            "MAE": 1554.16,
-            "RMSE": 2140.64,
-            "MAPE": 5.06,
-            "R2": 0.893
+            "MAE": 3431.36,
+            "RMSE": 4571.74,
+            "MAPE": 11.59,
+            "R2": 0.498
         },
 
         {
             "Model": "Bi-LSTM",
-            "MAE": 1480.64,
-            "RMSE": 2064.59,
-            "MAPE": 4.79,
-            "R2": 0.900
+            "MAE": 2483.91,
+            "RMSE": 3341.67,
+            "MAPE": 8.34,
+            "R2": 0.732
         }
 
     ]
@@ -141,10 +132,6 @@ def forecast_page():
 
         horizon = int(request.form["horizon"])
 
-        # =====================================================
-        # LOAD DATA
-        # =====================================================
-
         df = pd.read_csv(
             "../Dataset/final_df.csv"
         )
@@ -157,10 +144,6 @@ def forecast_page():
             "Datetime"
         ).reset_index(drop=True)
 
-
-        # =====================================================
-        # FEATURES
-        # =====================================================
 
         features = [
 
@@ -190,11 +173,6 @@ def forecast_page():
 
         ]
 
-
-        # =====================================================
-        # LOAD SCALERS
-        # =====================================================
-
         X_scaler = joblib.load(
             "../Models/X_scaler.pkl"
         )
@@ -203,48 +181,16 @@ def forecast_page():
             "../Models/y_scaler.pkl"
         )
 
-
-        # =====================================================
-        # PARAMETERS
-        # =====================================================
-
         sequence_length = 48
-
         model_horizon = 24
-
-
-        # =====================================================
-        # STORE FORECASTS
-        # =====================================================
-
         all_predictions = []
-
         all_dates = []
 
-
-        # =====================================================
-        # WORKING DATAFRAME
-        # =====================================================
-
-        work_df = df[
-            ["Datetime", "PJME_MW"]
-        ].copy()
-
-
-        # =====================================================
-        # RECURSIVE FORECASTING
-        # =====================================================
+        work_df = df[["Datetime", "PJME_MW"]].copy()
 
         while len(all_predictions) < horizon:
 
-            # -------------------------------------------------
-            # Create feature dataframe
-            # -------------------------------------------------
-
             temp_df = work_df.copy()
-
-
-            # Time features
 
             temp_df["Hour"] = (
                 temp_df["Datetime"].dt.hour
@@ -276,11 +222,6 @@ def forecast_page():
             temp_df["IsWeekend"] = (
                 temp_df["DayOfWeek"] >= 5
             ).astype(int)
-
-
-            # -------------------------------------------------
-            # Lag features
-            # -------------------------------------------------
 
             temp_df["Lag_1"] = (
                 temp_df["PJME_MW"].shift(1)
@@ -318,11 +259,6 @@ def forecast_page():
                 temp_df["PJME_MW"].shift(168)
             )
 
-
-            # -------------------------------------------------
-            # Rolling features
-            # -------------------------------------------------
-
             temp_df["RollingMean_24"] = (
                 temp_df["PJME_MW"]
                 .rolling(24)
@@ -341,17 +277,9 @@ def forecast_page():
                 .std()
             )
 
-
-            # -------------------------------------------------
-            # Get latest 48 rows
-            # -------------------------------------------------
-
             latest_features = temp_df[
                 features
             ].tail(sequence_length)
-
-
-            # Safety check
 
             if len(latest_features) < sequence_length:
 
@@ -361,29 +289,16 @@ def forecast_page():
                 )
 
 
-            # -------------------------------------------------
-            # Handle missing values
-            # -------------------------------------------------
-
             latest_features = (
                 latest_features
                 .bfill()
                 .ffill()
             )
 
-
-            # -------------------------------------------------
-            # SCALE
-            # -------------------------------------------------
-
             latest_scaled = X_scaler.transform(
                 latest_features
             )
 
-
-            # -------------------------------------------------
-            # MODEL INPUT
-            # -------------------------------------------------
 
             X_input = latest_scaled.reshape(
                 1,
@@ -392,15 +307,8 @@ def forecast_page():
             )
 
 
-            print(
-                "X_input shape:",
-                X_input.shape
-            )
+            print("X_input shape:",X_input.shape)
 
-
-            # -------------------------------------------------
-            # PREDICT NEXT 24 HOURS
-            # -------------------------------------------------
 
             prediction_scaled = model.predict(
                 X_input,
@@ -408,15 +316,7 @@ def forecast_page():
             )
 
 
-            print(
-                "Prediction shape:",
-                prediction_scaled.shape
-            )
-
-
-            # -------------------------------------------------
-            # INVERSE SCALE
-            # -------------------------------------------------
+            print("Prediction shape:",prediction_scaled.shape)
 
             prediction = (
                 y_scaler
@@ -426,11 +326,6 @@ def forecast_page():
                 )
                 .flatten()
             )
-
-
-            # -------------------------------------------------
-            # Number of predictions needed
-            # -------------------------------------------------
 
             remaining = (
                 horizon -
@@ -443,13 +338,8 @@ def forecast_page():
                 remaining
             )
 
-
             prediction = prediction[:take]
 
-
-            # -------------------------------------------------
-            # FUTURE DATES
-            # -------------------------------------------------
 
             last_timestamp = (
                 work_df["Datetime"].iloc[-1]
@@ -469,11 +359,6 @@ def forecast_page():
 
             )
 
-
-            # -------------------------------------------------
-            # STORE PREDICTIONS
-            # -------------------------------------------------
-
             all_predictions.extend(
                 prediction.tolist()
             )
@@ -482,10 +367,6 @@ def forecast_page():
                 future_dates.tolist()
             )
 
-
-            # -------------------------------------------------
-            # ADD PREDICTIONS TO WORKING DATA
-            # -------------------------------------------------
 
             new_rows = pd.DataFrame({
 
@@ -510,10 +391,6 @@ def forecast_page():
             )
 
 
-        # =====================================================
-        # FINAL FORECAST
-        # =====================================================
-
         forecast = [
 
             round(float(value), 2)
@@ -532,11 +409,6 @@ def forecast_page():
             for date in all_dates[:horizon]
 
         ]
-
-
-        # =====================================================
-        # SUMMARY
-        # =====================================================
 
         average_forecast = round(
 
@@ -580,24 +452,19 @@ def forecast_page():
 @app.route("/analytics")
 def analytics():
 
-    # Load dataset
     df = pd.read_csv("../Dataset/final_df.csv")
 
     df["Datetime"] = pd.to_datetime(df["Datetime"])
     df = df.sort_values("Datetime")
 
-
-    # ==============================
-    # HISTORICAL DEMAND
-    # ==============================
-
     historical_df = df.tail(30 * 24)
-
+    print("Historical DataFrame:", historical_df.head())
     historical_dates = (
         historical_df["Datetime"]
         .dt.strftime("%Y-%m-%d %H:%M")
         .tolist()
     )
+    print("Historical Dates:", historical_dates[:5])
 
     historical_demand = (
         historical_df["PJME_MW"]
@@ -605,21 +472,14 @@ def analytics():
         .tolist()
     )
 
-
-    # ==============================
-    # FORECAST ERROR
-    # ==============================
-
-    # Temporary values so the chart works
     forecast_dates = historical_dates[-24:]
+    print("Forecast Dates:", forecast_dates[:5])
 
-    forecast_errors = [0.0] * len(forecast_dates)
+    print("Forecast Dates Length:", len(forecast_dates))
 
+    forecast_errors = [1.0] * len(forecast_dates)
 
-    # ==============================
-    # RENDER
-    # ==============================
-
+    print("Forecast Errors:", forecast_errors[:5])
     return render_template(
         "analytics.html",
 
@@ -648,9 +508,6 @@ def validation():
 
         days = int(request.form["days"])
 
-        # -------------------------------------------------
-        # LOAD DATA
-        # -------------------------------------------------
 
         df = pd.read_csv(
             "../Dataset/final_df.csv"
@@ -664,10 +521,6 @@ def validation():
             "Datetime"
         ).reset_index(drop=True)
 
-
-        # -------------------------------------------------
-        # FEATURES
-        # -------------------------------------------------
 
         features = [
 
@@ -698,20 +551,12 @@ def validation():
         ]
 
 
-        # -------------------------------------------------
-        # SELECT LAST 30 / 60 DAYS
-        # -------------------------------------------------
-
         validation_hours = days * 24
 
         validation_df = df.tail(
             validation_hours
         ).copy()
 
-
-        # -------------------------------------------------
-        # SCALE FEATURES
-        # -------------------------------------------------
 
         X_validation = validation_df[
             features
@@ -720,11 +565,6 @@ def validation():
         X_validation_scaled = X_scaler.transform(
             X_validation
         )
-
-
-        # -------------------------------------------------
-        # CREATE SEQUENCES
-        # -------------------------------------------------
 
         X_sequences = []
 
@@ -763,34 +603,16 @@ def validation():
             X_sequences
         )
 
-
-        # -------------------------------------------------
-        # MODEL PREDICTION
-        # -------------------------------------------------
-
         predictions = model.predict(
             X_sequences,
             verbose=0
         )
 
-
-        # Model outputs 24 future values.
-        # For validation, use the first predicted hour.
         predictions = predictions[:, 0]
-
-
-        # -------------------------------------------------
-        # INVERSE TRANSFORM
-        # -------------------------------------------------
 
         predictions_original = y_scaler.inverse_transform(
             predictions.reshape(-1, 1)
         ).flatten()
-
-
-        # -------------------------------------------------
-        # METRICS
-        # -------------------------------------------------
 
         actual_array = np.array(
             y_actual
@@ -823,11 +645,6 @@ def validation():
                 actual_array
             )
         ) * 100
-
-
-        # -------------------------------------------------
-        # DATA FOR CHART
-        # -------------------------------------------------
 
         actual_values = [
             round(float(x), 2)
