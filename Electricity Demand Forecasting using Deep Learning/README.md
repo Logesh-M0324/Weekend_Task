@@ -38,9 +38,9 @@ The dataset contains hourly electricity consumption values.
 
 ### Target Variable
 
-```text
 PJME_MW
 
+### Train Variable
 Datetime
 PJME_MW
 Hour
@@ -110,8 +110,9 @@ Raw Electricity Dataset
      ▼    ▼              ▼
  Dashboard Forecast   Analytics
 
- 🔬 Project Phases
-Phase 1 – Data Understanding
+# 🔬 Project Phases
+
+## Phase 1 – Data Understanding
 
 The dataset was analyzed to understand:
 
@@ -125,7 +126,7 @@ Historical demand trends
 
 The Datetime column was converted into a proper datetime format.
 
-Phase 2 – Time-Series Preprocessing
+## Phase 2 – Time-Series Preprocessing
 
 The data was sorted chronologically to preserve the temporal relationship.
 
@@ -140,7 +141,9 @@ df["Week"] = df["Datetime"].dt.isocalendar().week.astype(int)
 df["Month"] = df["Datetime"].dt.month
 df["Year"] = df["Datetime"].dt.year
 df["IsWeekend"] = (df["DayOfWeek"] >= 5).astype(int)
-Phase 3 – Feature Engineering
+
+
+## Phase 3 – Feature Engineering
 Lag Features
 
 Historical demand values were used to capture temporal dependencies.
@@ -170,7 +173,7 @@ RollingStd_24
 
 Rows containing unavailable historical values were removed after feature engineering.
 
-📈 Phase 4 – Exploratory Data Analysis
+## 📈 Phase 4 – Exploratory Data Analysis
 
 The project analyzes electricity demand using:
 
@@ -185,7 +188,7 @@ Rolling statistics
 
 These analyses help understand the seasonality and temporal behavior of electricity consumption.
 
-🤖 Phase 5 – Baseline Models
+## 🤖 Phase 5 – Baseline Models
 
 Several simple forecasting methods were implemented before developing deep learning models.
 
@@ -203,7 +206,7 @@ Previous-Week (Lag 168)	3542.48	4893.50	10.96	0.39
 
 These baseline models provide a reference point for evaluating the deep learning approaches.
 
-🧠 Phase 6 – Deep Learning Models
+## 🧠 Phase 6 – Deep Learning Models
 
 The project uses a multi-step forecasting approach.
 
@@ -225,37 +228,6 @@ Models Developed
 Simple RNN
 LSTM
 GRU
-Bidirectional LSTM
-🏆 Deep Learning Model Comparison
-Sequence Length: 24 Hours
-Model	MAE	RMSE	MAPE (%)	R²	Bias
-RNN	2846.43	3783.65	9.48	0.6564	947.41
-LSTM	3283.34	4331.46	11.14	0.5498	2062.53
-GRU	4117.81	5192.92	14.13	0.3528	2411.61
-Bi-LSTM	2695.59	3642.70	8.97	0.6816	1326.54
-Sequence Length: 48 Hours
-Model	MAE	RMSE	MAPE (%)	R²	Bias
-RNN	3113.50	4235.22	10.39	0.5699	951.41
-LSTM	3116.87	4212.93	10.46	0.5744	1788.96
-GRU	3431.37	4571.75	11.60	0.4989	1739.28
-Bi-LSTM	2483.91	3341.67	8.35	0.7323	1040.45
-Sequence Length: 168 Hours
-Model	MAE	RMSE	MAPE (%)	R²	Bias
-RNN	2505.47	3429.29	8.37	0.7188	1325.39
-LSTM	3084.04	4103.48	10.45	0.5973	1673.61
-GRU	3645.56	4866.69	12.35	0.4336	2286.38
-Bi-LSTM	2600.28	3471.10	8.82	0.7119	1223.36
-Best Deep Learning Configuration
-
-Based on the experiments, the 48-hour Bi-LSTM achieved the strongest overall deep-learning performance:
-
-Model       : Bi-LSTM
-Sequence    : 48 hours
-MAE         : 2483.91 MW
-RMSE        : 3341.67 MW
-MAPE        : 8.35 %
-R²          : 0.7323
-Bias        : 1040.45 MW
 
 This configuration was selected as the final forecasting model for the application.
 
@@ -282,7 +254,7 @@ val_loss
 
 The best-performing hyperparameter configuration was selected for the final model.
 
-🔄 Data Scaling
+##  🔄 Data Scaling
 
 Two separate StandardScaler objects were used.
 
@@ -298,7 +270,7 @@ Used to scale the PJME_MW target.
 
 The scalers are saved using joblib so the same preprocessing can be applied during Flask inference.
 
-📅 Phase 7 – Validation
+## 📅 Phase 7 – Validation
 
 The validation stage evaluates the final forecasting model on an unseen chronological period.
 
@@ -331,7 +303,7 @@ Forecast Error Distribution
 
 The validation process helps evaluate how well the final model performs on an unseen period rather than only on the training data.
 
-🌐 Flask Web Application
+## 🌐 Flask Web Application
 
 The project includes an interactive forecasting dashboard developed using:
 
@@ -346,7 +318,7 @@ NumPy
 TensorFlow/Keras
 Scikit-learn
 Joblib
-📊 Dashboard
+### 📊 Dashboard
 
 The dashboard provides an overview of electricity demand.
 
@@ -356,8 +328,9 @@ Historical consumption
 Maximum demand
 Minimum demand
 Forecast summary
-Model performance
-🔮 Forecast Page
+Model performance  
+
+### 🔮 Forecast Page
 
 The Forecast page allows the user to select a forecasting horizon.
 
@@ -385,7 +358,7 @@ Future timestamp	Predicted MW
 
 The forecast timestamps are generated automatically from the latest timestamp in the dataset.
 
-📈 Analytics Page
+### 📈 Analytics Page
 
 The Analytics page provides detailed demand and model analysis.
 
@@ -413,7 +386,7 @@ Peak Demand Analysis
 
 The application provides analysis of high-demand periods to understand forecasting performance during peak electricity consumption.
 
-📋 Validation Page
+### 📋 Validation Page
 
 The Validation page allows the user to select:
 
@@ -438,7 +411,8 @@ Error Distribution
 
 This provides a clear evaluation of forecasting performance on an unseen period.
 
-📁 Project Structure
+### 📁 Project Structure
+
 Electricity Demand Forecasting using Deep Learning/
 │
 ├── Dataset/
@@ -480,7 +454,9 @@ Electricity Demand Forecasting using Deep Learning/
 ├── requirements.txt
 │
 └── README.md
-🛠️ Technologies Used
+
+
+## 🛠️ Technologies Used
 Technology	Purpose
 Python	Main programming language
 Pandas	Data preprocessing and analysis
@@ -495,7 +471,8 @@ Bootstrap	User interface
 JavaScript	Frontend interaction
 Chart.js	Interactive charts
 HTML/CSS	Web interface
-📦 Installation
+
+## 📦 Installation
 
 Clone the repository:
 
@@ -505,30 +482,12 @@ Move into the project directory:
 
 cd "Electricity Demand Forecasting using Deep Learning"
 
-Create a virtual environment:
 
-python -m venv venv
-Windows
-venv\Scripts\activate
-Linux/macOS
-source venv/bin/activate
+Install the required packages with pipenv:
 
-Install the required packages:
+>>> pipenv install
+>>> pipenv shell
 
-pip install -r requirements.txt
-📄 Requirements
-
-The requirements.txt file contains the major dependencies:
-
-flask
-pandas
-numpy
-scikit-learn
-tensorflow
-keras
-keras-tuner
-joblib
-matplotlib
 ▶️ Running the Flask Application
 
 Navigate to the Flask application directory:
@@ -539,26 +498,29 @@ Run the application:
 
 python app.py
 
-Open the local Flask URL displayed in the terminal.
+## Open the local Flask URL displayed in the terminal.
 
-🔮 Using the Forecast Application
-Step 1
+## 🔮 Using the Forecast Application
+
+#### Step 1
 
 Open the Forecast page.
 
-Step 2
+#### Step 2
 
 Select a forecasting horizon:
 
 24 Hours
 48 Hours
 72 Hours
-Step 3
+
+#### Step 3
 
 Click:
 
 Generate Forecast
-Step 4
+
+#### Step 4
 
 The application generates:
 
@@ -568,7 +530,8 @@ Average forecast
 Peak forecast
 Forecast chart
 Forecast table
-📊 Using Validation
+
+#### 📊 Using Validation
 
 Open the Validation page.
 
@@ -591,61 +554,19 @@ Forecast Error
 
 The results can be visualized through the validation charts.
 
-⚠️ Important Design Considerations
-Chronological Data Splitting
-
-Random train-test splitting is avoided because this is a time-series forecasting problem.
-
-The data is kept in chronological order to prevent future information from leaking into the training process.
-
-Scaling
-
-The scalers are fitted only on the training data and then used to transform validation and test data.
-
-Multi-Step Forecasting
-
-The final deep learning configuration uses:
-
-Previous 48 Hours → Next 24 Hours
-Model and Scaler Compatibility
-
-The Flask application must use the same:
-
-Feature columns
-Feature order
-Sequence length
-X_scaler
-y_scaler
-
-that were used during model training.
-
 📌 Key Results
 
 The experiments showed that deep learning models can capture temporal patterns in electricity consumption.
 
-The best-performing deep learning configuration was the 48-hour Bi-LSTM:
+The best-performing deep learning configuration was the 168-hour Bi-LSTM:
 
-MAE  = 2483.91 MW
-RMSE = 3341.67 MW
-MAPE = 8.35 %
-R²   = 0.7323
+MAE  = 1716.29 MW
+RMSE = 2290.09 MW
+MAPE = 5.66 %
+R²   = 0.8746
+bias = 216.421
 
 The model was integrated into the Flask application to provide interactive electricity-demand forecasting.
-
-🚀 Future Improvements
-
-Possible future improvements include:
-
-Incorporating weather information.
-Adding temperature and humidity features.
-Testing Transformer-based forecasting models.
-Implementing probabilistic forecasting.
-Adding prediction/confidence intervals.
-Deploying the application using Docker.
-Deploying the application to a cloud platform.
-Adding automated model retraining.
-Integrating real-time electricity-demand data.
-Improving long-horizon forecasting performance.
 
 Author
 
