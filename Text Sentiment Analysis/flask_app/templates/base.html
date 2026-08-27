@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}SentiAI{% endblock %}
+    </title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MOBILE TOP BAR
+========================================================= -->
+
+<header class="mobile-header">
+
+    <button
+        class="menu-toggle"
+        onclick="toggleSidebar()"
+    >
+        <i class="bi bi-list"></i>
+    </button>
+
+    <div class="mobile-brand">
+
+        <span class="brand-symbol">
+            S
+        </span>
+
+        <span>
+            SENTI<span>AI</span>
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <!-- Brand -->
+
+    <div class="sidebar-brand">
+
+        <div class="brand-icon">
+            S
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                SENTI<span>AI</span>
+            </div>
+
+            <div class="brand-subtitle">
+                TEXT INTELLIGENCE
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Navigation -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-label">
+            MAIN
+        </div>
+
+
+        <a
+            href="{{ url_for('index') }}"
+            class="sidebar-link {% if request.endpoint == 'index' %}active{% endif %}"
+        >
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('predict') }}"
+            class="sidebar-link {% if request.endpoint == 'predict' %}active{% endif %}"
+        >
+
+            <i class="bi bi-stars"></i>
+
+            <span>
+                Sentiment Prediction
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('batch') }}"
+            class="sidebar-link {% if request.endpoint == 'batch' %}active{% endif %}"
+        >
+
+            <i class="bi bi-file-earmark-arrow-up"></i>
+
+            <span>
+                Batch Prediction
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- Analysis -->
+
+    <div class="sidebar-section">
+
+        <div class="sidebar-label">
+            ANALYSIS
+        </div>
+
+
+        <a
+            href="{{ url_for('comparison') }}"
+            class="sidebar-link {% if request.endpoint == 'comparison' %}active{% endif %}"
+        >
+
+            <i class="bi bi-bar-chart-fill"></i>
+
+            <span>
+                Model Comparison
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('analytics') }}"
+            class="sidebar-link {% if request.endpoint == 'analytics' %}active{% endif %}"
+        >
+
+            <i class="bi bi-pie-chart-fill"></i>
+
+            <span>
+                Text Analytics
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- Project Information -->
+
+    <div class="sidebar-bottom">
+
+        <div class="project-status">
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                <div class="status-title">
+                    SYSTEM ONLINE
+                </div>
+
+                <div class="status-text">
+                    TensorFlow Model
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dataset-badge">
+
+            <i class="bi bi-database-fill"></i>
+
+            <span>
+                IMDb Dataset · 50K
+            </span>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<div class="main-wrapper">
+
+
+    <!-- Top Navigation -->
+
+    <nav class="topbar">
+
+        <div class="topbar-left">
+
+            <div class="page-indicator">
+
+                <span class="indicator-dot"></span>
+
+                AI SENTIMENT ANALYSIS
+
+            </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <div class="model-status">
+
+                <span class="online-dot"></span>
+
+                Model Ready
+
+            </div>
+
+            <div class="topbar-divider"></div>
+
+            <div class="model-name">
+
+                <i class="bi bi-cpu-fill"></i>
+
+                Optimized ANN
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- Page -->
+
+    <main class="page-content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+
+    <!-- Footer -->
+
+    <footer class="app-footer">
+
+        <div>
+
+            SENTI<span>AI</span>
+            · IMDb Sentiment Analysis
+
+        </div>
+
+        <div>
+
+            Built with Flask + TensorFlow
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- Overlay for mobile -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    onclick="toggleSidebar()"
+></div>
+
+
+
+<!-- Bootstrap -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Sidebar JS -->
+
+<script>
+
+function toggleSidebar() {
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("sidebarOverlay");
+
+    sidebar.classList.toggle("show");
+
+    overlay.classList.toggle("show");
+
+}
+
+</script>
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

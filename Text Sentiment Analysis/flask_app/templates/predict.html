@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <h2 class="mb-4">
+            Sentiment Prediction
+        </h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Enter Movie Review
+                </label>
+
+                <textarea
+                    name="review"
+                    class="form-control"
+                    rows="7"
+                    placeholder="Enter your review here..."
+                    required
+                >{{ review }}</textarea>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Analyze Sentiment
+            </button>
+
+        </form>
+
+
+        {% if prediction %}
+
+        <div class="card mt-5">
+
+            <div class="card-body">
+
+                <h4>
+                    Prediction:
+                    <strong>
+                        {{ prediction }}
+                    </strong>
+                </h4>
+
+
+                <hr>
+
+
+                <h5>
+                    Prediction Probabilities
+                </h5>
+
+
+                <p>
+                    Negative:
+                    {{ probabilities.negative }}%
+                </p>
+
+                <div class="progress mb-3">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{ probabilities.negative }}%"
+                    >
+
+                        {{ probabilities.negative }}%
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Positive:
+                    {{ probabilities.positive }}%
+                </p>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{ probabilities.positive }}%"
+                    >
+
+                        {{ probabilities.positive }}%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

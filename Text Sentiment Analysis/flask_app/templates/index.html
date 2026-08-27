@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center mb-5">
+
+    <h1 class="display-5 fw-bold">
+        IMDb Sentiment Analysis
+    </h1>
+
+    <p class="lead">
+        End-to-End Text Sentiment Analysis using
+        Deep Learning and TensorFlow
+    </p>
+
+</div>
+
+
+<div class="row g-4 mb-5">
+
+    <div class="col-md-4">
+
+        <div class="card dashboard-card text-center">
+
+            <div class="card-body">
+
+                <h5>
+                    Total Reviews
+                </h5>
+
+                <h2>
+                    {{ dataset_stats.total_reviews }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card dashboard-card text-center">
+
+            <div class="card-body">
+
+                <h5>
+                    Positive Reviews
+                </h5>
+
+                <h2>
+                    {{ dataset_stats.positive_reviews }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card dashboard-card text-center">
+
+            <div class="card-body">
+
+                <h5>
+                    Negative Reviews
+                </h5>
+
+                <h2>
+                    {{ dataset_stats.negative_reviews }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<h3 class="mb-4">
+    Best Model Performance
+</h3>
+
+
+<div class="table-responsive">
+
+<table class="table table-bordered text-center">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Model</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1 Score</th>
+            <th>ROC-AUC</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        <tr>
+
+            <td>
+                {{ model_summary.model }}
+            </td>
+
+            <td>
+                {{ "%.2f"|format(model_summary.accuracy * 100) }}%
+            </td>
+
+            <td>
+                {{ "%.2f"|format(model_summary.precision * 100) }}%
+            </td>
+
+            <td>
+                {{ "%.2f"|format(model_summary.recall * 100) }}%
+            </td>
+
+            <td>
+                {{ "%.2f"|format(model_summary.f1 * 100) }}%
+            </td>
+
+            <td>
+                {{ "%.2f"|format(model_summary.roc_auc * 100) }}%
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

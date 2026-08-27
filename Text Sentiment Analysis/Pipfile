@@ -12,9 +12,10 @@ nltk = "*"
 wordcloud = "*"
 scikit-learn = "*"
 tensorflow = "*"
+flask = "*"
 
 [dev-packages]
 ipykernel = "*"
 
-[requires]
+[requires]  
 python_version = "3.13"
