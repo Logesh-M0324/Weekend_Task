@@ -53,7 +53,7 @@ with open(
 # --------------------------------------------------
 
 ann_model = tf.keras.models.load_model(
-    "../models/ann/ann_baseline.keras"
+    "../models/ann/ann_final_1.keras"
 )
 
 
@@ -102,11 +102,11 @@ def index():
 
     model_summary = {
         "model": "Optimized ANN",
-        "accuracy": 0.904679,
-        "precision": 0.904494,
-        "recall": 0.905706,
-        "f1": 0.905100,
-        "roc_auc": 0.967430
+        "accuracy": 0.9052,
+        "precision": 0.9007,
+        "recall": 0.9116,
+        "f1": 0.9061,
+        "roc_auc": 0.9673
     }
 
     return render_template(
@@ -209,47 +209,43 @@ def comparison():
     comparison_data = [
         {
             "model": "ANN",
-            "accuracy": 0.904679,
-            "precision": 0.904494,
-            "recall": 0.905706,
-            "f1": 0.905100,
-            "roc_auc": 0.967430
+            "accuracy": 0.905216,
+            "precision": 0.900741,
+            "recall": 0.911599,
+            "f1": 0.906138,
+            "roc_auc": 0.967254
         },
-
         {
             "model": "RNN",
-            "accuracy": 0.4977,
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0,
-            "roc_auc": 0.5000
+            "accuracy": 0.523259,
+            "precision": 0.673469,
+            "recall": 0.097241,
+            "f1": 0.169944,
+            "roc_auc": 0.538738
         },
-
         {
             "model": "LSTM",
-            "accuracy": 0.8653,
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0,
-            "roc_auc": 0.9321
+            "accuracy": 0.876714,
+            "precision": 0.883234,
+            "recall": 0.869274,
+            "f1": 0.876198,
+            "roc_auc": 0.944330
         },
-
         {
             "model": "GRU",
-            "accuracy": 0.8721,
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0,
-            "roc_auc": 0.9353
+            "accuracy": 0.891772,
+            "precision": 0.883447,
+            "recall": 0.903563,
+            "f1": 0.893392,
+            "roc_auc": 0.959335
         },
-
         {
             "model": "Bi-LSTM",
-            "accuracy": 0.8643,
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0,
-            "roc_auc": 0.9358
+            "accuracy": 0.876042,
+            "precision": 0.881618,
+            "recall": 0.869810,
+            "f1": 0.875674,
+            "roc_auc": 0.940581
         }
     ]
 
@@ -315,7 +311,10 @@ def batch():
             file.save(input_path)
 
             batch_data = pd.read_csv(
-                input_path
+                input_path, 
+                on_bad_lines='skip', 
+                encoding='latin1',
+                engine='python'
             )
 
             if "review" not in batch_data.columns:
@@ -408,5 +407,6 @@ def download(filename):
 if __name__ == "__main__":
 
     app.run(
+        port = 5001,
         debug=True
     )
