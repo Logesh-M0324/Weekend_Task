@@ -120,9 +120,9 @@ The project is implemented in eight major phases.
              ┌──────────┴──────────┐
              │                     │
        Single Prediction      Batch Prediction
+```
 
-
-Phase 1 – Data Understanding
+## Phase 1 – Data Understanding
 
 The first phase focused on understanding the structure and characteristics of the IMDb dataset.
 
@@ -147,7 +147,7 @@ Word Cloud
 
 These visualizations helped understand the overall distribution of the dataset and the language patterns associated with different sentiments.
 
-Phase 2 – Text Preprocessing
+## Phase 2 – Text Preprocessing
 
 Raw review text cannot be directly provided to a neural network. Therefore, a preprocessing pipeline was created.
 
@@ -187,11 +187,11 @@ express different sentiments.
 
 The preprocessing pipeline therefore preserves important negation information.
 
-Phase 3 – Feature Representation
+## Phase 3 – Feature Representation
 
 Different methods of representing text were investigated.
 
-1. Integer Encoding
+#### 1. Integer Encoding
 
 Words are converted into integer IDs using tokenization.
 
@@ -203,7 +203,7 @@ amazing → 91
 
 A review is therefore represented as a sequence of integers.
 
-2. TF-IDF
+#### 2. TF-IDF
 
 TF-IDF was implemented as a traditional machine-learning baseline.
 
@@ -214,7 +214,7 @@ Its importance across the complete collection of documents.
 
 The TF-IDF representation was used as a baseline representation rather than as the input representation for the recurrent neural network architectures.
 
-3. Trainable Word Embeddings
+#### 3. Trainable Word Embeddings
 
 For the deep learning sequence models, a trainable embedding layer was used.
 
@@ -233,12 +233,14 @@ Padding
 Embedding Layer
   ↓
 Neural Network
-Phase 4 – Deep Learning Models
+
+## Phase 4 – Deep Learning Models
 
 Multiple neural network architectures were developed using TensorFlow/Keras.
 
-Models Implemented
-1. Artificial Neural Network (ANN)
+### Models Implemented
+
+#### 1. Artificial Neural Network (ANN)
 
 The ANN provides a feed-forward neural network baseline.
 
@@ -255,46 +257,50 @@ Dropout
 Dense Layer
   ↓
 Output
-2. Simple RNN
+
+#### 2. Simple RNN
 
 The Simple RNN processes the review sequentially and maintains information from previous words.
 
 Input Sequence
       ↓
-Embedding
+   Embedding
       ↓
-Simple RNN
+   Simple RNN
       ↓
-Dense
+     Dense
       ↓
-Output
-3. LSTM
+    Output
+
+#### 3. LSTM
 
 Long Short-Term Memory networks were implemented to handle long-term dependencies more effectively than a basic RNN.
 
 Input Sequence
       ↓
-Embedding
+   Embedding
       ↓
-LSTM
+     LSTM
       ↓
-Dense
+     Dense
       ↓
-Output
-4. GRU
+    Output
+
+#### 4. GRU
 
 The Gated Recurrent Unit provides a simpler recurrent architecture while maintaining the ability to capture sequential dependencies.
 
 Input Sequence
       ↓
-Embedding
+  Embedding
       ↓
-GRU
+     GRU
       ↓
-Dense
+    Dense
       ↓
-Output
-5. Bidirectional LSTM
+   Output
+
+#### 5. Bidirectional LSTM
 
 The Bi-LSTM processes the sequence in both forward and backward directions.
 
@@ -304,7 +310,7 @@ Input Sequence ──┤                  ├── Output
 
 This allows the model to use contextual information from both directions.
 
-Phase 5 – Model Improvement
+##### Phase 5 – Model Improvement
 
 After establishing baseline models, multiple enhancement experiments were performed.
 
@@ -340,7 +346,7 @@ TF-IDF is primarily used as a traditional feature representation/baseline rather
 
 Therefore, each enhancement was applied according to the architecture being optimized.
 
-Phase 6 – Model Evaluation
+#### Phase 6 – Model Evaluation
 
 The trained models were evaluated using multiple classification metrics.
 
@@ -388,16 +394,16 @@ Misclassified Reviews
 
 These visualizations provide a more detailed understanding of model behavior beyond accuracy alone.
 
-Phase 7 – Model Comparison
+#### Phase 7 – Model Comparison
 
 The performance of the different models was compared using:
 
-Model	Accuracy	Precision	Recall	F1 Score	ROC-AUC
-ANN	90.47%	90.45%	90.57%	90.51%	96.74%
-RNN	Replace with final result	Replace	Replace	Replace	Replace
-LSTM	Replace with final result	Replace	Replace	Replace	Replace
-GRU	Replace with final result	Replace	Replace	Replace	Replace
-Bi-LSTM	87.34%	87.75%	86.90%	87.32%	93.00%
+Model	    Accuracy	Precision	Recall	F1 Score	ROC-AUC
+ANN	    90.47%   	90.45%	90.57%	90.51%	96.74%
+RNN	    52.32%	      67.34%	9.72%	      16.99%      53.87%
+LSTM	    87.67%	      88.32%	86.92%	87.61%      94.43%
+GRU	    89.17%	      88.34%	90.35%	89.33%	95.93%
+Bi-LSTM   87.34%	      87.75%	86.90%	87.32%	93.00%
 
 Note: Replace the remaining values with the final confirmed Phase 7 results from the completed experiment table.
 
@@ -415,7 +421,7 @@ Generalization performance
 
 The final selected model is used by the Flask application for sentiment prediction.
 
-Phase 8 – Model Interpretation
+#### Phase 8 – Model Interpretation
 
 The final phase focused on understanding the model predictions rather than only measuring numerical performance.
 
@@ -424,7 +430,7 @@ Important Words
 
 The project investigates words and language patterns that are strongly associated with positive and negative sentiment.
 
-Correctly Classified Reviews
+#### Correctly Classified Reviews
 
 Examples of reviews that were correctly classified were examined to understand the language patterns learned by the model.
 
@@ -454,9 +460,9 @@ Flask Web Application
 
 A Flask-based web application was developed to make the trained sentiment analysis model accessible through an interactive interface.
 
-The application provides several sections.
+### The application provides several sections.
 
-1. Dashboard
+#### 1. Dashboard
 
 The dashboard provides:
 
@@ -467,7 +473,8 @@ Positive review count
 Negative review count
 Best model information
 Model performance summary
-2. Sentiment Prediction
+
+#### 2. Sentiment Prediction
 
 Users can enter or paste a movie review.
 
@@ -488,7 +495,8 @@ Prediction: POSITIVE
 
 Positive: 94.82%
 Negative: 5.18%
-3. Model Comparison
+
+#### 3. Model Comparison
 
 The Model Comparison page displays the performance of the developed models.
 
@@ -502,7 +510,7 @@ ROC-AUC
 
 The page also provides model-related evaluation visualizations.
 
-4. Text Analytics
+#### 4. Text Analytics
 
 The analytics section presents visual information from the dataset, including:
 
@@ -510,7 +518,8 @@ Sentiment distribution
 Review length analysis
 Word frequency
 Word cloud
-5. Batch Prediction
+
+#### 5. Batch Prediction
 
 Users can upload a CSV file containing reviews.
 
@@ -536,7 +545,8 @@ Download CSV
 
 The generated output contains the predicted sentiment for each review.
 
-Application Architecture
+## Application Architecture
+
                     Browser
                        │
                        ▼
@@ -629,7 +639,8 @@ IMDb-Sentiment-Analysis/
 
 The exact directory names may differ slightly depending on the final local project structure.
 
-Technologies Used
+#### Technologies Used
+
 Technology	Purpose
 Python	Programming language
 Pandas	Data manipulation
@@ -644,7 +655,9 @@ Flask	Web application
 Bootstrap	Frontend design
 HTML/CSS	Web interface
 Git	Version control
-GitHub	Repository hosting
+
+#### GitHub	Repository hosting
+
 Installation
 1. Clone the Repository
 git clone <YOUR_GITHUB_REPOSITORY_URL>
@@ -654,20 +667,13 @@ Move into the project directory:
 cd IMDb-Sentiment-Analysis
 2. Create a Virtual Environment
 Windows
-python -m venv venv
+pipenv install
 
+and go to the project directory then,
 Activate:
+pipenv shell
 
-venv\Scripts\activate
-Linux / macOS
-python3 -m venv venv
-
-Activate:
-
-source venv/bin/activate
-3. Install Dependencies
-pip install -r requirements.txt
-Running the Flask Application
+3. Running the Flask Application
 
 Navigate to the Flask application directory:
 
@@ -705,7 +711,7 @@ Batch Prediction
 
 The batch prediction feature accepts a CSV file containing a review column.
 
-Example:
+#### Example:
 
 review
 "This movie was excellent and enjoyable"
@@ -757,7 +763,7 @@ Git configuration
 
 Meaningful commits were used to track major stages of development.
 
-Example:
+#### Example:
 
 git add .
 git commit -m "Complete Phase 1 data understanding"
@@ -773,7 +779,7 @@ requirements.txt
 
 The project dependencies include the major libraries required for preprocessing, model development, evaluation and deployment.
 
-Example:
+#### Example:
 
 numpy
 pandas
@@ -845,11 +851,11 @@ ROC-AUC:        <ENTER FINAL ROC-AUC>
 
 Replace the values above with the final confirmed Phase 7 results.
 
-Limitations
+## Limitations
 
 Although the system performs well on the IMDb dataset, it has several limitations.
 
-Dataset Limitation
+#### Dataset Limitation
 
 The model is trained specifically on movie reviews and may not perform equally well on other domains such as:
 
@@ -861,29 +867,11 @@ Sarcasm
 
 Sarcastic statements can be difficult to classify because the literal words may have a different sentiment from the intended meaning.
 
-Context
+#### Context
 
 Some reviews require broader context to correctly determine sentiment.
 
-Domain Generalization
 
-Performance on unseen domains may decrease because the model learns patterns specific to the training dataset.
-
-Future Improvements
-
-Possible future improvements include:
-
-Transformer-based models such as BERT.
-More advanced attention mechanisms.
-Domain-specific fine-tuning.
-Multilingual sentiment analysis.
-Aspect-based sentiment analysis.
-Explainable AI techniques for NLP.
-Real-time sentiment monitoring.
-Deployment using Docker.
-Cloud deployment.
-REST API integration.
-Larger and more diverse datasets.
-Conclusion
+## Conclusion
 
 This project developed a complete end-to-end sentiment analysis system using the IMDb 50K movie review dataset. The workflow covered data understanding, text preprocessing, feature representation, neural network development, optimization, evaluation, model comparison and interpretation. ANN, RNN, LSTM, GRU and Bi-LSTM architectures were implemented and evaluated using multiple classification metrics. Finally, the selected model was integrated into a Flask web application supporting single-review prediction, probability analysis, model comparison, text analytics and batch CSV prediction. The project demonstrates the complete process of taking an NLP problem from raw text data to a deployable deep learning application.
