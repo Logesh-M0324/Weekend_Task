@@ -17,6 +17,7 @@ nltk = "*"
 sentence-transformers = "*"
 faiss-cpu = "*"
 tensorflow = "*"
+llama-cpp-python = "*"
 
 [dev-packages]
 ipykernel = "*"

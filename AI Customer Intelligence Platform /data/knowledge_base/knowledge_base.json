@@ -1,0 +1,596 @@
+[
+    {
+        "document_id": "KB001",
+        "category": "Billing",
+        "title": "Payment Failure",
+        "content": "\nIf a payment fails, the customer should first verify that the payment\nmethod has sufficient balance and that the card or payment account is\nactive. The customer can retry the payment after checking the payment\ndetails. If the payment continues to fail, the customer should contact\ncustomer support with the transaction details.\n"
+    },
+    {
+        "document_id": "KB002",
+        "category": "Billing",
+        "title": "Refund Request",
+        "content": "\nCustomers can request a refund by contacting customer support and\nproviding their order or transaction details. The support team should\nverify the transaction before processing the request. Refund processing\ntime may depend on the payment method and transaction status.\n"
+    },
+    {
+        "document_id": "KB003",
+        "category": "Billing",
+        "title": "Invoice Request",
+        "content": "\nCustomers who need an invoice should contact customer support with\ntheir order or transaction information. The support team can verify\nthe purchase and provide the appropriate invoice information.\n"
+    },
+    {
+        "document_id": "KB013",
+        "category": "Billing",
+        "title": "Card Declined",
+        "content": "\nIf a customer's card is declined, the customer should verify the card\nnumber, expiration date, security information, and available balance.\nThe customer may retry the transaction after correcting any incorrect\ndetails. If the card continues to be declined, the customer should\ncontact the card issuer or customer support.\n"
+    },
+    {
+        "document_id": "KB014",
+        "category": "Billing",
+        "title": "Insufficient Balance",
+        "content": "\nA payment may fail when the selected payment account does not have\nsufficient funds. Customers should verify their available balance\nbefore retrying the transaction. The payment should only be retried\nafter sufficient funds are available.\n"
+    },
+    {
+        "document_id": "KB015",
+        "category": "Billing",
+        "title": "Payment Pending",
+        "content": "\nWhen a payment remains in pending status, customers should avoid\nmaking repeated payments for the same order. The payment status should\nfirst be checked through the available transaction information.\nIf the payment remains pending for an extended period, support can\nreview the transaction status.\n"
+    },
+    {
+        "document_id": "KB016",
+        "category": "Billing",
+        "title": "Duplicate Payment",
+        "content": "\nIf a customer believes that the same order was charged more than once,\nthe customer should provide the order number and transaction details.\nSupport should compare the transactions and verify whether multiple\nsuccessful charges actually occurred before initiating a refund.\n"
+    },
+    {
+        "document_id": "KB017",
+        "category": "Billing",
+        "title": "Payment Reversed",
+        "content": "\nA payment may be reversed when a previously processed transaction is\nlater cancelled or rejected by the payment system. Customers should\ncheck their transaction history before attempting another payment.\nIf the order still shows as unpaid, support should review the payment\nstatus.\n"
+    },
+    {
+        "document_id": "KB018",
+        "category": "Billing",
+        "title": "Incorrect Billing Amount",
+        "content": "\nIf a customer believes that the billed amount is incorrect, support\nshould verify the order price, applicable discounts, taxes, shipping\ncharges, and other fees. Customers should provide the order number and\nbilling information so that the charge can be investigated.\n"
+    },
+    {
+        "document_id": "KB019",
+        "category": "Billing",
+        "title": "Unexpected Billing Charge",
+        "content": "\nCustomers who notice an unexpected charge should provide the\ntransaction reference and account information to support. The support\nteam should verify the transaction and determine whether the charge\nbelongs to the customer's account or requires further investigation.\n"
+    },
+    {
+        "document_id": "KB020",
+        "category": "Billing",
+        "title": "Payment Receipt",
+        "content": "\nCustomers who require confirmation of a successful payment can\nrequest a payment receipt. Support should verify the transaction before\nproviding the receipt or payment confirmation information.\n"
+    },
+    {
+        "document_id": "KB021",
+        "category": "Billing",
+        "title": "Billing Address Change",
+        "content": "\nCustomers who need to update their billing address should use the\navailable account settings when possible. If the billing address\ncannot be changed through the account, support should verify the\ncustomer information before making the required update.\n"
+    },
+    {
+        "document_id": "KB022",
+        "category": "Billing",
+        "title": "Invoice Not Received",
+        "content": "\nIf a customer has completed a purchase but has not received an\ninvoice, support should verify the transaction and registered contact\ninformation. The invoice can be resent when the purchase has been\nsuccessfully verified.\n"
+    },
+    {
+        "document_id": "KB023",
+        "category": "Billing",
+        "title": "Invoice Correction",
+        "content": "\nIf an invoice contains incorrect information, the customer should\nprovide the invoice number and explain the required correction.\nSupport should verify the original transaction before issuing or\nrequesting a corrected invoice.\n"
+    },
+    {
+        "document_id": "KB024",
+        "category": "Billing",
+        "title": "Tax Information",
+        "content": "\nTaxes may be included in the final transaction amount depending on the\ncustomer's location and applicable billing rules. Customers who have\nquestions about tax information should provide the relevant invoice or\norder details for review.\n"
+    },
+    {
+        "document_id": "KB025",
+        "category": "Billing",
+        "title": "Transaction Verification",
+        "content": "\nBefore making changes to billing information, refunds, or payment\nrecords, support should verify the transaction using the available\norder and customer details. Sensitive payment information should not be\nrequested unless it is required by an approved support procedure.\n"
+    },
+    {
+        "document_id": "KB004",
+        "category": "Account",
+        "title": "Password Reset",
+        "content": "\nCustomers who cannot access their account should use the password reset\noption on the account login page. They should follow the instructions\nsent to their registered email address. If the reset process does not\nwork, the customer should contact customer support.\n"
+    },
+    {
+        "document_id": "KB005",
+        "category": "Account",
+        "title": "Account Access Problem",
+        "content": "\nIf a customer cannot access their account, they should verify their\nlogin credentials and check whether the account email is correct.\nCustomers should use the password recovery process when necessary.\nPersistent access problems should be escalated to customer support.\n"
+    },
+    {
+        "document_id": "KB026",
+        "category": "Account",
+        "title": "Forgotten Username",
+        "content": "\nCustomers who have forgotten their username should use the account\nrecovery option if available. They may need to provide their registered\nemail address or other account information to verify ownership.\n"
+    },
+    {
+        "document_id": "KB027",
+        "category": "Account",
+        "title": "Email Address Change",
+        "content": "\nCustomers who want to change their registered email address should use\nthe account settings when the option is available. Account ownership\nmay need to be verified before the email address is changed.\n"
+    },
+    {
+        "document_id": "KB028",
+        "category": "Account",
+        "title": "Account Verification",
+        "content": "\nAccount verification may be required before support can make sensitive\nchanges to an account. Customers should provide only the information\nrequested through the approved verification process.\n"
+    },
+    {
+        "document_id": "KB029",
+        "category": "Account",
+        "title": "Locked Account",
+        "content": "\nAn account may become temporarily locked after repeated unsuccessful\nlogin attempts or security-related activity. Customers should follow\nthe account recovery instructions. If access remains blocked, support\nshould verify the account and assist with recovery.\n"
+    },
+    {
+        "document_id": "KB030",
+        "category": "Account",
+        "title": "Multiple Login Attempts",
+        "content": "\nRepeated unsuccessful login attempts can temporarily restrict account\naccess. Customers should stop repeated login attempts and use the\npassword recovery process instead of continuing to enter uncertain\ncredentials.\n"
+    },
+    {
+        "document_id": "KB031",
+        "category": "Account",
+        "title": "Profile Information Update",
+        "content": "\nCustomers can update permitted profile information through account\nsettings. Changes to sensitive account information may require\nadditional verification before they can be completed.\n"
+    },
+    {
+        "document_id": "KB032",
+        "category": "Account",
+        "title": "Account Deactivation",
+        "content": "\nCustomers who want to deactivate their account should review any\nactive subscriptions, pending orders, or unresolved transactions\nbefore requesting deactivation. Support should verify the account\nbefore processing the request.\n"
+    },
+    {
+        "document_id": "KB033",
+        "category": "Account",
+        "title": "Account Reactivation",
+        "content": "\nA previously deactivated account may be eligible for reactivation\ndepending on the account status and applicable policy. Customers should\ncontact support with their registered account information for\nverification.\n"
+    },
+    {
+        "document_id": "KB034",
+        "category": "Account",
+        "title": "Suspicious Account Activity",
+        "content": "\nCustomers who notice suspicious activity should secure their account\nby changing the password and reviewing recent account activity. They\nshould contact support immediately if unauthorized activity is\nsuspected.\n"
+    },
+    {
+        "document_id": "KB035",
+        "category": "Account",
+        "title": "Unauthorized Account Access",
+        "content": "\nIf a customer believes that someone accessed the account without\npermission, support should treat the issue as a security-related\nrequest. The customer should secure the account and provide relevant\nactivity details for investigation.\n"
+    },
+    {
+        "document_id": "KB036",
+        "category": "Cancellation",
+        "title": "Order Cancellation",
+        "content": "\nCustomers who want to cancel an order should contact customer support\nas soon as possible and provide the order details. Cancellation\neligibility depends on the current order status and processing stage.\n"
+    },
+    {
+        "document_id": "KB037",
+        "category": "Cancellation",
+        "title": "Cancellation Before Processing",
+        "content": "\nOrders that have not entered the processing stage may generally be\neasier to cancel. Customers should submit cancellation requests as\nearly as possible and provide the order number for verification.\n"
+    },
+    {
+        "document_id": "KB038",
+        "category": "Cancellation",
+        "title": "Cancellation After Processing",
+        "content": "\nOnce an order has entered processing, cancellation may no longer be\navailable. Support should verify the current order status before\nconfirming whether cancellation can be completed.\n"
+    },
+    {
+        "document_id": "KB039",
+        "category": "Refund",
+        "title": "Refund Eligibility",
+        "content": "\nRefund eligibility depends on the purchase type, order status, and\napplicable refund policy. Support should verify the transaction and\nreview the relevant policy before confirming refund eligibility.\n"
+    },
+    {
+        "document_id": "KB040",
+        "category": "Refund",
+        "title": "Refund Processing",
+        "content": "\nAfter a refund is approved, processing time may depend on the original\npayment method and financial institution. Customers should retain the\nrefund reference information until the refund is completed.\n"
+    },
+    {
+        "document_id": "KB041",
+        "category": "Refund",
+        "title": "Refund Not Received",
+        "content": "\nIf an approved refund has not appeared in the customer's account,\nsupport should verify the refund status and reference number. The\ncustomer may also need to check with the original payment provider.\n"
+    },
+    {
+        "document_id": "KB042",
+        "category": "Refund",
+        "title": "Partial Refund",
+        "content": "\nA partial refund may be appropriate when only part of an order or\nservice qualifies for reimbursement. Support should verify the\neligible amount and explain the refund calculation to the customer.\n"
+    },
+    {
+        "document_id": "KB043",
+        "category": "Refund",
+        "title": "Refund Method",
+        "content": "\nRefunds are generally processed through the original payment method\nwhen supported. Customers should provide the original transaction\ndetails so that support can verify the correct refund destination.\n"
+    },
+    {
+        "document_id": "KB044",
+        "category": "Cancellation",
+        "title": "Cancellation Confirmation",
+        "content": "\nAfter a cancellation is successfully processed, the customer should\nreceive or be provided with confirmation details. Customers should\nretain the cancellation reference until the transaction is fully\nsettled.\n"
+    },
+    {
+        "document_id": "KB045",
+        "category": "Cancellation",
+        "title": "Cancellation Request Escalation",
+        "content": "\nIf a cancellation request cannot be completed through the standard\nprocess, support should review the current order state and escalate\nthe request to the appropriate team when necessary.\n"
+    },
+    {
+        "document_id": "KB008",
+        "category": "Delivery",
+        "title": "Delayed Delivery",
+        "content": "\nIf an order has not arrived within the expected delivery period,\ncustomers should check the available order tracking information.\nIf the tracking information does not resolve the issue, the customer\nshould contact customer support with the order details.\n"
+    },
+    {
+        "document_id": "KB046",
+        "category": "Delivery",
+        "title": "Order Tracking",
+        "content": "\nCustomers can use the available tracking information to monitor the\nstatus and movement of an order. If tracking information has not been\nupdated for an extended period, support can review the order status.\n"
+    },
+    {
+        "document_id": "KB047",
+        "category": "Delivery",
+        "title": "Wrong Delivery Address",
+        "content": "\nCustomers should verify the delivery address before submitting an\norder. If the address is incorrect after an order is placed, the\ncustomer should contact support immediately. Address changes may depend\non whether the order has already been shipped.\n"
+    },
+    {
+        "document_id": "KB048",
+        "category": "Delivery",
+        "title": "Failed Delivery Attempt",
+        "content": "\nIf a delivery attempt fails, customers should review the tracking\ninformation for the reason and available next steps. A new delivery\nattempt may depend on the carrier and current shipment status.\n"
+    },
+    {
+        "document_id": "KB049",
+        "category": "Delivery",
+        "title": "Missing Package",
+        "content": "\nCustomers who have not received a package marked as delivered should\nfirst check the delivery location and with other authorized recipients.\nIf the package cannot be located, support should review the delivery\nrecords and escalate the issue when necessary.\n"
+    },
+    {
+        "document_id": "KB050",
+        "category": "Delivery",
+        "title": "Damaged Package",
+        "content": "\nCustomers who receive a damaged package should report the issue as\nsoon as possible and provide the order details. Photographs or other\nevidence may be requested to help support investigate the delivery\ncondition.\n"
+    },
+    {
+        "document_id": "KB051",
+        "category": "Delivery",
+        "title": "Wrong Item Delivered",
+        "content": "\nIf a customer receives an item different from the one ordered, support\nshould verify the order details and delivered product information.\nReplacement or return options depend on the applicable order policy.\n"
+    },
+    {
+        "document_id": "KB052",
+        "category": "Delivery",
+        "title": "Missing Item From Order",
+        "content": "\nIf an order contains fewer items than expected, customers should\nprovide the order number and identify the missing item. Support should\ncompare the order records with fulfillment information before deciding\nthe appropriate resolution.\n"
+    },
+    {
+        "document_id": "KB053",
+        "category": "Delivery",
+        "title": "Delivery Time Estimate",
+        "content": "\nDelivery estimates are provided based on the order processing stage,\nshipping method, destination, and carrier conditions. Estimated\ndelivery dates are not always guaranteed and may change due to\nunexpected delivery conditions.\n"
+    },
+    {
+        "document_id": "KB054",
+        "category": "Delivery",
+        "title": "Shipping Method Change",
+        "content": "\nRequests to change the shipping method should be submitted before the\norder is processed or shipped. Support should verify the current order\nstatus before confirming whether a shipping method change is possible.\n"
+    },
+    {
+        "document_id": "KB055",
+        "category": "Delivery",
+        "title": "Order Status Information",
+        "content": "\nCustomers can check the current status of an order through the\navailable order tracking or account interface. Common statuses may\ninclude processing, shipped, out for delivery, delivered, or\ncancelled.\n"
+    },
+    {
+        "document_id": "KB006",
+        "category": "Product Support",
+        "title": "Product Not Working",
+        "content": "\nIf a purchased product is not working, the customer should first check\nthe product setup and follow the basic troubleshooting instructions.\nIf the problem continues, the customer should contact support with the\nproduct and purchase information.\n"
+    },
+    {
+        "document_id": "KB007",
+        "category": "Product Support",
+        "title": "Product Replacement",
+        "content": "\nCustomers requesting a product replacement should provide their order\ndetails and explain the problem with the product. The support team\nshould verify the purchase and determine whether the replacement\nrequest is eligible according to the applicable support policy.\n"
+    },
+    {
+        "document_id": "KB056",
+        "category": "Product Support",
+        "title": "Product Setup Assistance",
+        "content": "\nCustomers who need help setting up a product should follow the\nofficial setup instructions and verify that all required components are\navailable. Support can provide additional guidance when the standard\nsetup process does not resolve the issue.\n"
+    },
+    {
+        "document_id": "KB057",
+        "category": "Product Support",
+        "title": "Product Compatibility",
+        "content": "\nBefore using a product with another device or service, customers\nshould verify compatibility requirements. If compatibility information\nis unclear, support should review the product specifications and\ncustomer use case.\n"
+    },
+    {
+        "document_id": "KB058",
+        "category": "Product Support",
+        "title": "Product Defect Report",
+        "content": "\nCustomers who believe a product has a manufacturing or functional\ndefect should provide the product details, purchase information, and a\ndescription of the observed problem. Support should determine the\nappropriate inspection, replacement, or repair process.\n"
+    },
+    {
+        "document_id": "KB059",
+        "category": "Product Support",
+        "title": "Product Warranty",
+        "content": "\nWarranty support depends on the product, purchase date, warranty\nconditions, and nature of the reported issue. Customers should provide\nproof of purchase and product information when requesting warranty\nassistance.\n"
+    },
+    {
+        "document_id": "KB060",
+        "category": "Product Support",
+        "title": "Warranty Exclusion",
+        "content": "\nWarranty coverage may not apply to damage caused by misuse,\nunauthorized modification, accidental damage, or conditions excluded\nby the applicable warranty terms. Support should verify the warranty\nconditions before confirming coverage.\n"
+    },
+    {
+        "document_id": "KB061",
+        "category": "Product Support",
+        "title": "Replacement Eligibility",
+        "content": "\nProduct replacement eligibility depends on the purchase record,\nproduct condition, reported issue, and applicable replacement policy.\nSupport should verify these conditions before approving a replacement.\n"
+    },
+    {
+        "document_id": "KB062",
+        "category": "Product Support",
+        "title": "Return Product for Inspection",
+        "content": "\nSome product issues may require the item to be returned for inspection.\nCustomers should follow the return instructions provided by support and\nshould not send products to an unapproved address.\n"
+    },
+    {
+        "document_id": "KB063",
+        "category": "Product Support",
+        "title": "Product Maintenance",
+        "content": "\nCustomers should follow the recommended maintenance and usage\ninstructions for their products. Proper maintenance can reduce\navoidable failures and help preserve product performance.\n"
+    },
+    {
+        "document_id": "KB064",
+        "category": "Product Support",
+        "title": "Product Information Request",
+        "content": "\nCustomers requesting product specifications should provide the product\nname or model number. Support should provide information from approved\nproduct documentation and should avoid making unsupported technical\nclaims.\n"
+    },
+    {
+        "document_id": "KB065",
+        "category": "Product Support",
+        "title": "Product Availability",
+        "content": "\nProduct availability may change based on inventory and fulfillment\nconditions. Customers asking about availability should check the\ncurrent product information or contact support for the latest\navailability details.\n"
+    },
+    {
+        "document_id": "KB012",
+        "category": "Technical Support",
+        "title": "Technical Troubleshooting",
+        "content": "\nFor technical problems, customers should first restart the affected\nservice or device and verify the basic configuration. Customers should\nalso check whether the issue continues after following the available\ntroubleshooting steps. If the problem remains unresolved, customer\nsupport should be contacted.\n"
+    },
+    {
+        "document_id": "KB066",
+        "category": "Technical Support",
+        "title": "Application Not Loading",
+        "content": "\nIf an application does not load correctly, customers should check their\ninternet connection and restart the application. They should also\nverify whether an updated version is available. Persistent problems\nshould be reported to technical support with device and error details.\n"
+    },
+    {
+        "document_id": "KB067",
+        "category": "Technical Support",
+        "title": "Slow Application Performance",
+        "content": "\nCustomers experiencing slow application performance should restart the\napplication and verify their network connection. They should provide\nthe affected feature, approximate time of occurrence, and device\ninformation when reporting persistent performance issues.\n"
+    },
+    {
+        "document_id": "KB068",
+        "category": "Technical Support",
+        "title": "Login Error",
+        "content": "\nCustomers receiving a login error should verify their credentials and\nconfirm that the account is active. If the problem continues, they\nshould provide the exact error message and device information to\ntechnical support.\n"
+    },
+    {
+        "document_id": "KB069",
+        "category": "Technical Support",
+        "title": "Application Error Message",
+        "content": "\nWhen an application displays an error message, customers should record\nthe exact message and the action that caused it. Support can use this\ninformation to identify the affected service and determine the\nappropriate troubleshooting procedure.\n"
+    },
+    {
+        "document_id": "KB070",
+        "category": "Technical Support",
+        "title": "Connectivity Problem",
+        "content": "\nFor connectivity problems, customers should verify their internet\nconnection and retry the affected operation. If other services work\nnormally but the specific service remains unavailable, the issue\nshould be reported to technical support.\n"
+    },
+    {
+        "document_id": "KB071",
+        "category": "Technical Support",
+        "title": "Service Outage",
+        "content": "\nIf a service appears to be unavailable for multiple customers,\ntechnical support should check the service status before asking\ncustomers to repeat troubleshooting steps. Customers should be\ninformed when a known outage is identified.\n"
+    },
+    {
+        "document_id": "KB072",
+        "category": "Technical Support",
+        "title": "Browser Troubleshooting",
+        "content": "\nFor browser-related problems, customers can try refreshing the page,\nclearing temporary browser data, disabling conflicting extensions, or\nusing a supported browser. Persistent issues should be reported with\nbrowser and operating system information.\n"
+    },
+    {
+        "document_id": "KB073",
+        "category": "Technical Support",
+        "title": "Mobile Application Issue",
+        "content": "\nCustomers experiencing problems with a mobile application should\nrestart the application and verify that the latest supported version\nis installed. If the issue continues, support should collect the\ndevice model, operating system version, and error details.\n"
+    },
+    {
+        "document_id": "KB074",
+        "category": "Technical Support",
+        "title": "Data Synchronization Problem",
+        "content": "\nIf information does not synchronize correctly between supported\ndevices or services, customers should verify their connection and\nrefresh the affected application. Persistent synchronization problems\nshould be reported with details about the affected data.\n"
+    },
+    {
+        "document_id": "KB075",
+        "category": "Technical Support",
+        "title": "Technical Issue Escalation",
+        "content": "\nTechnical issues that cannot be resolved using standard troubleshooting\nshould be escalated to the appropriate technical team. The escalation\nshould include the error message, affected feature, troubleshooting\nsteps already attempted, and relevant technical information.\n"
+    },
+    {
+        "document_id": "KB076",
+        "category": "Subscription",
+        "title": "Subscription Information",
+        "content": "\nCustomers can review their current subscription plan through the\naccount interface when available. Subscription information may include\nthe plan type, billing frequency, renewal status, and applicable\nfeatures.\n"
+    },
+    {
+        "document_id": "KB077",
+        "category": "Subscription",
+        "title": "Plan Upgrade",
+        "content": "\nCustomers who want additional features or service capacity can request\na plan upgrade through the available account options. The customer\nshould review the updated pricing and plan conditions before confirming\nthe upgrade.\n"
+    },
+    {
+        "document_id": "KB078",
+        "category": "Subscription",
+        "title": "Plan Downgrade",
+        "content": "\nCustomers requesting a plan downgrade should review which features or\nlimits will change. The effective date of the downgrade may depend on\nthe subscription billing cycle and applicable plan rules.\n"
+    },
+    {
+        "document_id": "KB079",
+        "category": "Subscription",
+        "title": "Subscription Renewal",
+        "content": "\nSubscriptions may renew according to the selected billing cycle.\nCustomers should review their renewal status and plan information\nbefore the renewal date if they do not want the subscription to\ncontinue.\n"
+    },
+    {
+        "document_id": "KB080",
+        "category": "Subscription",
+        "title": "Subscription Cancellation",
+        "content": "\nCustomers who want to cancel a subscription should use the available\ncancellation option or contact support. The customer should review the\neffective cancellation date and any remaining subscription benefits.\n"
+    },
+    {
+        "document_id": "KB081",
+        "category": "Subscription",
+        "title": "Subscription Reactivation",
+        "content": "\nA cancelled subscription may be eligible for reactivation depending on\nits current status and applicable plan rules. Support should verify the\nsubscription before confirming reactivation.\n"
+    },
+    {
+        "document_id": "KB082",
+        "category": "Subscription",
+        "title": "Plan Feature Availability",
+        "content": "\nDifferent subscription plans may provide different features, limits,\nor service levels. Customers should check the current plan information\nbefore requesting a feature that may not be included in their plan.\n"
+    },
+    {
+        "document_id": "KB083",
+        "category": "Subscription",
+        "title": "Subscription Billing Issue",
+        "content": "\nCustomers who are incorrectly charged for a subscription should\nprovide the subscription information and transaction details. Support\nshould verify the active plan, billing cycle, and payment history\nbefore resolving the issue.\n"
+    },
+    {
+        "document_id": "KB084",
+        "category": "Subscription",
+        "title": "Expired Subscription",
+        "content": "\nWhen a subscription expires, access to subscription-specific features\nmay be restricted. Customers who want to continue using those features\nshould review the available renewal or reactivation options.\n"
+    },
+    {
+        "document_id": "KB085",
+        "category": "Subscription",
+        "title": "Subscription Plan Comparison",
+        "content": "\nCustomers comparing subscription plans should review pricing,\nfeatures, usage limits, billing frequency, and applicable conditions.\nSupport should provide information from the current approved plan\ndocumentation.\n"
+    },
+    {
+        "document_id": "KB010",
+        "category": "General Support",
+        "title": "Support Escalation",
+        "content": "\nIf a customer issue cannot be resolved through the standard support\nprocess, the issue can be escalated to the appropriate support team.\nThe customer should provide the ticket number and relevant details so\nthat the issue can be reviewed efficiently.\n"
+    },
+    {
+        "document_id": "KB011",
+        "category": "General Support",
+        "title": "Contact Customer Support",
+        "content": "\nCustomers should provide their customer or order information when\ncontacting support. They should clearly describe the problem and\ninclude relevant transaction or product details when applicable.\nProviding complete information helps the support team investigate the\nissue efficiently.\n"
+    },
+    {
+        "document_id": "KB086",
+        "category": "General Support",
+        "title": "Ticket Information Requirements",
+        "content": "\nSupport tickets should contain a clear description of the customer's\nproblem and relevant identifiers such as the order number, account\ninformation, or transaction reference when applicable. Complete\ninformation helps reduce unnecessary follow-up requests.\n"
+    },
+    {
+        "document_id": "KB087",
+        "category": "General Support",
+        "title": "Ticket Priority",
+        "content": "\nSupport ticket priority should be determined based on the impact,\nurgency, number of affected customers, and business importance of the\nissue. Critical service disruptions should receive higher priority\nthan routine informational requests.\n"
+    },
+    {
+        "document_id": "KB088",
+        "category": "General Support",
+        "title": "Ticket Categorization",
+        "content": "\nEach support ticket should be assigned to the most appropriate\ncategory based on the customer's primary issue. Accurate\ncategorization helps route the ticket to the correct support team and\nimproves reporting.\n"
+    },
+    {
+        "document_id": "KB089",
+        "category": "General Support",
+        "title": "Ticket Assignment",
+        "content": "\nTickets should be assigned to the team or agent responsible for the\nreported issue. Tickets requiring specialized knowledge should be\ntransferred to the appropriate specialist rather than repeatedly\nhandled by unrelated teams.\n"
+    },
+    {
+        "document_id": "KB090",
+        "category": "General Support",
+        "title": "Ticket Reopening",
+        "content": "\nA resolved ticket may be reopened when the original issue remains\nunresolved or occurs again within the applicable support process.\nSupport should review the previous ticket history before taking new\naction.\n"
+    },
+    {
+        "document_id": "KB091",
+        "category": "General Support",
+        "title": "Duplicate Ticket Handling",
+        "content": "\nWhen multiple tickets describe the same customer issue, support should\nidentify the duplicate requests and consolidate the information when\nappropriate. The customer should be informed which ticket will be used\nfor further communication.\n"
+    },
+    {
+        "document_id": "KB092",
+        "category": "General Support",
+        "title": "Customer Information Verification",
+        "content": "\nSupport agents should verify the customer's relevant account or order\ninformation before making account-specific changes. Verification should\nfollow the approved support procedure and should not expose sensitive\ninformation unnecessarily.\n"
+    },
+    {
+        "document_id": "KB093",
+        "category": "General Support",
+        "title": "Escalation Information",
+        "content": "\nWhen escalating a ticket, the support agent should include the issue\nsummary, relevant customer information, troubleshooting already\nperformed, supporting evidence, and the reason for escalation. This\nhelps the receiving team investigate efficiently.\n"
+    },
+    {
+        "document_id": "KB094",
+        "category": "Business Rules",
+        "title": "Customer Data Privacy",
+        "content": "\nCustomer information should be handled according to applicable\nprivacy and security requirements. Support agents should access only\nthe information necessary to resolve the customer's request and\nshould avoid sharing confidential information through unauthorized\nchannels.\n"
+    },
+    {
+        "document_id": "KB095",
+        "category": "Business Rules",
+        "title": "Sensitive Information Handling",
+        "content": "\nSupport agents should not request unnecessary passwords, authentication\nsecrets, or complete payment credentials from customers. Sensitive\ninformation should be handled only through approved secure procedures.\n"
+    },
+    {
+        "document_id": "KB096",
+        "category": "Business Rules",
+        "title": "Policy Verification",
+        "content": "\nBefore approving exceptions, refunds, cancellations, replacements, or\nother special requests, support should verify the applicable policy.\nAgents should not promise an exception before the request has been\nreviewed and approved.\n"
+    },
+    {
+        "document_id": "KB097",
+        "category": "Business Rules",
+        "title": "Service Availability",
+        "content": "\nService availability may depend on the customer's plan, account\nstatus, product configuration, geographic availability, and current\nsystem conditions. Support should verify the relevant service rules\nbefore confirming availability.\n"
+    },
+    {
+        "document_id": "KB098",
+        "category": "Business Rules",
+        "title": "Exception Approval",
+        "content": "\nRequests that fall outside standard policies should be submitted for\nappropriate approval when an exception process exists. Support agents\nshould document the reason for the exception and the decision made by\nthe authorized reviewer.\n"
+    },
+    {
+        "document_id": "KB099",
+        "category": "Business Rules",
+        "title": "Customer Communication Guidelines",
+        "content": "\nSupport communication should be clear, professional, and focused on\nthe customer's issue. Agents should explain available next steps,\navoid unsupported promises, and provide accurate information based on\napproved support procedures.\n"
+    },
+    {
+        "document_id": "KB100",
+        "category": "Business Rules",
+        "title": "Issue Resolution Guidelines",
+        "content": "\nSupport agents should first identify the customer's primary problem,\nverify the relevant account or transaction information, and follow the\nappropriate support procedure. If the issue cannot be resolved within\nstandard procedures, it should be escalated with complete supporting\ninformation.\n"
+    }
+]
